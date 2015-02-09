@@ -26,10 +26,6 @@ Prerequisites: Node.js and Ruby
 
 To install new local npm packages, use `npm install PACKAGE_NAME --save-dev`
 
-## Development Notes
-
- * [Valid pygments lexers](http://pygments.org/languages/)
-
 ## Design Notes
 
 ### Colors
