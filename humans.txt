@@ -1,0 +1,30 @@
+# humans.txt
+
+[The humans responsible & technology colophon](http://humanstxt.org/)
+
+*This file is valid markdown.*
+
+## TEAM
+
+Jerod Santo, @jerodsanto
+John Hobbs, @jmhobbs
+Matt Steele, @mattdsteele
+Nick Nisi, @nicknisi
+Zach Leatherman, @zachleat
+
+## TECHNOLOGY COLOPHON
+
+### Workflow
+
+ * Jekyll
+ * Grunt.js
+ * Uglify
+ * SASS
+ * CSSMin
+ * Grunticon
+
+### Runtime
+
+ * FitVids CSS
+ * Pygments Syntax Highlighter
+ * Grunticon

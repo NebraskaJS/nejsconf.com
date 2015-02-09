@@ -1,0 +1,126 @@
+@import "config";
+
+body {
+	padding-top: 2em;
+}
+
+/* Footer */
+.footer {
+	margin-top: 2em;
+	padding: .666666667em; /* 8px */
+	font-size: .75em; /* 12px */
+	line-height: 120%;
+}
+
+/* Header */
+.header {
+	text-decoration: none;
+	display: block;
+	text-align: center;
+}
+.header h1 {
+	font-size: 2em;
+	font-size: 12vw;
+	margin: .5em 0 0;
+}
+.header h1 abbr {
+	text-decoration: none;
+	border: none;
+}
+.header h2 {
+	font-size: 1.5em;
+	font-size: 8vw;
+	margin: .8em 0;
+}
+.wf-effra-n9-active .header h1,
+.wf-effra-n9-active .header h2 {
+	font-family: effra, $sansSerifFont;
+	font-weight: 900;
+}
+.wf-effra-i9-active .header h2 {
+	font-style: italic;
+}
+@include respond-min( $bpFixed ) {
+	.header h1 {
+		font-size: 4.5em;
+	}
+	.header h2 {
+		font-size: 3em;
+	}
+}
+
+/* Header Logo Image and Title Position */
+.icon-logo {
+	display: block;
+	padding-top: 62%;
+	background-position: 50% 50%;
+	background-size: auto 100%;
+	margin: 0 auto;
+}
+
+@media only all {
+	.icon-logo {
+		pointer-events: none;
+	}
+	.header:hover .icon-logo,
+	.header:focus .icon-logo {
+		z-index: -1;
+	}
+	.header:hover .header-title,
+	.header:focus .header-title {
+		color: $linkColor;
+	}
+}
+
+@include respond-min( $bpFixed ) {
+	.icon-logo {
+		position: relative;
+		z-index: 1;
+		padding-top: 0;
+		height: 26em;
+	}
+	.header-title {
+		position: absolute;
+		top: 9.9em;
+		width: 100%;
+		text-align: center;
+		z-index: 0;
+	}
+}
+
+/* Date and Location */
+.spacetime {
+	margin: 2.5em 0;
+	font-size: 2em;
+	line-height: 1.3;
+	text-align: center;
+	color: $secondary;
+}
+.spacetime .location {
+	color: #fff;
+	font-size: .6875em; /* 22px /32 */
+}
+.wf-effra-n9-active .spacetime {
+	font-family: effra, $sansSerifFont;
+	font-weight: 900;
+}
+.wf-effra-n5-active .spacetime .location {
+	font-weight: 500;
+}
+
+/* Twitter Icon */
+.icon-twitter {
+	text-indent: -9999px;
+	display: inline-block;
+	position: absolute;
+	top: 1em;
+	right: 1em;
+	width: 32px;
+	height: 27px;
+}
+
+/* Buttons */
+.btn-primary {
+	background: #fff;
+	color: $secondary;
+}

@@ -1,0 +1,93 @@
+@import "config";
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.a11y-only {
+	@include a11y-only;
+}
+img {
+	max-width: 100%;
+	border: none;
+}
+
+/* Border */
+html {
+	background-color: $backgroundColor;
+	-moz-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+
+.has-gradient.tmpl-page a {
+	text-decoration: none;
+	background-image: -webkit-linear-gradient(top, currentColor 75%, currentColor 75%);
+	background-image: linear-gradient(to bottom, currentColor 75%, currentColor 75%);
+	text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+	background-repeat: repeat-x;
+	background-size: 1px 1px;
+	background-position: 0 97%;
+}
+
+/* App specific */
+body {
+	font-family: $sansSerifFont;
+	padding: 0;
+	margin: 0;
+	font-size: 100%;
+	line-height: 140%;
+}
+:link {
+	color: $linkColor;
+}
+:visited {
+	color: $linkColor;
+}
+:link:active,
+:link:hover,
+:link:focus,
+:visited:hover {
+	color: darken( $linkColor, 5% );
+}
+h1, h2, h3, h4, h5 {
+	margin-top: 1.4em;
+	text-transform: uppercase;
+}
+
+code {
+	font-family: $monospaceFont;
+	font-size: .947368421em; /* 18px / 19px */
+	line-height: 100%;
+}
+pre {
+	font-size: .8125em;
+	line-height: 160%;
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
+	word-wrap: break-word;
+}
+
+blockquote {
+	font-style: italic;
+	color: $blockquoteColor;
+	margin: 1.2em 5% 1.8em;
+}
+
+table {
+	border-collapse: collapse;
+	font-size: .8125em;
+}
+tr {
+	border-bottom: 1px solid #ddd;
+}
+td,
+th {
+	padding: .4em .4em;
+}
+th {
+	vertical-align: top;
+}
