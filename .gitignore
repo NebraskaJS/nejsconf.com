@@ -5,3 +5,11 @@ bower_components
 _site
 dist
 web/_config.yml
+
+# Composer
+composer.phar
+vendor/
+composer.lock
+
+# Mandrill
+config.php
