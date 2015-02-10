@@ -44,7 +44,7 @@ if( $_POST ) {
 if( $show_form ): ?>
 <form method="POST" action="<?php echo $PHP_SELF; ?>#feedback" id="teaser-subscribe"  class="collapsed">
   <label for="teaser-email" class="a11y-only">Email</label>
-  <input type="text" id="teaser-email" name="email" <?php if(isset($_POST['email'])): ?>value="<?php echo htmlspecialchars($_POST['email']); ?>"<?php endif; ?> placeholder="address@example.com">
+  <input type="text" id="teaser-email" name="email" <?php if(isset($_POST['email'])): ?>value="<?php echo htmlspecialchars($_POST['email']); ?>"<?php endif; ?> placeholder="Your e-mail address">
   <button type="submit" class="btn-primary">Get notified <span>when tickets go on sale</span></button>
 </form>
 <?php

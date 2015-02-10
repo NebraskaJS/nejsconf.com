@@ -31,6 +31,13 @@ $bpFixed: 42em;
 	clip: auto;
 }
 
+@mixin placeholder {
+	&::-webkit-input-placeholder {@content}
+	&:-moz-placeholder           {@content}
+	&::-moz-placeholder          {@content}
+	&:-ms-input-placeholder      {@content}
+}
+
 // Handle mqs and oldie stuff
 $fix-mqs: false !default;
 
