@@ -2,54 +2,53 @@
 layout: default
 ---
 
-<a href="#" class="btn-primary">Get notified <span>when tickets go on sale</span></a>
-
 {% raw %}
 <?php
-  require 'vendor/autoload.php';
-  $config = require 'config.php';
+require 'vendor/autoload.php';
+$config = require 'config.php';
 
-  $show_form = false;
+$show_form = true;
 
-  if( $_POST ) {
-    $show_form = true;
-    $mc = new Mailchimp($config['api-key']);
-    curl_setopt($mc->ch, CURLOPT_SSL_VERIFYHOST, 0);
-    curl_setopt($mc->ch, CURLOPT_SSL_VERIFYPEER, 0);
+if( $_POST ) {
+  $mc = new Mailchimp($config['api-key']);
+  curl_setopt($mc->ch, CURLOPT_SSL_VERIFYHOST, 0);
+  curl_setopt($mc->ch, CURLOPT_SSL_VERIFYPEER, 0);
 
-    try {
-      $mc->lists->subscribe($config['list-id'], 
-                            array('email' => $_POST['email']),
-                            null,
-                            'html',
-                            false, 
-                            true,
-                            true,
-                            true);
-      $show_form = false;
+  try {
+    $mc->lists->subscribe($config['list-id'], 
+                          array('email' => $_POST['email']),
+                          null,
+                          'html',
+                          false, 
+                          true,
+                          true,
+                          true);
+    $show_form = false;
 ?>
-<div class="form-result success">Awesome! We will be in touch!</div>
+<div class="form-result success" id="feedback">Awesome! We will be in touch!</div>
+<?php if(isset($_POST['email'])): ?><div class="form-result feedback"><?php echo htmlspecialchars($_POST['email']); ?></div><?php endif; ?>
 <?php
-    } 
-    catch (Mailchimp_Error $e) {
-      if ($e->getMessage()) {
+  } catch (Mailchimp_Error $e) {
+    if ($e->getMessage()) {
 ?>
-  <div class="form-result error"><?php echo $e->getMessage(); ?></div>
+<div class="form-result error" id="feedback"><?php echo $e->getMessage(); ?></div>
 <?php
-      }
-      else {
+    } else {
 ?>
-  <div class="form-result error">Could not subscribe. Please try again.</div>
+<div class="form-result error" id="feedback">Could not subscribe. Please try again.</div>
 <?php
-      }
     }
   }
-?>
-<form method="POST"<?php if( ! $show_form ): ?> class="collapsed"<?php endif; ?>>
-  <label>Email</label>
-  <input type="text" name="email" <?php if(isset($_POST['email'])): ?>value="<?php echo htmlspecialchars($_POST['email']); ?>"<?php endif; ?>/>
-  <button type="submit" class="btn-secondary">Subscribe</button>
+}
+
+if( $show_form ): ?>
+<form method="POST" action="<?php echo $PHP_SELF; ?>#feedback" id="teaser-subscribe"  class="collapsed">
+  <label for="teaser-email" class="a11y-only">Email</label>
+  <input type="text" id="teaser-email" name="email" <?php if(isset($_POST['email'])): ?>value="<?php echo htmlspecialchars($_POST['email']); ?>"<?php endif; ?> placeholder="address@example.com">
+  <button type="submit" class="btn-primary">Get notified <span>when tickets go on sale</span></button>
 </form>
+<?php
+endif; ?>
 {% endraw %}
 
 <div class="secondary-buttons">
