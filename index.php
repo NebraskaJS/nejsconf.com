@@ -15,11 +15,11 @@ if( $_POST ) {
   curl_setopt($mc->ch, CURLOPT_SSL_VERIFYPEER, 0);
 
   try {
-    $mc->lists->subscribe($config['list-id'], 
+    $mc->lists->subscribe($config['list-id'],
                           array('email' => $_POST['email']),
                           null,
                           'html',
-                          false, 
+                          false,
                           true,
                           true,
                           true);
