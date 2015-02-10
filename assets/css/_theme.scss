@@ -33,6 +33,9 @@ body {
 	font-style: italic;
 }
 @include respond-min( $bpFixed ) {
+	.header {
+		position: relative;
+	}
 	.header h1 {
 		font-size: 4.5em;
 	}
@@ -54,12 +57,9 @@ body {
 	.icon-logo {
 		pointer-events: none;
 	}
-	.header:hover .icon-logo,
-	.header:focus .icon-logo {
-		z-index: -1;
-	}
 	.header:hover .header-title,
 	.header:focus .header-title {
+		// z-index: 1; // move text to front on hover
 		color: $linkColor;
 		text-shadow: 0 0 2px $secondary;
 	}
@@ -74,10 +74,57 @@ body {
 	}
 	.header-title {
 		position: absolute;
-		top: 9.9em;
+		top: 8.2em;
 		width: 100%;
 		text-align: center;
 		z-index: 0;
+	}
+	.wf-effra-n9-active .header-title {
+		top: 7.7em;
+	}
+	.logo-hover,
+	.logo-static {
+		position: absolute;
+		top: 8.7em;
+		left: 50%;
+		margin-left: -6.7em;
+		width: 13.5em;
+		height: 7.3em;
+		border-radius: 1em 1em 0 0;
+	}
+	.logo-hover {
+		cursor: url(/assets/img/cursor.png), none;
+		z-index: 2;
+	}
+	.logo-static {
+		z-index: -1;
+		display: none;
+	}
+	.logo-hover:hover ~ .icon-logo #cursor {
+		display: none;
+	}
+	.logo-hover:hover + .logo-static {
+		display: block;
+		background: #777;
+		overflow: hidden;
+	}
+	.logo-static:before,
+	.logo-static:after {
+		content: " ";
+		position: absolute;
+		bottom: -0.1em;
+		border-radius: .5em .5em 0 0;
+		background-color: $primary;
+	}
+	.logo-static:before {
+		right: 6.3em;
+		width: 0.7em;
+		height: 0.3em;
+	}
+	.logo-static:after {
+		right: 1em;
+		width: 2.1em;
+		height: 0.8em;
 	}
 }
 
