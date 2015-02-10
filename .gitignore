@@ -10,3 +10,6 @@ web/_config.yml
 composer.phar
 vendor/
 composer.lock
+
+# Mandrill
+config.php

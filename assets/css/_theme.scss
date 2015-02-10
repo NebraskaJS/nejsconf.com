@@ -142,9 +142,12 @@ body {
 .wf-effra-n5-active .btn-primary span {
 	font-weight: 500;
 }
-.btn-primary + div {
+div.secondary-buttons {
 	text-align: center;
 	letter-spacing: -4px;
+}
+form, div.form-result {
+  text-align: center;
 }
 .btn-secondary {
 	display: inline-block;
