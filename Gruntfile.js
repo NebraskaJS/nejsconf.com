@@ -263,22 +263,6 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask( 'feedburner-size', function() {
-		var feed = grunt.config.get( 'config.distFeed' ),
-			fs = require('fs');
-
-		var stats = fs.statSync( feed ),
-			kbSize = Math.ceil( stats.size / 1024 ),
-			isTooLarge = kbSize > 512,
-			msg = 'Your atom.xml is ' + ( isTooLarge ? 'too large' : 'ok' ) + ' (' + kbSize + 'KB) for Feedburner (512KB max).';
-
-		if( isTooLarge ) {
-			grunt.fail.warn( msg );
-		} else {
-			grunt.log.writeln( msg );
-		}
-	});
-
 	// Default task.
 	grunt.registerTask('assets', ['sass', 'jshint', 'concat', 'uglify', 'cssmin']);
 	grunt.registerTask('images', ['grunticon']);
@@ -287,6 +271,6 @@ module.exports = function(grunt) {
 	grunt.registerTask('default', ['clean', 'config', 'assets', 'images', 'content']);
 
 	// Upload to Production
-	grunt.registerTask('stage', ['default', 'htmlmin', 'zopfli', 'feedburner-size']);
+	grunt.registerTask('stage', ['default', 'htmlmin', 'zopfli']);
 	grunt.registerTask('deploy', ['stage', 'shell:upload']);
 };

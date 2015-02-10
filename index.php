@@ -14,6 +14,8 @@ layout: default
   if( $_POST ) {
     $show_form = true;
     $mc = new Mailchimp($config['api-key']);
+    curl_setopt($mc->ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($mc->ch, CURLOPT_SSL_VERIFYPEER, 0);
 
     try {
       $mc->lists->subscribe($config['list-id'], 
