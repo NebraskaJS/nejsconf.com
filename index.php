@@ -29,7 +29,11 @@ if( $_POST ) {
 <?php if(isset($_POST['email'])): ?><div class="form-result feedback"><?php echo htmlspecialchars($_POST['email']); ?></div><?php endif; ?>
 <?php
   } catch (Mailchimp_Error $e) {
-    if ($e->getMessage()) {
+    if (empty($_POST['email'])) {
+?>
+<div class="form-result error" id="feedback">An email is required.</div>
+<?php
+    } elseif ($e->getMessage()) {
 ?>
 <div class="form-result error" id="feedback"><?php echo $e->getMessage(); ?></div>
 <?php
