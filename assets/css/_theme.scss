@@ -52,6 +52,19 @@ body {
 	background-size: auto 100%;
 	margin: 0 auto;
 }
+.grunticon-svg .icon-logo {
+	padding-top: 0;
+}
+.grunticon-svg .icon-logo svg {
+	width: 100%;
+	height: 100%;
+	max-width: 488px;
+	max-height: 412px;
+}
+.logo-hover,
+.logo-static {
+	display: none;
+}
 
 @media only all {
 	.icon-logo {
@@ -84,6 +97,7 @@ body {
 	}
 	.logo-hover,
 	.logo-static {
+		display: block;
 		position: absolute;
 		top: 8.7em;
 		left: 50%;
