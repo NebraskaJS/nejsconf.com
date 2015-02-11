@@ -204,15 +204,6 @@ module.exports = function(grunt) {
 						cwd: '<%= config.root %>'
 					}
 				}
-			},
-			upload: {
-				command: 'echo "Note: Requires an \'nejsconf\' host in .ssh/config"; rsync -avz ssh ./_site/ nejsconf:/home/public/<%= config.root %>',
-				options: {
-					stdout: true,
-					execOptions: {
-						cwd: '<%= config.root %>'
-					}
-				}
 			}
 		},
 		clean: {
@@ -270,7 +261,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('content', ['copy:includes', 'shell:jekyll']);
 	grunt.registerTask('default', ['clean', 'config', 'assets', 'images', 'content']);
 
-	// Upload to Production
 	grunt.registerTask('stage', ['default', 'htmlmin', 'zopfli']);
-	grunt.registerTask('deploy', ['stage', 'shell:upload']);
+	// Upload to Production
+	// grunt stage && ./deploy.sh
 };
