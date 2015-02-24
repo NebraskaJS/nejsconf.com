@@ -11,6 +11,11 @@
 		<meta name="template" content="page">
 {% endif %}
 
+    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}NebraskaJS Conference, August 7 2015{% endif %}" />
+    <meta property="og:site_name" content="NebraskaJS Conference" />
+    <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}A one day JavaScript conference at the #1 Zoo in the World! August 7, 2015{% endif %}" />
+    <meta property="og:image" content="/assets/img/og.png" />
+
 		<style>{% include initial.min.css %}</style>
 		<noscript>
 			<link href="{{ site.distFolder }}defer.min.css" rel="stylesheet">
