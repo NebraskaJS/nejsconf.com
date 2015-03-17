@@ -62,5 +62,6 @@ layout: default
 
 <div class="secondary-buttons">
 	<!-- <a href="#" class="btn-secondary">Apply to Speak</a> -->
-	<a href="mailto:sponsor@nejsconf.com" class="btn-secondary">Sponsor Us</a>
+  <a href="mailto:sponsor@nejsconf.com" class="btn-secondary">Sponsor Us</a>
+	<a href="https://docs.google.com/forms/d/1vqaODm8zG0_R8oXi1xVvWG4VrKEP5IicKYfjOLfntIk/viewform" class="btn-secondary">Propose a Talk</a>
 </div>
