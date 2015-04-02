@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{% if page.title %}{{ page.title }}—NEJS CONF 2015{% else %}NebraskaJS Conference 2015{% endif %}</title>
+		<meta name="description" content="NebraskaJS Conference is a single track conference held at the #1 Zoo in the World on Friday, August 7th, 2015">
+
+		<meta name="dist" content="{{ site.distFolder }}">
+{% if page.title %}
+		<meta name="template" content="page">
+{% endif %}
+
+    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}NebraskaJS Conference, August 7 2015{% endif %}" />
+    <meta property="og:site_name" content="NebraskaJS Conference" />
+    <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}A one day JavaScript conference at the #1 Zoo in the World! August 7, 2015{% endif %}" />
+    <meta property="og:image" content="/assets/img/og.png" />
+
+		<style>{% include initial.min.css %}</style>
+		<noscript>
+			<link href="{{ site.distFolder }}defer.min.css" rel="stylesheet">
+		</noscript>
+		<script>{% include initial.min.js %}</script>
+		<!--[if IE 8]><link rel="stylesheet" href="{{ site.distFolder }}ie8.min.css"><![endif]-->
+	</head>
+	<body>
+		<header>
+      <h1><abbr title="Nebraska JavaScript">NEJS</abbr> <abbr title="Conference">CONF</abbr> 2015</h1>
+      <h2>Tickets</h2>
+		</header>
+		<aside>
+			<nav role="navigation">
+				<div class="navigation">
+					<a href="//twitter.com/nejsconf" class="icon-twitter" title="@nejsconf on Twitter">Twitter</a>
+				</div>
+			</nav>
+		</aside>
+		<div class="content" data-role="main">
+			{{ content }}
+		</div><!-- /.content -->
+		<footer>
+		{% include footer.html %}
+		</footer>
+		<script src="{{ site.distFolder }}defer.min.js"></script>
+	</body>
+</html>
