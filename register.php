@@ -152,7 +152,7 @@ layout: skinny
     <legend>Coupon Code</legend>
     <input type="text" name="coupon_code" id="coupon_code" value="<?php echo $coupon_code; ?>" /> <a href="#" id="update_coupon">Apply Code</a>
   </fieldset>
-  <h3>Total: $<span id="current_price"><?php echo $ticket_price; ?></span> &times; <?php echo $number_of_tickets; ?> = <span id="ticket_total">$<?php echo $ticket_price * $number_of_tickets; ?></span></h3>
+  <h3>Total: $<span id="current_price"><?php echo $ticket_price; ?></span> &times; <span id="ticket_count"><?php echo $number_of_tickets; ?></span> = <span id="ticket_total">$<?php echo $ticket_price * $number_of_tickets; ?></span></h3>
 
   <fieldset>
     <legend>Payment</legend>
@@ -254,6 +254,7 @@ layout: skinny
         $ticket_block_wrapper = document.getElementById('ticket_blocks'),
         ticket_block_template = document.getElementById('ticket_block_template').innerText,
                 $ticket_total = document.getElementById('ticket_total'),
+                $ticket_count = document.getElementById('ticket_count'),
                $current_price = document.getElementById('current_price'),
                  $coupon_code = document.getElementById('coupon_code');
 
@@ -352,6 +353,7 @@ layout: skinny
 
     function updatePrice () {
       $current_price.innerText = current_ticket_price;
+      $ticket_count.innerText = parseInt($ticket_select.value, 10);
       $ticket_total.innerText = "$" + (current_ticket_price * parseInt($ticket_select.value, 10));
     }
   });
