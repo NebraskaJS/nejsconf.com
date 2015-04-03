@@ -32,7 +32,7 @@ layout: skinny
 
 
 ?>
-<form method="POST">
+<form method="POST" id="register_form">
 
   <label for="number_of_tickets">Number Of Tickets</label>
   <select id="number_of_tickets" name="number_of_tickets">
@@ -45,21 +45,39 @@ layout: skinny
   <?php for($i = 1; $i <= $number_of_tickets; $i++): ?>
     <fieldset id="ticket_block_<?php echo $i; ?>">
       <legend>Attendee #<?php echo $i; ?></legend>
-      <label for="first_name_<?php echo $i; ?>">First Name <span class="required">(required)</span></label>
-      <input name="first_name_<?php echo $i; ?>" type="text" value="<?php echo arr_get($_POST, "first_name_" . $i); ?>" />
-      <div class="form_error" id="error_first_name_<?php echo $i; ?>"></div>
-      <label for="last_name_<?php echo $i; ?>">Last Name <span class="required">(required)</span></label>
-      <input name="last_name_<?php echo $i; ?>" type="text" value="<?php echo arr_get($_POST, "last_name_" . $i); ?>" />
-      <div class="form_error" id="error_last_name_<?php echo $i; ?>"></div>
-      <label for="email_<?php echo $i; ?>">Email Address <span class="required">(required)</span></label>
-      <input name="email_<?php echo $i; ?>" type="text" value="<?php echo arr_get($_POST, "email_" . $i); ?>" />
-      <div class="form_error" id="error_email_<?php echo $i; ?>"></div>
-      <label for="twitter_<?php echo $i; ?>">Twitter Username</label>
-      <input name="twitter_<?php echo $i; ?>" type="text" value="<?php echo arr_get($_POST, "twitter_" . $i); ?>" />
-      <label for="company_<?php echo $i; ?>">Company</label>
-      <input name="company_<?php echo $i; ?>" type="text" value="<?php echo arr_get($_POST, "company_" . $i); ?>" />
-      <label for="title_<?php echo $i; ?>">Job Title</label>
-      <input name="title_<?php echo $i; ?>" type="text" value="<?php echo arr_get($_POST, "title_" . $i); ?>" />
+
+      <div>
+        <label for="first_name_<?php echo $i; ?>">First Name <span class="required">(required)</span></label>
+        <input name="first_name_<?php echo $i; ?>" data-validate="required" type="text" value="<?php echo arr_get($_POST, "first_name_" . $i); ?>" />
+        <div class="form_error" id="error_first_name_<?php echo $i; ?>"></div>
+      </div>
+
+      <div>
+        <label for="last_name_<?php echo $i; ?>">Last Name <span class="required">(required)</span></label>
+        <input name="last_name_<?php echo $i; ?>" data-validate="required" type="text" value="<?php echo arr_get($_POST, "last_name_" . $i); ?>" />
+        <div class="form_error" id="error_last_name_<?php echo $i; ?>"></div>
+      </div>
+
+      <div>
+        <label for="email_<?php echo $i; ?>">Email Address <span class="required">(required)</span></label>
+        <input name="email_<?php echo $i; ?>" data-validate="email" type="text" value="<?php echo arr_get($_POST, "email_" . $i); ?>" />
+        <div class="form_error" id="error_email_<?php echo $i; ?>"></div>
+      </div>
+
+      <div>
+        <label for="twitter_<?php echo $i; ?>">Twitter Username</label>
+        <input name="twitter_<?php echo $i; ?>" type="text" value="<?php echo arr_get($_POST, "twitter_" . $i); ?>" />
+      </div>
+
+      <div>
+        <label for="company_<?php echo $i; ?>">Company</label>
+        <input name="company_<?php echo $i; ?>" type="text" value="<?php echo arr_get($_POST, "company_" . $i); ?>" />
+      </div>
+
+      <div>
+        <label for="title_<?php echo $i; ?>">Job Title</label>
+        <input name="title_<?php echo $i; ?>" type="text" value="<?php echo arr_get($_POST, "title_" . $i); ?>" />
+      </div>
     </fieldset>
   <?php endfor; ?>
   </div>
@@ -80,25 +98,43 @@ layout: skinny
 
 <script type="text/html" id="ticket_block_template">
 <legend>Attendee #{{block_number}}</legend>
-<label for="first_name_{{block_number}}">First Name <span class="required">(required)</span></label>
-<input name="first_name_{{block_number}}" type="text" />
-<div class="form_error" id="error_first_name_{{block_number}}"></div>
-<label for="last_name_{{block_number}}">Last Name <span class="required">(required)</span></label>
-<input name="last_name_{{block_number}}" type="text" />
-<div class="form_error" id="error_last_name_{{block_number}}"></div>
-<label for="email_{{block_number}}">Email Address <span class="required">(required)</span></label>
-<input name="email_{{block_number}}" type="text" />
-<div class="form_error" id="error_email_{{block_number}}"></div>
-<label for="twitter{{block_number}}">Twitter Username</label>
-<input name="twitter{{block_number}}" type="text" />
-<label for="company_{{block_number}}">Company</label>
-<input name="company_{{block_number}}" type="text" />
-<label for="title_{{block_number}}">Job Title</label>
-<input name="title_{{block_number}}" type="text" />
+<div>
+  <label for="first_name_{{block_number}}">First Name <span class="required">(required)</span></label>
+  <input name="first_name_{{block_number}}" data-validate="required" type="text" />
+  <div class="form_error" id="error_first_name_{{block_number}}"></div>
+</div>
+
+<div>
+  <label for="last_name_{{block_number}}">Last Name <span class="required">(required)</span></label>
+  <input name="last_name_{{block_number}}" data-validate="required" type="text" />
+  <div class="form_error" id="error_last_name_{{block_number}}"></div>
+</div>
+
+<div>
+  <label for="email_{{block_number}}">Email Address <span class="required">(required)</span></label>
+  <input name="email_{{block_number}}" data-validate="email" type="text" />
+  <div class="form_error" id="error_email_{{block_number}}"></div>
+</div>
+
+<div>
+  <label for="twitter{{block_number}}">Twitter Username</label>
+  <input name="twitter{{block_number}}" type="text" />
+</div>
+
+<div>
+  <label for="company_{{block_number}}">Company</label>
+  <input name="company_{{block_number}}" type="text" />
+</div>
+
+<div>
+  <label for="title_{{block_number}}">Job Title</label>
+  <input name="title_{{block_number}}" type="text" />
+</div>
 </script>
 
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/validator/3.12.0/validator.min.js"></script>
 <script>
 
   $(function () {
@@ -125,6 +161,40 @@ layout: skinny
         updatePrice();
       });
     };
+
+    $("#register_form").on('submit', function () {
+      
+      var errors = false;
+
+      $(this).find('input').each(function (i, e) {
+        
+        var $input = $(e),
+          $wrapper = $input.parent(),
+     $errorMessage = $wrapper.find(".form_error"),
+         validates = $input.data('validate'),
+             value = e.value.replace(/^\s+|\s+$/g, '');
+
+        $wrapper.removeClass("error");
+        $errorMessage.text('');
+
+        if( validates === 'required') {
+          if(! validator.isLength(value, 1)) {
+            $wrapper.addClass('error');
+            $errorMessage.text('This field is required.');
+            errors = true;
+          }
+        }
+        else if ( validates === 'email' ) {
+          if(! validator.isEmail(value)) {
+            $wrapper.addClass('error');
+            $errorMessage.text('An email is required.');
+            errors = true;
+          }
+        }
+      });
+
+      return ! errors;
+    });
 
     function updateForm () {
         var i, block, ticket_blocks = parseInt($ticket_select.value, 10);
