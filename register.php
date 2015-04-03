@@ -14,8 +14,12 @@ layout: skinny
   $ticket_price = $config['checkout']['ticket_price'];
   $number_of_tickets = 1;
   $coupon_code = '';
+  $form_errors = array();
+  $attendee_data = array();
 
   if($_POST) {
+    $number_of_tickets = min(intval($_POST['number_of_tickets']), $config['checkout']['max_tickets']);
+
     // Validate Coupon Code
     if(($coupon_code = arr_get($_POST, 'coupon_code')) != null) {
       $coupon_price = arr_get($config['checkout']['coupons'], $coupon_code);
@@ -27,9 +31,36 @@ layout: skinny
       }
     }
 
-    $number_of_tickets = intval($_POST['number_of_tickets']);
-  }
+    // Attendee validation
+    for($i = 1; $i <= $number_of_tickets; $i++) {
+      $attendee = array(
+        'first_name' => trim(arr_get($_POST, 'first_name_' . $i, '')),
+        'last_name'  => trim(arr_get($_POST, 'last_name_' . $i, '')),
+        'email'      => trim(arr_get($_POST, 'email_' . $i, '')),
+        'twitter'    => trim(arr_get($_POST, 'twitter_' . $i, '')),
+        'company'    => trim(arr_get($_POST, 'company_' . $i, '')),
+        'title'      => trim(arr_get($_POST, 'title_' . $i, '')),
+      );
+      $attendee_data[$i] = $attendee;
 
+      $errors = array();
+
+      if(empty($attendee['first_name'])) {
+        $errors['first_name'] = 'This field is required.';
+      }
+      if(empty($attendee['last_name'])) {
+        $errors['last_name'] = 'This field is required.';
+      }
+      if(! (filter_var($attendee['email'], FILTER_VALIDATE_EMAIL) && preg_match('/@.+\./', $attendee['email'])) ) {
+        $errors['email'] = 'An email is required.';
+      }
+
+      if(0 != count($errors)) {
+        $form_errors[$i] = $errors;
+      }
+    }
+
+  }
 
 ?>
 <form method="POST" id="register_form">
@@ -46,22 +77,22 @@ layout: skinny
     <fieldset id="ticket_block_<?php echo $i; ?>">
       <legend>Attendee #<?php echo $i; ?></legend>
 
-      <div>
+      <div<?php if(arr_get(arr_get($form_errors, $i, array()), 'first_name')): ?> class="error"<?php endif; ?>>
         <label for="first_name_<?php echo $i; ?>">First Name <span class="required">(required)</span></label>
         <input name="first_name_<?php echo $i; ?>" data-validate="required" type="text" value="<?php echo arr_get($_POST, "first_name_" . $i); ?>" />
-        <div class="form_error" id="error_first_name_<?php echo $i; ?>"></div>
+        <div class="form_error" id="error_first_name_<?php echo $i; ?>"><?php echo arr_get(arr_get($form_errors, $i, array()), 'first_name'); ?></div>
       </div>
 
-      <div>
+      <div<?php if(arr_get(arr_get($form_errors, $i, array()), 'last_name')): ?> class="error"<?php endif; ?>>
         <label for="last_name_<?php echo $i; ?>">Last Name <span class="required">(required)</span></label>
         <input name="last_name_<?php echo $i; ?>" data-validate="required" type="text" value="<?php echo arr_get($_POST, "last_name_" . $i); ?>" />
-        <div class="form_error" id="error_last_name_<?php echo $i; ?>"></div>
+        <div class="form_error" id="error_last_name_<?php echo $i; ?>"><?php echo arr_get(arr_get($form_errors, $i, array()), 'last_name'); ?></div>
       </div>
 
-      <div>
+      <div<?php if(arr_get(arr_get($form_errors, $i, array()), 'email')): ?> class="error"<?php endif; ?>>
         <label for="email_<?php echo $i; ?>">Email Address <span class="required">(required)</span></label>
         <input name="email_<?php echo $i; ?>" data-validate="email" type="text" value="<?php echo arr_get($_POST, "email_" . $i); ?>" />
-        <div class="form_error" id="error_email_<?php echo $i; ?>"></div>
+        <div class="form_error" id="error_email_<?php echo $i; ?>"><?php echo arr_get(arr_get($form_errors, $i, array()), 'email'); ?></div>
       </div>
 
       <div>
