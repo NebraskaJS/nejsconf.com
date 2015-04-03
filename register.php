@@ -9,6 +9,13 @@ layout: skinny
   require 'util.php';
   $config = require 'config.php';
 
+  if($_POST) {
+    echo '<pre>';
+    var_dump($_POST);
+    echo '</pre>';
+    die();
+  }
+
   \Stripe\Stripe::setApiKey($config['stripe']['secret_key']);
 
   $ticket_price = $config['checkout']['ticket_price'];
@@ -119,12 +126,44 @@ layout: skinny
   </fieldset>
   <h3>Total: $<span id="current_price"><?php echo $ticket_price; ?></span> &times; <?php echo $number_of_tickets; ?> = <span id="ticket_total">$<?php echo $ticket_price * $number_of_tickets; ?></span></h3>
 
-  <button type="submit">Buy</button>
-<?php /*
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<?php echo $config['stripe']['public_key']; ?>"
-            data-description="NEJS CONF 2015 Tickets"></script>
- */ ?>
+  <fieldset>
+    <legend>Payment</legend>
+
+    <div class="payment-errors"></div>
+
+    <div>
+      <label>
+        Card Number
+        <span class="required">(required)</span>
+      </label>
+      <input type="text" size="20" data-stripe="number" data-validate="required" />
+      <div class="form_error"></div>
+    </div>
+
+    <div>
+      <label>
+        CVC
+        <span class="required">(required)</span>
+      </label>
+      <input type="text" size="4" data-stripe="cvc" data-validate="required"/>
+      <div class="form_error"></div>
+    </div>
+
+    <div>
+      <label>Expiration (MM/YYYY) <span class="required">(required)</span></label>
+      <input type="text" class="short" size="2" data-stripe="exp-month" data-validate="required"/> / 
+      <input type="text" class="short" size="4" data-stripe="exp-year" data-validate="required"/>
+      <div class="form_error"></div>
+    </div>
+
+  </fieldset>
+
+  <button type="submit">Complete Registration</button>
+
+  <div style="margin-top: 20px;">
+    <img src="/assets/img/stripe.png" alt="Powered By Stripe" style="width: 100px;" />
+  </div>
+
 </form>
 
 <script type="text/html" id="ticket_block_template">
@@ -163,10 +202,12 @@ layout: skinny
 </div>
 </script>
 
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/validator/3.12.0/validator.min.js"></script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/validator/3.12.0/validator.min.js"></script>
 <script>
+
+  Stripe.setPublishableKey('<?php echo $config['stripe']['public_key']; ?>');
 
   $(function () {
 
@@ -195,9 +236,10 @@ layout: skinny
 
     $("#register_form").on('submit', function () {
       
-      var errors = false;
+      var errors = false,
+           $form = $(this);
 
-      $(this).find('input').each(function (i, e) {
+      $form.find('input').each(function (i, e) {
         
         var $input = $(e),
           $wrapper = $input.parent(),
@@ -224,8 +266,28 @@ layout: skinny
         }
       });
 
-      return ! errors;
+      if( ! errors ) {
+        Stripe.card.createToken(this, stripeResponseHandler);
+        $form.find('button').prop('disabled', true);
+      }
+
+      return false;
     });
+
+    function stripeResponseHandler(status, response) {
+      var $form = $('#register_form');
+
+      if (response.error) {
+        // Show the errors on the form
+        $form.find('.payment-errors').text(response.error.message);
+        $form.find('button').prop('disabled', false);
+      }
+      else {
+        var token = response.id;
+        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+        $form.get(0).submit();
+      }
+    };
 
     function updateForm () {
         var i, block, ticket_blocks = parseInt($ticket_select.value, 10);
