@@ -9,6 +9,7 @@ layout: skinny
 
   \Stripe\Stripe::setApiKey($config['stripe']['secret_key']);
 
+  $ticket_price = $config['checkout']['ticket_price'];
 ?>
 <form method="POST" action="<?php echo $PHP_SELF; ?>">
 
@@ -21,7 +22,10 @@ layout: skinny
 
   <div id="ticket_blocks"></div>
 
-  <h3>Total: <span id="ticket_total"></span></h3>
+  <h3>Total: $<span id="current_price"><?php echo $ticket_price; ?></span> &times; 1 = <span id="ticket_total">$<?php echo $ticket_price; ?></span></h3>
+
+  <label for="coupon_code">Coupon Code</label>
+  <input type="text" name="coupon_code" id="coupon_code" /> <a href="#" id="update_coupon">Update</a>
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<?php echo $config['stripe']['public_key']; ?>"
@@ -38,37 +42,63 @@ layout: skinny
 <input name="email{{block_number}}" type="text" />
 </script>
 
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js"></script>
 <script>
 
-  var   ticket_select = document.getElementById("number_of_tickets"),
- ticket_block_wrapper = document.getElementById('ticket_blocks'),
-ticket_block_template = document.getElementById('ticket_block_template').innerText,
-         ticket_total = document.getElementById('ticket_total');
+  $(function () {
 
-  ticket_select.onchange = updateForm;
-  
-  function updateForm () {
-      var i, block, ticket_blocks = parseInt(ticket_select.value, 10);
-      for(i = 1; i <= <?php echo $config['checkout']['max_tickets']; ?>; i++) {
-        block = document.getElementById("ticket_block_" + i);
-        // Delete old blocks
-        if(i > ticket_blocks) { 
-          if(null !== block) {
-            block.parentNode.removeChild(block);
+    var original_ticket_price = <?php echo $config['checkout']['ticket_price']; ?>,
+         current_ticket_price = <?php echo $ticket_price; ?>,
+               $ticket_select = document.getElementById("number_of_tickets"),
+        $ticket_block_wrapper = document.getElementById('ticket_blocks'),
+        ticket_block_template = document.getElementById('ticket_block_template').innerText,
+                $ticket_total = document.getElementById('ticket_total'),
+               $current_price = document.getElementById('current_price'),
+                 $coupon_code = document.getElementById('coupon_code');
+
+    $ticket_select.onchange = updateForm;
+
+    document.getElementById('update_coupon').onclick = function (e) {
+      e.preventDefault();
+      $.getJSON("/coupon.php", {'coupon_code': $coupon_code.value}, function (data) {
+        if(data['code'] === false) {
+          $coupon_code.value = '';
+          alert("Sorry, that coupon code does not exist.");
+        }
+        current_ticket_price = data['price'];
+        updatePrice();
+      });
+    };
+
+    function updateForm () {
+        var i, block, ticket_blocks = parseInt($ticket_select.value, 10);
+        for(i = 1; i <= <?php echo $config['checkout']['max_tickets']; ?>; i++) {
+          block = document.getElementById("ticket_block_" + i);
+          // Delete old blocks
+          if(i > ticket_blocks) { 
+            if(null !== block) {
+              block.parentNode.removeChild(block);
+            }
+          }
+          // Inject new blocks
+          else {
+            if(null === block) {
+              var ticketBlock = document.createElement("div");
+              ticketBlock.innerHTML = ticket_block_template.replace("{{block_number}}", i);
+              ticketBlock.id = "ticket_block_" + i;
+              $ticket_block_wrapper.appendChild(ticketBlock);
+            }
           }
         }
-        // Inject new blocks
-        else {
-          if(null === block) {
-            var ticketBlock = document.createElement("div");
-            ticketBlock.innerHTML = ticket_block_template.replace("{{block_number}}", i);
-            ticketBlock.id = "ticket_block_" + i;
-            ticket_block_wrapper.appendChild(ticketBlock);
-          }
-        }
+
+        updatePrice();
       }
 
-      ticket_total.innerText = "$" + (<?php echo $config['checkout']['ticket_price']; ?> * ticket_blocks);
+    function updatePrice () {
+      $current_price.innerText = current_ticket_price;
+      $ticket_total.innerText = "$" + (current_ticket_price * parseInt($ticket_select.value, 10));
     }
+  });
 </script>
 {% endraw %}
