@@ -45,12 +45,21 @@ layout: skinny
   <?php for($i = 1; $i <= $number_of_tickets; $i++): ?>
     <fieldset id="ticket_block_<?php echo $i; ?>">
       <legend>Attendee #<?php echo $i; ?></legend>
-      <label for="first_name_<?php echo $i; ?>">First Name</label>
+      <label for="first_name_<?php echo $i; ?>">First Name <span class="required">(required)</span></label>
       <input name="first_name_<?php echo $i; ?>" type="text" value="<?php echo arr_get($_POST, "first_name_" . $i); ?>" />
-      <label for="last_name_<?php echo $i; ?>">Last Name</label>
+      <div class="form_error" id="error_first_name_<?php echo $i; ?>"></div>
+      <label for="last_name_<?php echo $i; ?>">Last Name <span class="required">(required)</span></label>
       <input name="last_name_<?php echo $i; ?>" type="text" value="<?php echo arr_get($_POST, "last_name_" . $i); ?>" />
-      <label for="email_<?php echo $i; ?>">Email Address</label>
+      <div class="form_error" id="error_last_name_<?php echo $i; ?>"></div>
+      <label for="email_<?php echo $i; ?>">Email Address <span class="required">(required)</span></label>
       <input name="email_<?php echo $i; ?>" type="text" value="<?php echo arr_get($_POST, "email_" . $i); ?>" />
+      <div class="form_error" id="error_email_<?php echo $i; ?>"></div>
+      <label for="twitter_<?php echo $i; ?>">Twitter Username</label>
+      <input name="twitter_<?php echo $i; ?>" type="text" value="<?php echo arr_get($_POST, "twitter_" . $i); ?>" />
+      <label for="company_<?php echo $i; ?>">Company</label>
+      <input name="company_<?php echo $i; ?>" type="text" value="<?php echo arr_get($_POST, "company_" . $i); ?>" />
+      <label for="title_<?php echo $i; ?>">Job Title</label>
+      <input name="title_<?php echo $i; ?>" type="text" value="<?php echo arr_get($_POST, "title_" . $i); ?>" />
     </fieldset>
   <?php endfor; ?>
   </div>
@@ -71,12 +80,21 @@ layout: skinny
 
 <script type="text/html" id="ticket_block_template">
 <legend>Attendee #{{block_number}}</legend>
-<label for="first_name_{{block_number}}">First Name</label>
+<label for="first_name_{{block_number}}">First Name <span class="required">(required)</span></label>
 <input name="first_name_{{block_number}}" type="text" />
-<label for="last_name_{{block_number}}">Last Name</label>
+<div class="form_error" id="error_first_name_{{block_number}}"></div>
+<label for="last_name_{{block_number}}">Last Name <span class="required">(required)</span></label>
 <input name="last_name_{{block_number}}" type="text" />
-<label for="email_{{block_number}}">Email Address</label>
+<div class="form_error" id="error_last_name_{{block_number}}"></div>
+<label for="email_{{block_number}}">Email Address <span class="required">(required)</span></label>
 <input name="email_{{block_number}}" type="text" />
+<div class="form_error" id="error_email_{{block_number}}"></div>
+<label for="twitter{{block_number}}">Twitter Username</label>
+<input name="twitter{{block_number}}" type="text" />
+<label for="company_{{block_number}}">Company</label>
+<input name="company_{{block_number}}" type="text" />
+<label for="title_{{block_number}}">Job Title</label>
+<input name="title_{{block_number}}" type="text" />
 </script>
 
 
