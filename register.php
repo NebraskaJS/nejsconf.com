@@ -9,13 +9,6 @@ layout: skinny
   require 'util.php';
   $config = require 'config.php';
 
-  if($_POST) {
-    echo '<pre>';
-    var_dump($_POST);
-    echo '</pre>';
-    die();
-  }
-
   \Stripe\Stripe::setApiKey($config['stripe']['secret_key']);
 
   $ticket_price = $config['checkout']['ticket_price'];
@@ -23,6 +16,8 @@ layout: skinny
   $coupon_code = '';
   $form_errors = array();
   $attendee_data = array();
+  $stripe_error = false;
+  $receipt_email = '';
 
   if($_POST) {
     $number_of_tickets = min(intval($_POST['number_of_tickets']), $config['checkout']['max_tickets']);
@@ -67,6 +62,39 @@ layout: skinny
       }
     }
 
+    $receipt_email = trim(arr_get($_POST, 'receipt_email', ''));
+    if(! (filter_var($receipt_email, FILTER_VALIDATE_EMAIL) && preg_match('/@.+\./', $receipt_email)) ) {
+      $form_errors['receipt_email'] = 'An email is required.';
+    }
+
+
+    if(0 == count($form_errors)) {
+      $stripe_token = $_POST['stripeToken'];
+
+      try {
+        $charge = \Stripe\Charge::create(array(
+          "amount"        => $ticket_price * $number_of_tickets * 100,  // it's in pennies
+          "currency"      => "usd",
+          "source"        => $stripe_token,
+          "description"   => "$number_of_tickets NEJSCONF 2015 Tickets",
+          "receipt_email" => $receipt_email,
+          "metadata"      => array(
+            'attendees'         => json_encode($attendee_data),
+            'coupon_code'       => $coupon_code,
+            'ticket_price'      => $ticket_price,
+            'number_of_tickets' => $number_of_tickets,
+          ),
+        ));
+      }
+      catch(\Stripe\Error\Card $e) {
+        $error_json = $e->getJsonBody();
+        $stripe_error = $error_json['error']['message'];
+      }
+      catch(\Stripe\Error $e) {
+        $stripe_error = "An error occurred charging your card. Please try again.";
+      }
+    }
+
   }
 
 ?>
@@ -86,13 +114,13 @@ layout: skinny
 
       <div<?php if(arr_get(arr_get($form_errors, $i, array()), 'first_name')): ?> class="error"<?php endif; ?>>
         <label for="first_name_<?php echo $i; ?>">First Name <span class="required">(required)</span></label>
-        <input name="first_name_<?php echo $i; ?>" data-validate="required" type="text" value="<?php echo arr_get($_POST, "first_name_" . $i); ?>" />
+        <input name="first_name_<?php echo $i; ?>" data-validate="required" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "first_name_" . $i)); ?>" />
         <div class="form_error" id="error_first_name_<?php echo $i; ?>"><?php echo arr_get(arr_get($form_errors, $i, array()), 'first_name'); ?></div>
       </div>
 
       <div<?php if(arr_get(arr_get($form_errors, $i, array()), 'last_name')): ?> class="error"<?php endif; ?>>
         <label for="last_name_<?php echo $i; ?>">Last Name <span class="required">(required)</span></label>
-        <input name="last_name_<?php echo $i; ?>" data-validate="required" type="text" value="<?php echo arr_get($_POST, "last_name_" . $i); ?>" />
+        <input name="last_name_<?php echo $i; ?>" data-validate="required" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "last_name_" . $i)); ?>" />
         <div class="form_error" id="error_last_name_<?php echo $i; ?>"><?php echo arr_get(arr_get($form_errors, $i, array()), 'last_name'); ?></div>
       </div>
 
@@ -104,17 +132,17 @@ layout: skinny
 
       <div>
         <label for="twitter_<?php echo $i; ?>">Twitter Username</label>
-        <input name="twitter_<?php echo $i; ?>" type="text" value="<?php echo arr_get($_POST, "twitter_" . $i); ?>" />
+        <input name="twitter_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "twitter_" . $i)); ?>" />
       </div>
 
       <div>
         <label for="company_<?php echo $i; ?>">Company</label>
-        <input name="company_<?php echo $i; ?>" type="text" value="<?php echo arr_get($_POST, "company_" . $i); ?>" />
+        <input name="company_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "company_" . $i)); ?>" />
       </div>
 
       <div>
         <label for="title_<?php echo $i; ?>">Job Title</label>
-        <input name="title_<?php echo $i; ?>" type="text" value="<?php echo arr_get($_POST, "title_" . $i); ?>" />
+        <input name="title_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "title_" . $i)); ?>" />
       </div>
     </fieldset>
   <?php endfor; ?>
@@ -129,7 +157,16 @@ layout: skinny
   <fieldset>
     <legend>Payment</legend>
 
-    <div class="payment-errors"></div>
+    <div class="payment-errors"><?php if($stripe_error) { echo htmlspecialchars($stripe_error); } ?></div>
+    
+    <div<?php if(arr_get($form_errors, 'receipt_email', false)): ?> class="error"<?php endif; ?>>
+      <label>
+        Receipt Email Address
+        <span class="required">(required)</span>
+      </label>
+      <input type="text" data-validate="email" name="receipt_email" value="<?php echo htmlspecialchars($receipt_email); ?>"/>
+      <div class="form_error"><?php echo arr_get($form_errors, 'receipt_email', ''); ?></div>
+    </div>
 
     <div>
       <label>
