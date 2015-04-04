@@ -43,8 +43,17 @@
     label, input {
       display: block;
     }
-    input {
+    input[type=text] {
       width: 100%;
+      border: 1px solid #444;
+    }
+    input[type=text]:focus {
+        background-color:#ffff66;
+        border-color:#999999;
+    }
+    div.error input[type=text] {
+      border: 1px solid red;
+      background-color: #FFEEEE;
     }
     input.short {
       display: inline-block;
