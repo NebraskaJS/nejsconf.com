@@ -18,6 +18,7 @@ layout: skinny
   $attendee_data = array();
   $stripe_error = false;
   $receipt_email = '';
+  $show_purchase_success = false;
 
   if($_POST) {
     $number_of_tickets = min(intval($_POST['number_of_tickets']), $config['checkout']['max_tickets']);
@@ -85,6 +86,40 @@ layout: skinny
             'number_of_tickets' => $number_of_tickets,
           ),
         ));
+
+        $mandrill = new Mandrill($config['mandrill']['api_key']);
+
+        $to_dict = array();
+        $merge_dict = array();
+        foreach($attendee_data as $attendee) {
+          array_push($to_dict, array('email' => arr_get($attendee, 'email')));
+          $merge_tags = array();
+          foreach($attendee as $key => $value) {
+            array_push($merge_tags, array('name' => $key, 'content' => $value));
+          }
+          array_push($merge_dict, array(
+            'rcpt' => arr_get($attendee, 'email'),
+            'vars' => $merge_tags
+          ));
+        }
+        
+        try { 
+          $mandrill->messages->sendTemplate(
+            $config['mandrill']['receipt-template-slug'],
+            array(),
+            array(
+              'merge_language' => 'handlebars',
+              'to' => $to_dict,
+              'merge_vars' => $merge_dict,
+            ),
+            true
+          );
+        }
+        catch(Mandrill_Error $e) {
+          error_log("Mandrill error sending receipt to " . arr_get($attendee, 'email', '?') . ": " . $e);
+        }
+       
+        $show_purchase_success = true;
       }
       catch(\Stripe\Error\Card $e) {
         $error_json = $e->getJsonBody();
@@ -97,7 +132,20 @@ layout: skinny
 
   }
 
+  if($show_purchase_success) {
 ?>
+  <h4>Success!</h4>
+  <p>
+    You should receive confirmation emails shortly.
+  </p>
+  <p>
+    If you have questions, please don't hesitate to contact us at <a href="mailto:tickets@nejsconf.com">tickets@nejsconf.com</a>
+  </p>
+<?php
+  }
+  else {
+?>
+
 <form method="POST" id="register_form">
 
   <label for="number_of_tickets">Number Of Tickets</label>
@@ -224,8 +272,8 @@ layout: skinny
 </div>
 
 <div>
-  <label for="twitter{{block_number}}">Twitter Username</label>
-  <input name="twitter{{block_number}}" type="text" />
+  <label for="twitter_{{block_number}}">Twitter Username</label>
+  <input name="twitter_{{block_number}}" type="text" />
 </div>
 
 <div>
@@ -358,4 +406,5 @@ layout: skinny
     }
   });
 </script>
+<?php } ?>
 {% endraw %}
