@@ -42,7 +42,7 @@ layout: skinny
         'email'      => trim(arr_get($_POST, 'email_' . $i, '')),
         'twitter'    => trim(arr_get($_POST, 'twitter_' . $i, '')),
         'company'    => trim(arr_get($_POST, 'company_' . $i, '')),
-        'title'      => trim(arr_get($_POST, 'title_' . $i, '')),
+        'job_title'  => trim(arr_get($_POST, 'job_title_' . $i, '')),
       );
       $attendee_data[$i] = $attendee;
 
@@ -189,8 +189,8 @@ layout: skinny
       </div>
 
       <div>
-        <label for="title_<?php echo $i; ?>">Job Title</label>
-        <input name="title_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "title_" . $i)); ?>" />
+        <label for="job_title_<?php echo $i; ?>">Job Title</label>
+        <input name="job_title_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "job_title_" . $i)); ?>" />
       </div>
     </fieldset>
   <?php endfor; ?>
@@ -282,8 +282,8 @@ layout: skinny
 </div>
 
 <div>
-  <label for="title_{{block_number}}">Job Title</label>
-  <input name="title_{{block_number}}" type="text" />
+  <label for="job_title_{{block_number}}">Job Title</label>
+  <input name="job_title_{{block_number}}" type="text" />
 </div>
 </script>
 
