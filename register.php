@@ -221,7 +221,7 @@ layout: skinny
         Card Number
         <span class="required">(required)</span>
       </label>
-      <input type="text" size="20" data-stripe="number" data-validate="required" />
+      <input type="text" size="20" data-stripe="number" data-validate="creditcard" />
       <div class="form_error"></div>
     </div>
 
@@ -230,7 +230,7 @@ layout: skinny
         CVC
         <span class="required">(required)</span>
       </label>
-      <input type="text" size="4" data-stripe="cvc" data-validate="required"/>
+      <input type="text" size="4" data-stripe="cvc" data-validate="cvc"/>
       <div class="form_error"></div>
     </div>
 
@@ -347,6 +347,20 @@ layout: skinny
           if(! validator.isEmail(value)) {
             $wrapper.addClass('error');
             $errorMessage.text('An email is required.');
+            errors = true;
+          }
+        }
+        else if ( validates == 'creditcard' ) {
+          if( ! Stripe.card.validateCardNumber(value) ) {
+            $wrapper.addClass('error');
+            $errorMessage.text('A valid credit card number is required.');
+            errors = true;
+          }
+        }
+        else if ( validates == 'cvc' ) {
+          if( ! Stripe.card.validateCVC(value) ) {
+            $wrapper.addClass('error');
+            $errorMessage.text('A valid CVC is required.');
             errors = true;
           }
         }
