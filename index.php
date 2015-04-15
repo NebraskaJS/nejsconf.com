@@ -71,7 +71,7 @@ layout: home
     <h2>News</h2>
     <ul class="posts">
       {% for post in site.posts %}
-        <li><a href="{{ post.url }}">{{ post.title }}</a> {{ post.date | date: "%h %Y" }}</li>
+        <li><a href="{{ post.url }}#post">{{ post.title }}</a> {{ post.date | date: "%h %Y" }}</li>
       {% endfor %}
     </ul>
   </div>
