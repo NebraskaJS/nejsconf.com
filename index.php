@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: home
 ---
 
 {% raw %}
@@ -65,3 +65,14 @@ layout: default
   <a href="mailto:sponsor@nejsconf.com" class="btn-secondary">Sponsor Us</a>
 	<a href="/cfp" class="btn-secondary">Propose a Talk</a>
 </div>
+
+<article>
+  <div class="page-content">
+    <h2>News</h2>
+    <ul class="posts">
+      {% for post in site.posts %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a> {{ post.date | date: "%h %Y" }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</article>

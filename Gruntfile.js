@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 				baseurl: '/',
 				markdown: 'rdiscount',
 				// https://github.com/mojombo/jekyll/wiki/Permalinks
-				permalink: '/<%= config.root %>:title/',
+				permalink: '/:year/:title/',
 				highlighter: 'pygments',
 				relative_permalinks: false,
 				distFolder: '/<%= config.distFolder %>',

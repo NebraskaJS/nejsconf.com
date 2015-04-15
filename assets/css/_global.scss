@@ -21,7 +21,7 @@ html {
 	-webkit-text-size-adjust: 100%;
 }
 
-.has-gradient.tmpl-page a {
+.has-gradient.tmpl-page .content a {
 	text-decoration: none;
 	background-image: -webkit-linear-gradient(top, currentColor 75%, currentColor 75%);
 	background-image: linear-gradient(to bottom, currentColor 75%, currentColor 75%);

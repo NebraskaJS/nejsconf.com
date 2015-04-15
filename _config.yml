@@ -4,7 +4,7 @@ description: The website of the NebraskaJS Conference
 safe: false
 baseurl: /
 markdown: rdiscount
-permalink: /:title/
+permalink: /:year/:title/
 highlighter: pygments
 relative_permalinks: false
 distFolder: /dist/1.0.1/
