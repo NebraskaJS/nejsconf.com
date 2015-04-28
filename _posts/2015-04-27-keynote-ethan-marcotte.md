@@ -8,7 +8,7 @@ We are very excited to announce our first keynote speaker for the NebraskaJS Con
 
 <img src="/assets/img/posts/beep.png" alt="Ethan Marcotte’s Face" style="max-width: 256px">
 
-Ethan Marcotte a designer/developer well known for his [A List Apart article entitled “Responsive Web Design”](http://alistapart.com/article/responsive-web-design) in 2010 that championed many inclusive best practices for the web and steered the web development ship toward universal access. He went on to write a very popular book of the same name ([Responsive Web Design](http://abookapart.com/products/responsive-web-design)) which was recently released as an updated Second Edition. Along with Content Strategy superhero [Karen McGrane](https://twitter.com/karenmcgrane), they host an amazing [Responsive Web Design Podcast](http://responsivewebdesign.com/about/).
+Ethan Marcotte is a designer/developer well known for his 2010 [A List Apart article entitled “Responsive Web Design”](http://alistapart.com/article/responsive-web-design) that championed many inclusive best practices for the web and steered the web development ship toward universal access. He went on to write a very popular book of the same name ([Responsive Web Design](http://abookapart.com/products/responsive-web-design)) which was recently released as an updated Second Edition. Along with Content Strategy superhero [Karen McGrane](https://twitter.com/karenmcgrane), they host an amazing [Responsive Web Design Podcast](http://responsivewebdesign.com/about/).
 
 Ethan has been a featured speaker at An Event Apart, SXSW Interactive, and Webstock. His clientele has included New York Magazine, the Sundance Film Festival, The Boston Globe, and People Magazine.
 
