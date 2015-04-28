@@ -15,6 +15,11 @@ var NEJSConf = {
 	if( !( 'geolocation' in navigator ) ) {
 		return;
 	}
+	if( location.hash === "#post" && "replaceState" in history ) {
+		window.setTimeout(function() {
+			history.replaceState( "", doc.title, window.location.pathname );
+		}, 200);
+	}
 
 	var templateName = doc.querySelector( 'meta[name="template"]' );
 	doc.documentElement.className += ' enhanced-js' +
