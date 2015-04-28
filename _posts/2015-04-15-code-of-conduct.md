@@ -47,6 +47,6 @@ and conference-related social events.
 
 *Original source and credit:* [http://2012.jsconf.us/#/about](http://2012.jsconf.us/#/about) &amp; [The Ada Initiative](http://geekfeminism.wikia.com/wiki/Conference_anti-harassment/Policy)
 
-*Please help by translating or improving:* [http://github.com/leftlogic/confcodeofconduct.com](http://github.com/leftlogic/confcodeofconduct.com)
+[*Please help by translating or improving.*](http://github.com/leftlogic/confcodeofconduct.com)
 
 *This work is licensed under a Creative Commons Attribution 3.0 Unported License*
