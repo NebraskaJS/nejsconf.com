@@ -148,47 +148,50 @@ layout: skinny
 
 <form method="POST" id="register_form">
 
-  <label for="number_of_tickets">Number Of Tickets</label>
-  <select id="number_of_tickets" name="number_of_tickets">
-    <?php for($i = 1; $i <= $config['checkout']['max_tickets']; $i++): ?>
-    <option<?php if($i == $number_of_tickets):?> selected="selected"<?php endif; ?>><?php echo $i; ?></option>
-    <?php endfor; ?>
-  </select>
+  <fieldset>
+    <legend>Buy Tickets</legend>
+    <label for="number_of_tickets">Quantity</label>
+    <select id="number_of_tickets" name="number_of_tickets">
+      <?php for($i = 1; $i <= $config['checkout']['max_tickets']; $i++): ?>
+      <option<?php if($i == $number_of_tickets):?> selected="selected"<?php endif; ?>><?php echo $i; ?></option>
+      <?php endfor; ?>
+    </select>
+  </fieldset>
 
   <div id="ticket_blocks">
   <?php for($i = 1; $i <= $number_of_tickets; $i++): ?>
     <fieldset id="ticket_block_<?php echo $i; ?>">
       <legend>Attendee #<?php echo $i; ?></legend>
 
-      <div<?php if(arr_get(arr_get($form_errors, $i, array()), 'first_name')): ?> class="error"<?php endif; ?>>
-        <label for="first_name_<?php echo $i; ?>">First Name <span class="required">(required)</span></label>
+      <div class="form_field<?php if(arr_get(arr_get($form_errors, $i, array()), 'first_name')): ?> error<?php endif; ?>">
+        <label for="first_name_<?php echo $i; ?>">First Name <span class="required">Required</span></label>
         <input name="first_name_<?php echo $i; ?>" data-validate="required" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "first_name_" . $i)); ?>" />
         <div class="form_error" id="error_first_name_<?php echo $i; ?>"><?php echo arr_get(arr_get($form_errors, $i, array()), 'first_name'); ?></div>
       </div>
 
-      <div<?php if(arr_get(arr_get($form_errors, $i, array()), 'last_name')): ?> class="error"<?php endif; ?>>
-        <label for="last_name_<?php echo $i; ?>">Last Name <span class="required">(required)</span></label>
+      <div class="form_field<?php if(arr_get(arr_get($form_errors, $i, array()), 'last_name')): ?> error<?php endif; ?>">
+        <label for="last_name_<?php echo $i; ?>">Last Name <span class="required">Required</span></label>
         <input name="last_name_<?php echo $i; ?>" data-validate="required" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "last_name_" . $i)); ?>" />
         <div class="form_error" id="error_last_name_<?php echo $i; ?>"><?php echo arr_get(arr_get($form_errors, $i, array()), 'last_name'); ?></div>
       </div>
 
-      <div<?php if(arr_get(arr_get($form_errors, $i, array()), 'email')): ?> class="error"<?php endif; ?>>
-        <label for="email_<?php echo $i; ?>">Email Address <span class="required">(required)</span></label>
+      <div class="form_field <?php if(arr_get(arr_get($form_errors, $i, array()), 'email')): ?> error<?php endif; ?>">
+        <label for="email_<?php echo $i; ?>">Email Address <span class="required">Required</span></label>
         <input name="email_<?php echo $i; ?>" data-validate="email" type="text" value="<?php echo arr_get($_POST, "email_" . $i); ?>" />
         <div class="form_error" id="error_email_<?php echo $i; ?>"><?php echo arr_get(arr_get($form_errors, $i, array()), 'email'); ?></div>
       </div>
 
-      <div>
+      <div class="form_field">
         <label for="twitter_<?php echo $i; ?>">Twitter Username</label>
         <input name="twitter_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "twitter_" . $i)); ?>" />
       </div>
 
-      <div>
+      <div class="form_field">
         <label for="company_<?php echo $i; ?>">Company</label>
         <input name="company_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "company_" . $i)); ?>" />
       </div>
 
-      <div>
+      <div class="form_field">
         <label for="job_title_<?php echo $i; ?>">Job Title</label>
         <input name="job_title_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "job_title_" . $i)); ?>" />
       </div>
@@ -198,52 +201,59 @@ layout: skinny
 
   <fieldset>
     <legend>Coupon Code</legend>
-    <input type="text" name="coupon_code" id="coupon_code" value="<?php echo $coupon_code; ?>" /> <a href="#" id="update_coupon">Apply Code</a>
+    <div class="form_field">
+      <input type="text" name="coupon_code" id="coupon_code" value="<?php echo $coupon_code; ?>" />
+      <a href="#" id="update_coupon">Apply Code</a>
+    </div>
   </fieldset>
-  <h3>Total: $<span id="current_price"><?php echo $ticket_price; ?></span> &times; <span id="ticket_count"><?php echo $number_of_tickets; ?></span> = <span id="ticket_total">$<?php echo $ticket_price * $number_of_tickets; ?></span></h3>
+
+  <div class="total">
+    <h3>Total</h3>
+    $<span id="current_price"><?php echo $ticket_price; ?></span> &times; <span id="ticket_count"><?php echo $number_of_tickets; ?></span> = <span id="ticket_total">$<?php echo $ticket_price * $number_of_tickets; ?></span>
+  </div>
 
   <fieldset>
     <legend>Payment</legend>
 
     <div class="payment-errors"><?php if($stripe_error) { echo htmlspecialchars($stripe_error); } ?></div>
     
-    <div<?php if(arr_get($form_errors, 'receipt_email', false)): ?> class="error"<?php endif; ?>>
+    <div class="form_field<?php if(arr_get($form_errors, 'receipt_email', false)): ?> error<?php endif; ?>">
       <label>
         Receipt Email Address
-        <span class="required">(required)</span>
+        <span class="required">Required</span>
       </label>
       <input type="text" data-validate="email" name="receipt_email" value="<?php echo htmlspecialchars($receipt_email); ?>"/>
       <div class="form_error"><?php echo arr_get($form_errors, 'receipt_email', ''); ?></div>
     </div>
 
-    <div>
+    <div class="form_field">
       <label>
         Card Number
-        <span class="required">(required)</span>
+        <span class="required">Required</span>
       </label>
       <input type="text" size="20" data-stripe="number" data-validate="creditcard" />
       <div class="form_error"></div>
     </div>
 
-    <div>
+    <div class="form_field">
       <label>
         CVC
-        <span class="required">(required)</span>
+        <span class="required">Required</span>
       </label>
       <input type="text" size="4" data-stripe="cvc" data-validate="cvc"/>
       <div class="form_error"></div>
     </div>
 
-    <div>
-      <label>Expiration (MM/YYYY) <span class="required">(required)</span></label>
-      <input type="text" class="short" size="2" data-stripe="exp-month" data-validate="required"/> / 
+    <div class="form_field">
+      <label>Expiration (MM/YYYY) <span class="required">Required</span></label>
+      <input type="text" class="short" size="2" data-stripe="exp-month" data-validate="required"/> 
       <input type="text" class="short" size="4" data-stripe="exp-year" data-validate="required"/>
       <div class="form_error"></div>
     </div>
 
   </fieldset>
 
-  <button type="submit">Complete Registration</button>
+  <button type="submit" class="btn-primary">Submit</button>
 
   <div style="margin-top: 20px;">
     <img src="/assets/img/stripe.png" alt="Powered By Stripe" style="width: 100px;" />
@@ -253,35 +263,35 @@ layout: skinny
 
 <script type="text/html" id="ticket_block_template">
 <legend>Attendee #{{block_number}}</legend>
-<div>
-  <label for="first_name_{{block_number}}">First Name <span class="required">(required)</span></label>
+<div class="form_field">
+  <label for="first_name_{{block_number}}">First Name <span class="required">Required</span></label>
   <input name="first_name_{{block_number}}" data-validate="required" type="text" />
   <div class="form_error" id="error_first_name_{{block_number}}"></div>
 </div>
 
-<div>
-  <label for="last_name_{{block_number}}">Last Name <span class="required">(required)</span></label>
+<div class="form_field">
+  <label for="last_name_{{block_number}}">Last Name <span class="required">Required</span></label>
   <input name="last_name_{{block_number}}" data-validate="required" type="text" />
   <div class="form_error" id="error_last_name_{{block_number}}"></div>
 </div>
 
-<div>
-  <label for="email_{{block_number}}">Email Address <span class="required">(required)</span></label>
+<div class="form_field">
+  <label for="email_{{block_number}}">Email Address <span class="required">Required</span></label>
   <input name="email_{{block_number}}" data-validate="email" type="text" />
   <div class="form_error" id="error_email_{{block_number}}"></div>
 </div>
 
-<div>
+<div class="form_field">
   <label for="twitter_{{block_number}}">Twitter Username</label>
   <input name="twitter_{{block_number}}" type="text" />
 </div>
 
-<div>
+<div class="form_field">
   <label for="company_{{block_number}}">Company</label>
   <input name="company_{{block_number}}" type="text" />
 </div>
 
-<div>
+<div class="form_field">
   <label for="job_title_{{block_number}}">Job Title</label>
   <input name="job_title_{{block_number}}" type="text" />
 </div>
