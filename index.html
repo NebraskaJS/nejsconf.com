@@ -1,0 +1,32 @@
+---
+layout: default
+---
+
+<div class="content home-content" data-role="main">
+	<div class="spacetime">
+		<div class="icon-nebraska" data-grunticon-embed></div>
+		<time datetime="2015-08-07">August 7, 2015</time>
+		<div class="location">Henry Doorly Zoo &ndash; Omaha,&nbsp;NE&nbsp;USA</div>
+	</div>
+	<h2>
+		<div class="icon-leaf" data-grunticon-embed></div>
+		<span>Keynotes</span>
+	</h2>
+	<h2>
+		<div class="icon-leaf" data-grunticon-embed></div>
+		<span>Speakers</span>
+	</h2>
+	<h2>
+		<div class="icon-leaf-2" data-grunticon-embed></div>
+		<span>News</span>
+	</h2>
+	<ul class="posts">
+		{% for post in site.posts %}
+			<li><a href="{{ post.url }}#post">{{ post.title }}</a> {{ post.date | date: "%d %h %Y" }}</li>
+		{% endfor %}
+	</ul>
+	<h2>
+		<div class="icon-leaf" data-grunticon-embed></div>
+		<span>Sponsors</span>
+	</h2>
+</div><!-- /.home-content -->

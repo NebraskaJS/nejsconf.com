@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="81px" height="80px" viewBox="0 0 81 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.1 (12005) - http://www.bohemiancoding.com/sketch -->
+    <title>Bitmap + Oval 5</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="40" cy="40" r="40"></circle>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Desktop" sketch:type="MSArtboardGroup" transform="translate(-325.000000, -2137.000000)">
+            <g id="Info" sketch:type="MSLayerGroup" transform="translate(30.000000, 784.000000)">
+                <g id="Schedule" transform="translate(27.000000, 668.000000)">
+                    <g id="Keynote2-Copy-2" transform="translate(0.000000, 685.000000)">
+                        <g id="Bitmap-+-Oval-5-+-Scruff-McGruff-+-KEYNOTE" transform="translate(125.000000, 0.000000)">
+                            <g transform="translate(143.500000, 0.000000)" id="Bitmap-+-Oval-5">
+                                <g>
+                                    <mask id="mask-2" sketch:name="Mask" fill="white">
+                                        <use xlink:href="#path-1"></use>
+                                    </mask>
+                                    <use id="Mask" fill="#F6D236" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

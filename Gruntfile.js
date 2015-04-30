@@ -219,7 +219,7 @@ module.exports = function(grunt) {
 				tasks: ['grunticon', 'content']
 			},
 			content: {
-				files: ['<%= config.root %>_posts/**/*', '<%= config.root %>_layouts/**/*', '<%= config.root %>license/**/*', '<%= config.root %>index.php', '<%= config.root %>_plugins/**/*', '<%= config.root %>_includes/**/*' ],
+				files: ['<%= config.root %>_posts/**/*', '<%= config.root %>_layouts/**/*', '<%= config.root %>license/**/*', '<%= config.root %>index.*', '<%= config.root %>_plugins/**/*', '<%= config.root %>_includes/**/*' ],
 				tasks: ['content']
 			},
 			config: {
