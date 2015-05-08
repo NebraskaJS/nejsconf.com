@@ -99,3 +99,37 @@ $old-ie: false !default;
 		@content;
 	}
 }
+
+@mixin webfont($weight: 400) {
+	font-family: effra, $sansSerifFont;
+	font-weight: $weight;
+}
+
+@mixin clearfix {
+	&:before,
+	&:after {
+		content:" ";
+		display:table;
+	}
+	&:after {
+		clear:both;
+	}
+}
+
+/* https://css-tricks.com/snippets/sass/maintain-aspect-ratio-mixin/ */
+@mixin aspect-ratio($width, $height) {
+	position: relative;
+	&:before {
+		display: block;
+		content: "";
+		width: 100%;
+		padding-top: ($height / $width) * 100%;
+	}
+	> .aspect-ratio {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}

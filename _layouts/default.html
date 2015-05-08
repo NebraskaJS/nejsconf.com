@@ -38,17 +38,17 @@
 		<aside>
 			<nav role="navigation">
 				<div class="navigation">
-					<a href="//twitter.com/nejsconf" class="icon-twitter" title="@nejsconf on Twitter">Twitter</a>
+					<a href="//twitter.com/nejsconf" class="icon-twitter" title="@nejsconf on Twitter" data-grunticon-embed>Twitter</a>
 				</div>
 			</nav>
 		</aside>
-		<a href="register.php" class="btn-primary">Register ● $160 <span>Only 40 Early Bird Tickets Left!</span></a>
+		<a href="register.php" class="btn-primary">Register ● $160 <span>Early Bird Tickets are Limited!</span></a>
 		<div class="page-wrapper">
 		{{ content }}
 		</div><!-- /.wrapper -->
 		<footer>
 		{% include footer.html %}
 		</footer>
-		<script src="{{ site.distFolder }}defer.min.js"></script>
+		<script src="{{ site.distFolder }}defer.min.js" async defer></script>
 	</body>
 </html>
