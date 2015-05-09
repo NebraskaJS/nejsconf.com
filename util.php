@@ -10,3 +10,19 @@
     }
     return $default;
   }
+
+  function strtolower_keys($array) {
+    $insensitive = array();
+    foreach($array as $key => $val) {
+      $insensitive[strtolower($key)] = $val;
+    }
+    return $insensitive;
+  }
+
+  function arr_iget($array, $key, $default=null) {
+    $insensitive = strtolower_keys($array);
+    if(isset($insensitive[strtolower($key)])) {
+      return $insensitive[strtolower($key)];
+    }
+    return $default;
+  }
