@@ -1,0 +1,106 @@
+fieldset {
+  max-width: 300px;
+  margin: 2em auto 0;
+  text-align: left;
+  border: none;
+  padding: 0;
+}
+legend {
+  color: #000;
+  font-size: 1.7em;
+  font-weight: bold;
+  text-align: center;
+  font-family: effra,sans-serif;
+  margin-bottom: 0.7em;
+  text-transform: uppercase;
+}
+label {
+  color: #A8841C;
+  font-family: effra,sans-serif;
+  font-weight: lighter;
+  font-size: 0.85em;
+}
+label, input {
+  display: block;
+}
+.form_field {
+  margin-bottom: 0.7em;
+}
+select {
+  width: 100%;
+}
+input[type=text] {
+  width: 100%;
+  border: 1px solid #DCBB3B;
+  padding: 10px;
+  font-family: effra,sans-serif;
+  font-size: 0.85em;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0px 2px 2px 0px #E4E4E4;
+  -moz-box-shadow: inset 0px 2px 2px 0px #E4E4E4;
+  box-shadow: inset 0px 2px 2px 0px #E4E4E4;
+  outline: none;
+  -webkit-transition: all 0.20s ease-in-out;
+  -moz-transition: all 0.20s ease-in-out;
+  -ms-transition: all 0.20s ease-in-out;
+  -o-transition: all 0.20s ease-in-out;
+}
+input[type=text]:focus {
+  background: #E8E8E8;
+}
+div.error input[type=text] {
+  border: 1px solid #D3373A;
+  background-color: #FFEEEE;
+}
+input.short {
+  display: inline-block;
+  width: 10%;
+}
+input#coupon_code {
+  display: inline-block;
+}
+.required {
+  float: right;
+  color: #D3373A;
+  font-size: 0.7em;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+.form_error {
+  font-weight: bold;
+  color: #D3373A;
+  font-size: 0.75em;
+}
+.payment-errors {
+  font-weight: bold;
+  color: #D3373A;
+}
+// div.content {
+//   width: 50%;
+//   color: #FFF;
+//   margin-left: 25%;
+// }
+.total {
+  background-color: #FFF;
+  width: 50%;
+  margin-left: 25%;
+  padding: 20px 0px;
+  border: 1px solid #DCBB3B;
+  font-family: effra,sans-serif;
+  border-radius: 5px;
+  margin-top: 2em;
+  color: #6E6C63;
+  font-size: 2em;
+  font-weight: bold;
+  line-height: 1em;
+}
+.total h3 {
+  color: #C0BBA6;
+  margin: 0 0 5px;
+  font-size: 0.8em;
+  line-height: 1.17em;
+}
+.content + .btn-primary {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}

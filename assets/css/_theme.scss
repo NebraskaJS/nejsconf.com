@@ -22,6 +22,10 @@ body {
 	text-align: center;
 	margin: 3em 0;
 }
+.tmpl-page .header {
+	margin-top: -10em;
+	margin-bottom: -42px;
+}
 .header h1 {
 	font-size: 2em;
 	font-size: 12vw;
@@ -52,7 +56,7 @@ body {
 		position: relative;
 	}
 	.tmpl-page .header {
-		margin: 2em 0;
+		margin-bottom: -75px;
 	}
 	.header h1 {
 		font-size: 4.5em;
@@ -79,8 +83,7 @@ body {
 	max-width: 488px;
 	max-height: 412px;
 }
-.logo-hover,
-.logo-static {
+.logo-hover {
 	display: none;
 }
 
@@ -112,8 +115,7 @@ body {
 	.wf-effra-n9-active .header-title {
 		top: 8.9em;
 	}
-	.logo-hover,
-	.logo-static {
+	.logo-hover {
 		display: block;
 		position: absolute;
 		top: 8.7em;
@@ -127,35 +129,8 @@ body {
 		cursor: url(/assets/img/cursor.png), none;
 		z-index: 2;
 	}
-	.logo-static {
-		z-index: -1;
-		display: none;
-	}
 	.logo-hover:hover ~ .icon-logo #cursor {
 		display: none;
-	}
-	.logo-hover:hover + .logo-static {
-		display: block;
-		background: #777;
-		overflow: hidden;
-	}
-	.logo-static:before,
-	.logo-static:after {
-		content: " ";
-		position: absolute;
-		bottom: -0.1em;
-		border-radius: .5em .5em 0 0;
-		background-color: $primary;
-	}
-	.logo-static:before {
-		right: 6.3em;
-		width: 0.7em;
-		height: 0.3em;
-	}
-	.logo-static:after {
-		right: 1em;
-		width: 2.1em;
-		height: 0.8em;
 	}
 }
 
@@ -204,6 +179,7 @@ body {
 	margin: 0 auto;
 	text-align: center;
 	line-height: .9;
+	cursor: pointer;
 }
 .btn-primary:hover,
 .btn-primary:focus {
@@ -238,6 +214,7 @@ form, div.form-result {
 	margin: 1.5em .75em 0;
 	letter-spacing: 0;
 	min-width: 11em;
+	cursor: pointer;
 	&:hover {
 		background-color: #fff;
 		color: $primary;
@@ -318,7 +295,7 @@ form, div.form-result {
 	font-weight: 400;
 	line-height: 140%;
 	margin: 0 auto;
-	font-size: 1.5em;
+	font-size: 1.3em;
 	padding: 1em;
 }
 .home-content {
@@ -330,6 +307,12 @@ form, div.form-result {
 .page-content {
 	max-width: 768px;
 	text-align: left;
+}
+@include respond-min( $bpFixed ) {
+	.home-content,
+	.page-content {
+		font-size: 1.5em;
+	}
 }
 .content h1,
 .content h2 {
