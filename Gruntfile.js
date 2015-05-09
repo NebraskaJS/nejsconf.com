@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 				baseurl: '/',
 				markdown: 'rdiscount',
 				// https://github.com/mojombo/jekyll/wiki/Permalinks
-				permalink: '/<%= config.root %>:title/',
+				permalink: '/:year/:title/',
 				highlighter: 'pygments',
 				relative_permalinks: false,
 				distFolder: '/<%= config.distFolder %>',
@@ -130,7 +130,7 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd: '<%= config.iconsSrc %>',
-					src: [ '*.svg' ],
+					src: [ '*.svg', '*.png' ],
 					dest: '<%= config.distFolder %>icons/',
 				}],
 				options: {
@@ -219,7 +219,16 @@ module.exports = function(grunt) {
 				tasks: ['grunticon', 'content']
 			},
 			content: {
-				files: ['<%= config.root %>*.php', '<%= config.root %>_posts/**/*', '<%= config.root %>_layouts/**/*', '<%= config.root %>license/**/*', '<%= config.root %>index.php', '<%= config.root %>_plugins/**/*', '<%= config.root %>_includes/**/*' ],
+				files: [
+					'<%= config.root %>*.php',
+					'<%= config.root %>_posts/**/*',
+					'<%= config.root %>_layouts/**/*',
+					'<%= config.root %>license/**/*',
+					'<%= config.root %>team/**/*',
+					'<%= config.root %>index.*',
+					'<%= config.root %>_plugins/**/*',
+					'<%= config.root %>_includes/**/*'
+				],
 				tasks: ['content']
 			},
 			config: {

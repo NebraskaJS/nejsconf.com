@@ -1,10 +1,13 @@
-// Static Hover
 ;(function( doc ) {
 	// IE9+
 	if( !( 'geolocation' in navigator ) ) {
 		return;
 	}
-
+	if( location.hash === "#post" && "replaceState" in history ) {
+		window.setTimeout(function() {
+			history.replaceState( "", doc.title, window.location.pathname );
+		}, 200);
+	}
 })( document );
 
 // Google Analytics

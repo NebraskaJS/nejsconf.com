@@ -4,6 +4,17 @@ body {
 	padding-top: 2em;
 }
 
+/* Sponsor Link */
+.sponsor {
+	font-size: 18px;
+	text-align: center;
+	color: $tertiary;
+}
+.wf-effra-n4-active .sponsor {
+	font-family: Effra;
+	font-weight: 400;
+}
+
 /* Header */
 .header {
 	text-decoration: none;
@@ -30,16 +41,18 @@ body {
 }
 .wf-effra-n9-active .header h1,
 .wf-effra-n9-active .header h2 {
-	font-family: effra, $sansSerifFont;
-	font-weight: 900;
+	@include webfont(900);
 }
 .wf-effra-i9-active .header h2 {
 	font-style: italic;
 }
 @include respond-min( $bpFixed ) {
 	.header {
-		margin: 6em 0 4em;
+		margin: 4em 0;
 		position: relative;
+	}
+	.tmpl-page .header {
+		margin: 2em 0;
 	}
 	.header h1 {
 		font-size: 4.5em;
@@ -149,32 +162,30 @@ body {
 /* Date and Location */
 .spacetime {
 	margin: 0 0.5em 1.5em;
-	font-size: 2em;
+	font-size: 28px;
 	line-height: 1.3;
 	text-align: center;
-	color: $secondary;
+	color: #000;
 }
-.spacetime .location {
-	color: #fff;
-	font-size: .6875em; /* 22px /32 */
-}
+// .spacetime .location {}
 .wf-effra-n9-active .spacetime {
-	font-family: effra, $sansSerifFont;
-	font-weight: 900;
+	@include webfont(900);
 }
-.wf-effra-n5-active .spacetime .location {
-	font-weight: 500;
+.wf-effra-n4-active .spacetime .location {
+	font-weight: 400;
 }
 
 /* Twitter Icon */
-.icon-twitter {
-	text-indent: -9999px;
+.grunticon .navigation .icon-twitter {
 	display: inline-block;
 	position: absolute;
 	top: 1em;
 	right: 1em;
 	width: 32px;
 	height: 27px;
+}
+.grunticon-svg .navigation .icon-twitter svg {
+	fill: #fff;
 }
 
 /* Buttons */
@@ -199,23 +210,22 @@ body {
 	color: darken( $secondary, 5% );
 }
 .btn-primary span {
-	text-transform: lowercase;
+	text-transform: none;
 	font-size: .714285714em; /* 20px /28 */
 	display: block;
 }
 .wf-effra-n9-active .btn-primary {
-	font-family: effra, $sansSerifFont;
-	font-weight: 900;
+	@include webfont(900);
 }
-.wf-effra-n5-active .btn-primary span {
-	font-weight: 500;
+.wf-effra-n4-active .btn-primary span {
+	font-weight: 400;
 }
 div.secondary-buttons {
 	text-align: center;
 	letter-spacing: -4px;
 }
 form, div.form-result {
-  text-align: center;
+	text-align: center;
 }
 .btn-secondary {
 	display: inline-block;
@@ -229,13 +239,12 @@ form, div.form-result {
 	letter-spacing: 0;
 	min-width: 11em;
 	&:hover {
-		background: #fff;
+		background-color: #fff;
 		color: $primary;
 	}
 }
 .wf-effra-n9-active .btn-secondary {
-	font-family: effra, $sansSerifFont;
-	font-weight: 900;
+	@include webfont(900);
 }
 
 /* Footer */
@@ -258,9 +267,8 @@ form, div.form-result {
 .footer p:first-child a:visited {
 	color: $secondary;
 }
-.wf-effra-n5-active .footer {
-	font-family: effra, $sansSerifFont;
-	font-weight: 500;
+.wf-effra-n4-active .footer {
+	@include webfont(400);
 }
 
 /* Subscription Form */
@@ -269,8 +277,7 @@ form, div.form-result {
 	line-height: 1.3;
 }
 .wf-effra-n9-active .form-result {
-	font-family: effra, $sansSerifFont;
-	font-weight: 900;
+	@include webfont(900);
 }
 #teaser-email {
 	background: #fff;
@@ -294,8 +301,244 @@ form, div.form-result {
 	margin: 0 auto .3em;
 	text-align: center;
 }
-.wf-effra-n5-active #teaser-email,
-.wf-effra-n5-active .form-result.feedback {
-	font-family: effra, $sansSerifFont;
+.wf-effra-n4-active #teaser-email,
+.wf-effra-n4-active .form-result.feedback {
+	@include webfont(400);
+}
+
+/* Page Content */
+.page-wrapper {
+	background-image: url(/assets/img/background-cropped.png);
+	padding: 4em 5%;
+}
+.home-content,
+.page-content {
+	background-color: #fff;
+	box-shadow: 0px 0px 5px $secondary;
 	font-weight: 400;
+	line-height: 140%;
+	margin: 0 auto;
+	font-size: 1.5em;
+	padding: 1em;
+}
+.home-content {
+	text-align: center;
+	padding-top: 2em;
+	padding-bottom: 2em;
+	max-width: 900px;
+}
+.page-content {
+	max-width: 768px;
+	text-align: left;
+}
+.content h1,
+.content h2 {
+	line-height: 82%;
+	margin: 20px 0;
+}
+.content h2 {
+	font-size: 28px;
+}
+@include respond-min( $bpFixed ) {
+	.content h1 {
+		font-size: 60px;
+	}
+}
+.content a,
+.content :link {
+	color: $primary;
+}
+.content :visited {
+	color: $secondary;
+}
+.wf-effra-n4-active .content {
+	@include webfont(400);
+}
+.wf-effra-n9-active .content h1,
+.wf-effra-n9-active .content h2 {
+	@include webfont(900);
+}
+.wf-effra-i9-active .page-content h2 {
+	font-style: italic;
+}
+.home-content h2 {
+	letter-spacing: 2px;
+	margin: 2em 0;
+}
+.home-content h2 span {
+	padding-bottom: 3px;
+	border-bottom: 2px solid $primary;
+	line-height: 150%;
+}
+.home-content h2 svg {
+	margin-bottom: 6px;
+}
+
+/* Posts */
+.posts {
+	list-style: none;
+	padding-left: 0;
+}
+.posts li {
+	margin: .8em 0;
+	line-height: 1.2;
+}
+.posts li > a {
+	display: block;
+}
+
+/* Speakers */
+.people {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	@include clearfix;
+}
+.person {
+	display: flex;
+	align-items: center;
+	justify-content: left;
+
+	text-align: left;
+	margin-bottom: 2em;
+	@include clearfix;
+}
+@include respond-min( 40em ) {
+	.person {
+		padding: .8em;
+		float: left;
+		width: 50%;
+	}
+}
+.person .avatar,
+.person .avatar-placeholder {
+	float: left;
+	width: 32%;
+	min-width: 78px;
+	margin-right: .8em; // match .person padding
+	border-radius: 50%;
+}
+.person .avatar {
+	position: relative;
+	top: 12px;
+}
+.person .avatar-placeholder {
+	@include aspect-ratio(1, 1);
+	background-size: contain;
+}
+.person > .avatar + div,
+.person > .avatar-placeholder + div {
+	width: 68%;
+}
+.person .twitter {
+	color: $primary;
+	font-size: 18px;
+	letter-spacing: 1.25px;
+}
+.wf-effra-i9-active .person.tba .name {
+	font-style: italic;
+	font-size: 28px;
+	line-height: 110%;
+}
+.person .name {
+	font-size: 32px;
+	text-transform: none;
+}
+.person .title {
+	font-size: 18px;
+	letter-spacing: 1px;
+}
+.person .name,
+.person .title {
+	margin: 0;
+}
+.wf-effra-n9-active .person .twitter,
+.wf-effra-n9-active .person .name {
+	font-weight: 900;
+}
+
+/* Avatars */
+.beep {
+	/* Thanks http://demosthenes.info/blog/888/Create-Monochromatic-Color-Tinted-Images-With-CSS-blend */
+	background: url(/assets/img/posts/beep.png) no-repeat center $primary;
+	background-blend-mode: luminosity;
+	transition: .4s linear;
+}
+.beep:hover {
+	background-color: rgba(0, 0, 0, 0);
+}
+
+/* Sponsors */
+.sponsors {
+	border: 1px solid #fff;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	text-align: center;
+}
+.sponsors .sponsor {
+	float: left;
+	width: 100%;
+	padding: .8em;
+	border: 1px solid #efefef;
+	border-top-width: 0;
+	border-left-width: 0;
+	position: relative;
+	top: 1px;
+	left: 1px;
+	background-size: 155px auto;
+	background-position: 50% 50%;
+}
+.sponsors .sponsor a {
+	height: 155px;
+	display: block;
+	max-width: 320px;
+	margin: 0 auto;
+	color: #000;
+	font-size: 18px;
+	line-height: 142px;
+	text-transform: uppercase;
+}
+.wf-effra-i9-active .sponsors .sponsor a {
+	font-weight: 900;
+	font-style: italic;
+}
+.sponsors .sponsor.icon-sponsor a {
+	text-indent: -9999px;
+}
+.sponsors .sponsor.elephant {
+	width: 50%;
+	background-size: 200px auto;
+}
+.sponsors .sponsor.elephant:first-child:last-child {
+	width: 100%;
+}
+.sponsors .sponsor.elephant a {
+	height: 200px;
+}
+@include respond-min( 38em ) {
+	.sponsors .sponsor {
+		width: 50%;
+	}
+}
+@include respond-min( 56em ) {
+	.sponsors .sponsor {
+		width: 25%;
+	}
+}
+
+/* Share */
+.share .btn-secondary {
+	min-width: 5.5em;
+	text-indent: -9999px;
+	padding: .4em;
+	margin: 0 .3em;
+	background-position: 50% 50%;
+}
+.share .btn-secondary.icon-twitter {
+	border-color: #22cafd;
+}
+.share .btn-secondary.icon-facebook {
+	border-color: #3c5a96;
 }

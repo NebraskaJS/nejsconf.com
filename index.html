@@ -1,0 +1,83 @@
+---
+layout: default
+---
+
+<div class="content home-content" data-role="main">
+	<div class="spacetime">
+		<div class="icon-nebraska" data-grunticon-embed></div>
+		<time datetime="2015-08-07">August 7, 2015</time>
+		<div class="location">Henry Doorly Zoo &ndash; Omaha,&nbsp;NE&nbsp;USA</div>
+	</div>
+	<h2>
+		<div class="icon-leaf" data-grunticon-embed></div>
+		<span>Keynotes</span>
+	</h2>
+	<ol class="keynotes people">
+		<li class="person">
+			<!-- <img src="/assets/img/posts/beep.png" class="avatar"> -->
+			<div class="avatar-placeholder aspect-ratio beep"></div>
+			<div>
+				<h3 class="name">Ethan Marcotte</h3>
+				<a href="https://twitter.com/beep" class="twitter">@beep</a>
+				<p class="title"></p>
+			</div>
+		</li>
+		<li class="person tba">
+			<div class="avatar-placeholder icon-speaker-default aspect-ratio"></div>
+			<div>
+				<h3 class="name">To be announced.</h3>
+				<a class="twitter" aria-hidden="true">&#160;</a>
+			</div>
+		</li>
+	</ol>
+	<h2>
+		<div class="icon-leaf-2" data-grunticon-embed></div>
+		<span>Speakers</span>
+	</h2>
+	<ol class="people">
+		<li class="person tba">
+			<div class="avatar-placeholder icon-speaker-default aspect-ratio"></div>
+			<div>
+				<h3 class="name">To be announced.</h3>
+			</div>
+		</li>
+		<li class="person tba">
+			<div class="avatar-placeholder icon-speaker-default aspect-ratio"></div>
+			<div>
+				<h3 class="name">To be announced.</h3>
+			</div>
+		</li>
+	</ol>
+	<h2>
+		<div class="icon-leaf" data-grunticon-embed></div>
+		<span>News</span>
+	</h2>
+	<ul class="posts">
+		{% for post in site.posts %}
+			<li><a href="{{ post.url }}#post">{{ post.title }}</a> {{ post.date | date: "%d %h %Y" }}</li>
+		{% endfor %}
+	</ul>
+	<h2>
+		<div class="icon-leaf-2" data-grunticon-embed></div>
+		<span>Sponsors</span>
+	</h2>
+	<ul class="sponsors">
+		<li class="sponsor elephant icon-sponsor icon-sponsor-mutualofomaha"><a href="http://www.mutualofomaha.com/">Mutual of Omaha</a></li>
+	</ul>
+	<ul class="sponsors">
+		<li class="sponsor zebra icon-sponsor icon-sponsor-sitepen"><a href="http://www.sitepen.com/">SitePen</a></li>
+		<li class="sponsor zebra icon-sponsor icon-sponsor-c2fo"><a href="https://c2fo.com/">C2FO</a></li>
+		<li class="sponsor penguin icon-sponsor icon-sponsor-aiga-ne"><a href="http://nebraska.aiga.org/">AIGA Nebraska</a></li>
+		<li class="sponsor butterfly icon-sponsor icon-sponsor-flywheel"><a href="https://getflywheel.com/">Flywheel</a></li>
+		<li class="sponsor butterfly icon-sponsor icon-sponsor-ocw"><a href="http://www.meetup.com/Omaha-Coding-Women/">Omaha Coding Women</a></li>
+		<li class="sponsor"><a href="mailto:sponsor@nejsconf.com">Sponsor NEJS CONF</a></li>
+	</ul>
+	<div class="share">
+		<h2>
+			<div class="icon-leaf" data-grunticon-embed></div>
+			<span>Share NEJS CONF</span>
+		</h2>
+		<a href="https://twitter.com/intent/tweet?text=A%20one%20day%20JavaScript%20conference%20at%20the%20%231%20Zoo%20in%20the%20World!%20August%207%2C%202015%20%40nejsconf%20http%3A%2F%2Fnejsconf.com%2F" class="btn-secondary icon-twitter">Twitter</a>
+		<a href="https://www.facebook.com/sharer/sharer.php?u=http://nejsconf.com/" class="btn-secondary icon-facebook">Facebook</a>
+	</div>
+</div><!-- /.home-content -->

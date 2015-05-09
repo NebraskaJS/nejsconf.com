@@ -45,36 +45,13 @@ var NEJSConf = {
 
 // TypeKit
 ;(function( d ) {
-	function TypeKitHelper( kitId, callback ) {
-		var config = {
-				kitId: kitId, // Modification to stock TypeKit loader
-				scriptTimeout: 10000
-			},
-			h=d.documentElement,
-			t=setTimeout(function(){
-				h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";
-			},config.scriptTimeout),
-			tk=d.createElement("script"),
-			f=false,
-			s=d.getElementsByTagName("script")[0],
-			a;
-		h.className+=" wf-loading";
-		tk.src='//use.typekit.net/'+config.kitId+'.js';
-		tk.async=true;
-		tk.onload=tk.onreadystatechange=function(){
-			a=this.readyState;
-			if(f||a&&a!="complete"&&a!="loaded")return;
-			f=true;
-			clearTimeout(t);
-			(callback || function() {})(); // Modification to stock TypeKit loader
-			try{Typekit.load(config);}catch(e){}
-		};
-		s.parentNode.insertBefore(tk,s);
-	}
+	// Starts with Heavy "effra-n9" 'myi3gat'
+	// Defers with Heavy Italic "effra-i9", Regular "effra-n4" 'wvu3pqt'
 
-	// Starts with Heavy "effra-n9"
-	TypeKitHelper( 'myi3gat', function() {
-		// Defers with Heavy Italic "effra-i9", Bold "effra-n7", and Medium "effra-n5"
-		TypeKitHelper( 'wvu3pqt' );
-	});
+	// All Combined
+	var config = {
+		kitId: 'ppn2vqj',
+		scriptTimeout: 3000
+	},
+	h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='//use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
 })( document );

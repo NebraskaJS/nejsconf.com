@@ -4,8 +4,8 @@ RewriteBase /
 RewriteCond %{HTTP:Accept-Encoding} gzip
 RewriteCond %{REQUEST_FILENAME}.zgz -f 
 RewriteRule ^(.*)$ $1.zgz [L]
-RedirectMatch 301 /cfp$ https://docs.google.com/forms/d/1vqaODm8zG0_R8oXi1xVvWG4VrKEP5IicKYfjOLfntIk/viewform
-RedirectMatch 301 /cfp/$ https://docs.google.com/forms/d/1vqaODm8zG0_R8oXi1xVvWG4VrKEP5IicKYfjOLfntIk/viewform
+RedirectMatch 301 ^/cfp$ https://docs.google.com/forms/d/1vqaODm8zG0_R8oXi1xVvWG4VrKEP5IicKYfjOLfntIk/viewform
+RedirectMatch 301 ^/cfp/$ https://docs.google.com/forms/d/1vqaODm8zG0_R8oXi1xVvWG4VrKEP5IicKYfjOLfntIk/viewform
 </IfModule>
 
 # mod_deflate isn't included on the production host, so we have a workaround

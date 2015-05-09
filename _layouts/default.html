@@ -24,6 +24,7 @@
 		<!--[if IE 8]><link rel="stylesheet" href="{{ site.distFolder }}ie8.min.css"><![endif]-->
 	</head>
 	<body>
+		<p class="sponsor">Interested in sponsoring NEJS CONF? <a href="mailto:sponsor@nejsconf.com">Get in touch!</a></p>
 		<header>
 			<a href="{{ site.baseurl }}" class="header">
 				<div class="logo-hover"></div>
@@ -33,24 +34,21 @@
 					<h2>JavaScript in the Wild</h2>
 				</div>
 			</a>
-			<div class="spacetime">
-				<time datetime="2015-08-07">August 7, 2015</time>
-				<div class="location">Henry Doorly Zoo &ndash; Omaha,&nbsp;NE&nbsp;USA</div>
-			</div>
 		</header>
 		<aside>
 			<nav role="navigation">
 				<div class="navigation">
-					<a href="//twitter.com/nejsconf" class="icon-twitter" title="@nejsconf on Twitter">Twitter</a>
+					<a href="//twitter.com/nejsconf" class="icon-twitter" title="@nejsconf on Twitter" data-grunticon-embed>Twitter</a>
 				</div>
 			</nav>
 		</aside>
-		<div class="content" data-role="main">
-			{{ content }}
-		</div><!-- /.content -->
+		<a href="register.php" class="btn-primary">Register ● $160 <span>Early Bird Tickets are Limited!</span></a>
+		<div class="page-wrapper">
+		{{ content }}
+		</div><!-- /.wrapper -->
 		<footer>
 		{% include footer.html %}
 		</footer>
-		<script src="{{ site.distFolder }}defer.min.js"></script>
+		<script src="{{ site.distFolder }}defer.min.js" async defer></script>
 	</body>
 </html>
