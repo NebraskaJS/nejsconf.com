@@ -309,13 +309,17 @@ form, div.form-result {
 	padding: 4em 5%;
 }
 .home-content,
-.page-content {
-	background-color: #fff;
-	box-shadow: 0px 0px 5px $secondary;
+.page-content,
+.skinny-content {
 	font-weight: 400;
 	line-height: 140%;
 	margin: 0 auto;
 	font-size: 1.3em;
+}
+.home-content,
+.page-content {
+	background-color: #fff;
+	box-shadow: 0px 0px 5px $secondary;
 	padding: 1em;
 }
 .home-content {

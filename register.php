@@ -149,7 +149,7 @@ layout: page
   else {
 ?>
 <form method="POST" id="register_form">
-  <div class="content page-content" id="post" data-role="main">
+  <div class="content skinny-content" id="post" data-role="main">
     <h1>Buy Tickets</h1>
 
     <fieldset>
@@ -216,8 +216,8 @@ layout: page
     <div class="total">
       <h3>Total</h3>
       $<span id="current_price"><?php echo $ticket_price; ?></span> &times; <span id="ticket_count"><?php echo $number_of_tickets; ?></span> = <span id="ticket_total">$<?php echo $ticket_price * $number_of_tickets; ?></span>
+      <p class="note">Early Bird Pricing is now in effect. Only 40 Early Bird Tickets are available and will be sold on a first come first serve basis! Once they’re gone, the full ticket price ($240) will take effect.</p>
     </div>
-    <p class="note">Early Bird Pricing is now in effect. Only 40 Early Bird Tickets are available and will be sold on a first come first serve basis! Once they’re gone, the full ticket price ($240) will take effect.</p>
 
     <fieldset>
       <legend>Payment</legend>
