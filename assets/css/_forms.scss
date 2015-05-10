@@ -54,7 +54,6 @@ div.error input[type=text] {
 }
 input.short {
   display: inline-block;
-  width: 10%;
 }
 input#coupon_code {
   display: inline-block;
@@ -75,20 +74,21 @@ input#coupon_code {
   font-weight: bold;
   color: #D3373A;
 }
-// div.content {
-//   width: 50%;
-//   color: #FFF;
-//   margin-left: 25%;
-// }
+.note {
+  max-width: 390px;
+  margin: 1em auto 0;
+  font-weight: 900;
+  font-style: italic;
+  color: #C0BBA6;
+}
 .total {
   background-color: #FFF;
-  width: 50%;
-  margin-left: 25%;
-  padding: 20px 0px;
+  max-width: 400px;
+  margin: 2em auto 0;
+  padding: 20px;
   border: 1px solid #DCBB3B;
   font-family: effra,sans-serif;
   border-radius: 5px;
-  margin-top: 2em;
   color: #6E6C63;
   font-size: 2em;
   font-weight: bold;
@@ -103,4 +103,7 @@ input#coupon_code {
 .content + .btn-primary {
   margin-top: 2em;
   margin-bottom: 2em;
+}
+#register_form h1 {
+  text-align: center;
 }

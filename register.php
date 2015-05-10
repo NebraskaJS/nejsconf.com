@@ -29,6 +29,9 @@ layout: page
       if(null == $coupon_price) {
         $coupon_code = null;
       }
+      else if($coupon_price < 0) {
+        $ticket_price += $coupon_price;
+      }
       else {
         $ticket_price = $coupon_price;
       }
@@ -147,9 +150,9 @@ layout: page
 ?>
 <form method="POST" id="register_form">
   <div class="content page-content" id="post" data-role="main">
+    <h1>Buy Tickets</h1>
 
     <fieldset>
-      <legend>Buy Tickets</legend>
       <label for="number_of_tickets">Quantity</label>
       <div class="select-css-button select-css">
         <select id="number_of_tickets" name="number_of_tickets">
@@ -167,45 +170,46 @@ layout: page
 
         <div class="form_field<?php if(arr_get(arr_get($form_errors, $i, array()), 'first_name')): ?> error<?php endif; ?>">
           <label for="first_name_<?php echo $i; ?>">First Name <span class="required">Required</span></label>
-          <input name="first_name_<?php echo $i; ?>" data-validate="required" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "first_name_" . $i)); ?>" />
+          <input id="first_name_<?php echo $i; ?>" name="first_name_<?php echo $i; ?>" data-validate="required" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "first_name_" . $i)); ?>" />
           <div class="form_error" id="error_first_name_<?php echo $i; ?>"><?php echo arr_get(arr_get($form_errors, $i, array()), 'first_name'); ?></div>
         </div>
 
         <div class="form_field<?php if(arr_get(arr_get($form_errors, $i, array()), 'last_name')): ?> error<?php endif; ?>">
           <label for="last_name_<?php echo $i; ?>">Last Name <span class="required">Required</span></label>
-          <input name="last_name_<?php echo $i; ?>" data-validate="required" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "last_name_" . $i)); ?>" />
+          <input id="last_name_<?php echo $i; ?>" name="last_name_<?php echo $i; ?>" data-validate="required" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "last_name_" . $i)); ?>" />
           <div class="form_error" id="error_last_name_<?php echo $i; ?>"><?php echo arr_get(arr_get($form_errors, $i, array()), 'last_name'); ?></div>
         </div>
 
         <div class="form_field <?php if(arr_get(arr_get($form_errors, $i, array()), 'email')): ?> error<?php endif; ?>">
           <label for="email_<?php echo $i; ?>">Email Address <span class="required">Required</span></label>
-          <input name="email_<?php echo $i; ?>" data-validate="email" type="text" value="<?php echo arr_get($_POST, "email_" . $i); ?>" />
+          <input id="email_<?php echo $i; ?>" name="email_<?php echo $i; ?>" data-validate="email" type="text" value="<?php echo arr_get($_POST, "email_" . $i); ?>" />
           <div class="form_error" id="error_email_<?php echo $i; ?>"><?php echo arr_get(arr_get($form_errors, $i, array()), 'email'); ?></div>
         </div>
 
         <div class="form_field">
           <label for="twitter_<?php echo $i; ?>">Twitter Username</label>
-          <input name="twitter_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "twitter_" . $i)); ?>" />
+          <input id="twitter_<?php echo $i; ?>" name="twitter_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "twitter_" . $i)); ?>" />
         </div>
 
         <div class="form_field">
           <label for="company_<?php echo $i; ?>">Company</label>
-          <input name="company_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "company_" . $i)); ?>" />
+          <input id="company_<?php echo $i; ?>" name="company_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "company_" . $i)); ?>" />
         </div>
 
         <div class="form_field">
           <label for="job_title_<?php echo $i; ?>">Job Title</label>
-          <input name="job_title_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "job_title_" . $i)); ?>" />
+          <input id="job_title_<?php echo $i; ?>" name="job_title_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "job_title_" . $i)); ?>" />
         </div>
       </fieldset>
     <?php endfor; ?>
     </div>
 
     <fieldset>
-      <legend>Coupon Code</legend>
+      <legend>Coupon</legend>
       <div class="form_field">
+        <label for="coupon_code">Coupon Code</label>
         <input type="text" name="coupon_code" id="coupon_code" value="<?php echo $coupon_code; ?>" />
-        <a href="#" id="update_coupon">Apply Code</a>
+        <button type="button" id="update_coupon" class="btn-tertiary">Apply Code</button>
       </div>
     </fieldset>
 
@@ -213,6 +217,7 @@ layout: page
       <h3>Total</h3>
       $<span id="current_price"><?php echo $ticket_price; ?></span> &times; <span id="ticket_count"><?php echo $number_of_tickets; ?></span> = <span id="ticket_total">$<?php echo $ticket_price * $number_of_tickets; ?></span>
     </div>
+    <p class="note">Early Bird Pricing is now in effect. Only 40 Early Bird Tickets are available and will be sold on a first come first serve basis! Once they’re gone, the full ticket price ($240) will take effect.</p>
 
     <fieldset>
       <legend>Payment</legend>
@@ -220,43 +225,43 @@ layout: page
       <div class="payment-errors"><?php if($stripe_error) { echo htmlspecialchars($stripe_error); } ?></div>
       
       <div class="form_field<?php if(arr_get($form_errors, 'receipt_email', false)): ?> error<?php endif; ?>">
-        <label>
+        <label for="receipt_email">
           Receipt Email Address
           <span class="required">Required</span>
         </label>
-        <input type="text" data-validate="email" name="receipt_email" value="<?php echo htmlspecialchars($receipt_email); ?>"/>
+        <input type="text" data-validate="email" id="receipt_email" name="receipt_email" value="<?php echo htmlspecialchars($receipt_email); ?>"/>
         <div class="form_error"><?php echo arr_get($form_errors, 'receipt_email', ''); ?></div>
       </div>
 
       <div class="form_field">
-        <label>
+        <label for="creditcard">
           Card Number
           <span class="required">Required</span>
         </label>
-        <input type="text" size="20" data-stripe="number" data-validate="creditcard" />
+        <input id="creditcard" type="text" size="20" data-stripe="number" data-validate="creditcard" />
         <div class="form_error"></div>
       </div>
 
       <div class="form_field">
-        <label>
+        <label for="cvc">
           CVC
           <span class="required">Required</span>
         </label>
-        <input type="text" size="4" data-stripe="cvc" data-validate="cvc"/>
+        <input id="cvc" type="text" size="4" data-stripe="cvc" data-validate="cvc"/>
         <div class="form_error"></div>
       </div>
 
       <div class="form_field">
-        <label>Expiration (MM/YYYY) <span class="required">Required</span></label>
-        <input type="text" class="short" size="2" data-stripe="exp-month" data-validate="required"/> 
-        <input type="text" class="short" size="4" data-stripe="exp-year" data-validate="required"/>
+        <label for="exp-month">Expiration (MM/YYYY) <span class="required">Required</span></label>
+        <input id="exp-month" type="text" class="short" size="2" data-stripe="exp-month" data-validate="required" style="width: 20%"/> 
+        <input type="text" class="short" size="4" data-stripe="exp-year" data-validate="required" style="width: 40%"/>
         <div class="form_error"></div>
       </div>
 
     </fieldset>
   </div><!-- /.content -->
 
-  <button type="submit" class="btn-primary">Submit</button>
+  <button type="submit" class="btn-primary">Purchase Tickets</button>
 
   <div style="margin-top: 20px;">
     <img src="/assets/img/stripe.png" alt="Powered By Stripe" style="width: 100px;" />
@@ -268,35 +273,35 @@ layout: page
 <legend>Attendee #{{block_number}}</legend>
 <div class="form_field">
   <label for="first_name_{{block_number}}">First Name <span class="required">Required</span></label>
-  <input name="first_name_{{block_number}}" data-validate="required" type="text" />
+  <input id="first_name_{{block_number}}" name="first_name_{{block_number}}" data-validate="required" type="text" />
   <div class="form_error" id="error_first_name_{{block_number}}"></div>
 </div>
 
 <div class="form_field">
   <label for="last_name_{{block_number}}">Last Name <span class="required">Required</span></label>
-  <input name="last_name_{{block_number}}" data-validate="required" type="text" />
+  <input id="last_name_{{block_number}}" name="last_name_{{block_number}}" data-validate="required" type="text" />
   <div class="form_error" id="error_last_name_{{block_number}}"></div>
 </div>
 
 <div class="form_field">
   <label for="email_{{block_number}}">Email Address <span class="required">Required</span></label>
-  <input name="email_{{block_number}}" data-validate="email" type="text" />
+  <input id="email_{{block_number}}" name="email_{{block_number}}" data-validate="email" type="text" />
   <div class="form_error" id="error_email_{{block_number}}"></div>
 </div>
 
 <div class="form_field">
   <label for="twitter_{{block_number}}">Twitter Username</label>
-  <input name="twitter_{{block_number}}" type="text" />
+  <input id="twitter_{{block_number}}" name="twitter_{{block_number}}" type="text" />
 </div>
 
 <div class="form_field">
   <label for="company_{{block_number}}">Company</label>
-  <input name="company_{{block_number}}" type="text" />
+  <input id="company_{{block_number}}" name="company_{{block_number}}" type="text" />
 </div>
 
 <div class="form_field">
   <label for="job_title_{{block_number}}">Job Title</label>
-  <input name="job_title_{{block_number}}" type="text" />
+  <input id="job_title_{{block_number}}" name="job_title_{{block_number}}" type="text" />
 </div>
 </script>
 
@@ -328,7 +333,12 @@ layout: page
           $coupon_code.value = '';
           alert("Sorry, that coupon code does not exist.");
         }
-        current_ticket_price = data['price'];
+        if( data['price'] < 0 ) {
+          current_ticket_price = original_ticket_price + data['price'];
+        } else {
+          current_ticket_price = data['price'];
+        }
+
         updatePrice();
       });
     };
