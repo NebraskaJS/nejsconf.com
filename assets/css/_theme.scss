@@ -516,13 +516,14 @@ form, div.form-result {
 }
 .sponsors .sponsor.elephant {
 	width: 50%;
-	background-size: 200px auto;
+	background-size: 230px auto;
+	margin-top: -2.5em;
 }
 .sponsors .sponsor.elephant:first-child:last-child {
 	width: 100%;
 }
 .sponsors .sponsor.elephant a {
-	height: 200px;
+	height: 230px;
 }
 @include respond-min( 38em ) {
 	.sponsors .sponsor {
