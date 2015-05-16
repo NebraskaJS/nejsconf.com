@@ -5,9 +5,11 @@ template: page
 
 <div class="content page-content" id="post" data-role="main">
 	<h1>{{ page.title }}</h1>
+	{% if page.date %}
 	<h2>
 		<em class="date">{{ page.date | date_to_long_string }}</em>
 	</h2>
+	{% endif %}
 	{{ content }}
 </div><!-- /.content -->
 {% include register.html %}
