@@ -225,6 +225,7 @@ module.exports = function(grunt) {
 					'<%= config.root %>_layouts/**/*',
 					'<%= config.root %>license/**/*',
 					'<%= config.root %>team/**/*',
+					'<%= config.root %>sponsor/**/*',
 					'<%= config.root %>index.*',
 					'<%= config.root %>_plugins/**/*',
 					'<%= config.root %>_includes/**/*'

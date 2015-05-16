@@ -497,8 +497,8 @@ form, div.form-result {
 	background-size: 155px auto;
 	background-position: 50% 50%;
 }
-.sponsors .sponsor a {
-	height: 155px;
+.sponsors .sponsor a:first-child {
+	height: 180px;
 	display: block;
 	max-width: 320px;
 	margin: 0 auto;
@@ -507,22 +507,30 @@ form, div.form-result {
 	line-height: 142px;
 	text-transform: uppercase;
 }
-.wf-effra-i9-active .sponsors .sponsor a {
+.sponsors .sponsor a:first-child + a {
+	text-transform: uppercase;
+	color: #bbb;
+	font-size: 15px;
+}
+.has-gradient.tmpl-page .sponsors .sponsor a {
+	background-image: none;
+}
+.wf-effra-i9-active .sponsors .sponsor a:first-child {
 	font-weight: 900;
 	font-style: italic;
 }
-.sponsors .sponsor.icon-sponsor a {
+.sponsors .sponsor.icon-sponsor a:first-child {
 	text-indent: -9999px;
 }
-.sponsors .sponsor.elephant {
+.sponsors .sponsor.preview {
 	width: 50%;
 	background-size: 230px auto;
 	margin-top: -2.5em;
 }
-.sponsors .sponsor.elephant:first-child:last-child {
+.sponsors .sponsor.preview:first-child:last-child {
 	width: 100%;
 }
-.sponsors .sponsor.elephant a {
+.sponsors .sponsor.preview a:first-child {
 	height: 230px;
 }
 @include respond-min( 38em ) {
