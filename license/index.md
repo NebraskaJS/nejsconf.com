@@ -1,7 +1,7 @@
 ---
 title: License
 author: Zach Leatherman
-layout: default
+layout: post
 ---
 
 The MIT License (MIT)
