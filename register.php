@@ -9,137 +9,24 @@ layout: page
   require 'util.php';
   $config = require 'config.php';
 
-  \Stripe\Stripe::setApiKey($config['stripe']['secret_key']);
-
-  $ticket_price = $config['checkout']['ticket_price'];
-  $number_of_tickets = 1;
-  $coupon_code = '';
-  $form_errors = array();
-  $attendee_data = array();
-  $stripe_error = false;
-  $receipt_email = '';
-  $show_purchase_success = false;
-
-  if($_POST) {
-    $number_of_tickets = min(intval($_POST['number_of_tickets']), $config['checkout']['max_tickets']);
-
-    // Validate Coupon Code
-    if(($coupon_code = arr_get($_POST, 'coupon_code')) != null) {
-      $coupon_price = arr_iget($config['checkout']['coupons'], $coupon_code);
-      if(null == $coupon_price) {
-        $coupon_code = null;
-      }
-      else if($coupon_price < 0) {
-        $ticket_price += $coupon_price;
-      }
-      else {
-        $ticket_price = $coupon_price;
-      }
-    }
-
-    // Attendee validation
-    for($i = 1; $i <= $number_of_tickets; $i++) {
-      $attendee = array(
-        'first_name' => trim(arr_get($_POST, 'first_name_' . $i, '')),
-        'last_name'  => trim(arr_get($_POST, 'last_name_' . $i, '')),
-        'email'      => trim(arr_get($_POST, 'email_' . $i, '')),
-        'twitter'    => trim(arr_get($_POST, 'twitter_' . $i, '')),
-        'company'    => trim(arr_get($_POST, 'company_' . $i, '')),
-        'job_title'  => trim(arr_get($_POST, 'job_title_' . $i, '')),
-      );
-      $attendee_data[$i] = $attendee;
-
-      $errors = array();
-
-      if(empty($attendee['first_name'])) {
-        $errors['first_name'] = 'This field is required.';
-      }
-      if(empty($attendee['last_name'])) {
-        $errors['last_name'] = 'This field is required.';
-      }
-      if(! (filter_var($attendee['email'], FILTER_VALIDATE_EMAIL) && preg_match('/@.+\./', $attendee['email'])) ) {
-        $errors['email'] = 'An email is required.';
-      }
-
-      if(0 != count($errors)) {
-        $form_errors[$i] = $errors;
-      }
-    }
-
-    $receipt_email = trim(arr_get($_POST, 'receipt_email', ''));
-    if(! (filter_var($receipt_email, FILTER_VALIDATE_EMAIL) && preg_match('/@.+\./', $receipt_email)) ) {
-      $form_errors['receipt_email'] = 'An email is required.';
-    }
-
-
-    if(0 == count($form_errors)) {
-      $stripe_token = $_POST['stripeToken'];
-
-      try {
-        $charge = \Stripe\Charge::create(array(
-          "amount"        => $ticket_price * $number_of_tickets * 100,  // it's in pennies
-          "currency"      => "usd",
-          "source"        => $stripe_token,
-          "description"   => "$number_of_tickets NEJSCONF 2015 Tickets",
-          "receipt_email" => $receipt_email,
-          "metadata"      => array(
-            'attendees'         => json_encode($attendee_data),
-            'coupon_code'       => $coupon_code,
-            'ticket_price'      => $ticket_price,
-            'number_of_tickets' => $number_of_tickets,
-          ),
-        ));
-
-        $mandrill = new Mandrill($config['mandrill']['api_key']);
-
-        $to_dict = array();
-        $merge_dict = array();
-        foreach($attendee_data as $attendee) {
-          array_push($to_dict, array('email' => arr_get($attendee, 'email')));
-          $merge_tags = array();
-          foreach($attendee as $key => $value) {
-            array_push($merge_tags, array('name' => $key, 'content' => $value));
-          }
-          array_push($merge_dict, array(
-            'rcpt' => arr_get($attendee, 'email'),
-            'vars' => $merge_tags
-          ));
-        }
-        
-        try { 
-          $mandrill->messages->sendTemplate(
-            $config['mandrill']['receipt-template-slug'],
-            array(),
-            array(
-              'merge_language' => 'handlebars',
-              'to' => $to_dict,
-              'merge_vars' => $merge_dict,
-            ),
-            true
-          );
-        }
-        catch(Mandrill_Error $e) {
-          error_log("Mandrill error sending receipt to " . arr_get($attendee, 'email', '?') . ": " . $e);
-        }
-       
-        $show_purchase_success = true;
-      }
-      catch(\Stripe\Error\Card $e) {
-        $error_json = $e->getJsonBody();
-        $stripe_error = $error_json['error']['message'];
-      }
-      catch(\Stripe\Error $e) {
-        $stripe_error = "An error occurred charging your card. Please try again.";
-      }
-    }
-
+  $mysql = new mysqli($config['mysql']['hostname'], $config['mysql']['username'], $config['mysql']['password'], $config['mysql']['database']);
+ 
+  if($mysql->connect_errno > 0) {
+    // TODO: More graceful death.
+    die('Unable to connect to database [' . $mysql->connect_error . ']');
   }
 
-  if($show_purchase_success) {
+  $query = $mysql->query('SELECT COUNT(*) FROM `tickets`');
+  $result = $query->fetch_row();
+
+  $tickets_already_sold = $result[0];
+
+  if(! $_POST && $tickets_already_sold >= $config['checkout']['tickets_available']) {
+    // Sold out!
 ?>
-  <h4>Success!</h4>
+  <h4>Sold Out!</h4>
   <p>
-    You should receive confirmation emails shortly.
+    We seem to have sold out of tickets for this round. Please watch our Twitter for announcements!
   </p>
   <p>
     If you have questions, please don't hesitate to contact us at <a href="mailto:tickets@nejsconf.com">tickets@nejsconf.com</a>
@@ -147,127 +34,278 @@ layout: page
 <?php
   }
   else {
-?>
-<form method="POST" id="register_form">
-  <div class="content skinny-content" id="post" data-role="main">
-    <h1>Buy Tickets</h1>
+    \Stripe\Stripe::setApiKey($config['stripe']['secret_key']);
 
-    <fieldset>
-      <label for="number_of_tickets">Quantity</label>
-      <div class="select-css-button select-css">
-        <select id="number_of_tickets" name="number_of_tickets">
-          <?php for($i = 1; $i <= $config['checkout']['max_tickets']; $i++): ?>
-          <option<?php if($i == $number_of_tickets):?> selected="selected"<?php endif; ?>><?php echo $i; ?></option>
-          <?php endfor; ?>
-        </select>
-      </div>
-    </fieldset>
+    $available_tickets = min($config['checkout']['tickets_available'] - $tickets_already_sold, $config['checkout']['max_tickets']);
+    $ticket_price = $config['checkout']['ticket_price'];
+    $number_of_tickets = 1;
+    $coupon_code = '';
+    $form_errors = array();
+    $attendee_data = array();
+    $stripe_error = false;
+    $receipt_email = '';
+    $show_purchase_success = false;
 
-    <div id="ticket_blocks">
-    <?php for($i = 1; $i <= $number_of_tickets; $i++): ?>
-      <fieldset id="ticket_block_<?php echo $i; ?>">
-        <legend>Attendee #<?php echo $i; ?></legend>
+    if($_POST) {
+      $number_of_tickets = min(intval($_POST['number_of_tickets']), $available_tickets);
 
-        <div class="form_field<?php if(arr_get(arr_get($form_errors, $i, array()), 'first_name')): ?> error<?php endif; ?>">
-          <label for="first_name_<?php echo $i; ?>">First Name <span class="required">Required</span></label>
-          <input id="first_name_<?php echo $i; ?>" name="first_name_<?php echo $i; ?>" data-validate="required" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "first_name_" . $i)); ?>" />
-          <div class="form_error" id="error_first_name_<?php echo $i; ?>"><?php echo arr_get(arr_get($form_errors, $i, array()), 'first_name'); ?></div>
-        </div>
+      // Validate Coupon Code
+      if(($coupon_code = arr_get($_POST, 'coupon_code')) != null) {
+        $coupon_price = arr_get($config['checkout']['coupons'], $coupon_code);
+        if(null == $coupon_price) {
+          $coupon_code = null;
+        }
+        else {
+          $ticket_price = $coupon_price;
+        }
+      }
 
-        <div class="form_field<?php if(arr_get(arr_get($form_errors, $i, array()), 'last_name')): ?> error<?php endif; ?>">
-          <label for="last_name_<?php echo $i; ?>">Last Name <span class="required">Required</span></label>
-          <input id="last_name_<?php echo $i; ?>" name="last_name_<?php echo $i; ?>" data-validate="required" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "last_name_" . $i)); ?>" />
-          <div class="form_error" id="error_last_name_<?php echo $i; ?>"><?php echo arr_get(arr_get($form_errors, $i, array()), 'last_name'); ?></div>
-        </div>
+      // Attendee validation
+      for($i = 1; $i <= $number_of_tickets; $i++) {
+        $attendee = array(
+          'first_name' => trim(arr_get($_POST, 'first_name_' . $i, '')),
+          'last_name'  => trim(arr_get($_POST, 'last_name_' . $i, '')),
+          'email'      => trim(arr_get($_POST, 'email_' . $i, '')),
+          'twitter'    => trim(arr_get($_POST, 'twitter_' . $i, '')),
+          'company'    => trim(arr_get($_POST, 'company_' . $i, '')),
+          'job_title'  => trim(arr_get($_POST, 'job_title_' . $i, '')),
+        );
+        $attendee_data[$i] = $attendee;
 
-        <div class="form_field <?php if(arr_get(arr_get($form_errors, $i, array()), 'email')): ?> error<?php endif; ?>">
-          <label for="email_<?php echo $i; ?>">Email Address <span class="required">Required</span></label>
-          <input id="email_<?php echo $i; ?>" name="email_<?php echo $i; ?>" data-validate="email" type="text" value="<?php echo arr_get($_POST, "email_" . $i); ?>" />
-          <div class="form_error" id="error_email_<?php echo $i; ?>"><?php echo arr_get(arr_get($form_errors, $i, array()), 'email'); ?></div>
-        </div>
+        $errors = array();
 
-        <div class="form_field">
-          <label for="twitter_<?php echo $i; ?>">Twitter Username</label>
-          <input id="twitter_<?php echo $i; ?>" name="twitter_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "twitter_" . $i)); ?>" />
-        </div>
+        if(empty($attendee['first_name'])) {
+          $errors['first_name'] = 'This field is required.';
+        }
+        if(empty($attendee['last_name'])) {
+          $errors['last_name'] = 'This field is required.';
+        }
+        if(! (filter_var($attendee['email'], FILTER_VALIDATE_EMAIL) && preg_match('/@.+\./', $attendee['email'])) ) {
+          $errors['email'] = 'An email is required.';
+        }
 
-        <div class="form_field">
-          <label for="company_<?php echo $i; ?>">Company</label>
-          <input id="company_<?php echo $i; ?>" name="company_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "company_" . $i)); ?>" />
-        </div>
+        if(0 != count($errors)) {
+          $form_errors[$i] = $errors;
+        }
+      }
 
-        <div class="form_field">
-          <label for="job_title_<?php echo $i; ?>">Job Title</label>
-          <input id="job_title_<?php echo $i; ?>" name="job_title_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "job_title_" . $i)); ?>" />
+      $receipt_email = trim(arr_get($_POST, 'receipt_email', ''));
+      if(! (filter_var($receipt_email, FILTER_VALIDATE_EMAIL) && preg_match('/@.+\./', $receipt_email)) ) {
+        $form_errors['receipt_email'] = 'An email is required.';
+      }
+
+      if(0 == count($form_errors)) {
+        $stripe_token = $_POST['stripeToken'];
+
+        $ticket_price_as_pennies = $ticket_price * 100;
+        $total_as_pennies = $ticket_price_as_pennies * $number_of_tickets;
+
+        try {
+          $charge = \Stripe\Charge::create(array(
+            "amount"        => $total_as_pennies,
+            "currency"      => "usd",
+            "source"        => $stripe_token,
+            "description"   => "$number_of_tickets NEJSCONF 2015 Tickets",
+            "receipt_email" => $receipt_email,
+            "metadata"      => array(
+              "coupon_code"       => $coupon_code,
+              "ticket_price"      => $ticket_price,
+              "number_of_tickets" => $number_of_tickets,
+            ),
+          ));
+
+          $mandrill = new Mandrill($config['mandrill']['api_key']);
+
+          $to_dict = array();
+          $merge_dict = array();
+          foreach($attendee_data as $attendee) {
+            array_push($to_dict, array('email' => arr_get($attendee, 'email')));
+            $merge_tags = array();
+            foreach($attendee as $key => $value) {
+              array_push($merge_tags, array('name' => $key, 'content' => $value));
+            }
+            array_push($merge_dict, array(
+              'rcpt' => arr_get($attendee, 'email'),
+              'vars' => $merge_tags
+            ));
+          }
+          
+          try { 
+            $mandrill->messages->sendTemplate(
+              $config['mandrill']['receipt-template-slug'],
+              array(),
+              array(
+                'merge_language' => 'handlebars',
+                'to' => $to_dict,
+                'merge_vars' => $merge_dict,
+              ),
+              true
+            );
+          }
+          catch(Mandrill_Error $e) {
+            error_log("Mandrill error sending receipt to " . arr_get($attendee, 'email', '?') . ": " . $e);
+          }
+
+          $statement = $mysql->prepare("INSERT INTO `sales` (`charge_id`, `email`, `tickets`, `coupon_code`, `price`, `total`) VALUES (?, ?, ?, ?, ?, ?)");
+          if(!$statement) {
+            die($mysql->error);
+          }
+          $charge_id = $charge['id'];
+          $statement->bind_param('ssisii', $charge_id, $receipt_email, $number_of_tickets, $coupon_code, $ticket_price_as_pennies, $total_as_pennies);
+          $statement->execute();
+          $sale_id = $statement->insert_id;
+          $statement->close();
+
+          $statement = $mysql->prepare("INSERT INTO `tickets` (`sale_id`, `first_name`, `last_name`, `email`, `twitter`, `company`, `job_title`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+          foreach($attendee_data as $attendee) {
+            $statement->bind_param('issssss', $sale_id, $attendee['first_name'], $attendee['last_name'], $attendee['email'], $attendee['twitter'], $attendee['company'], $attendee['job_title']);
+            $statement->execute();
+          }
+          $statement->close();
+
+          $show_purchase_success = true;
+        }
+        catch(\Stripe\Error\Card $e) {
+          $error_json = $e->getJsonBody();
+          $stripe_error = $error_json['error']['message'];
+        }
+        catch(\Stripe\Error $e) {
+          $stripe_error = "An error occurred charging your card. Please try again.";
+        }
+      }
+
+    }
+
+    if($show_purchase_success) {
+  ?>
+    <h4>Success!</h4>
+    <p>
+      You should receive confirmation emails shortly.
+    </p>
+    <p>
+      If you have questions, please don't hesitate to contact us at <a href="mailto:tickets@nejsconf.com">tickets@nejsconf.com</a>
+    </p>
+  <?php
+    }
+    else {
+  ?>
+
+  <form method="POST" id="register_form">
+    <div class="content skinny-content" id="post" data-role="main">
+      <h1>Buy Tickets</h1>
+
+      <fieldset>
+        <label for="number_of_tickets">Quantity</label>
+        <div class="select-css-button select-css">
+          <select id="number_of_tickets" name="number_of_tickets">
+            <?php for($i = 1; $i <= $config['checkout']['max_tickets']; $i++): ?>
+            <option<?php if($i == $number_of_tickets):?> selected="selected"<?php endif; ?>><?php echo $i; ?></option>
+            <?php endfor; ?>
+          </select>
         </div>
       </fieldset>
-    <?php endfor; ?>
-    </div>
 
-    <fieldset>
-      <legend>Coupon</legend>
-      <div class="form_field">
-        <label for="coupon_code">Coupon Code</label>
-        <input type="text" name="coupon_code" id="coupon_code" value="<?php echo $coupon_code; ?>" />
-        <button type="button" id="update_coupon" class="btn-tertiary">Apply Code</button>
-      </div>
-    </fieldset>
+      <div id="ticket_blocks">
+      <?php for($i = 1; $i <= $number_of_tickets; $i++): ?>
+        <fieldset id="ticket_block_<?php echo $i; ?>">
+          <legend>Attendee #<?php echo $i; ?></legend>
 
-    <div class="total">
-      <h3>Total</h3>
-      $<span id="current_price"><?php echo $ticket_price; ?></span> &times; <span id="ticket_count"><?php echo $number_of_tickets; ?></span> = <span id="ticket_total">$<?php echo $ticket_price * $number_of_tickets; ?></span>
-      <p class="note">Early Bird Pricing is now in effect. Only 40 Early Bird Tickets are available and will be sold on a first come first serve basis! Once they’re gone, the full ticket price ($240) will take effect.</p>
-    </div>
+          <div class="form_field<?php if(arr_get(arr_get($form_errors, $i, array()), 'first_name')): ?> error<?php endif; ?>">
+            <label for="first_name_<?php echo $i; ?>">First Name <span class="required">Required</span></label>
+            <input id="first_name_<?php echo $i; ?>" name="first_name_<?php echo $i; ?>" data-validate="required" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "first_name_" . $i)); ?>" />
+            <div class="form_error" id="error_first_name_<?php echo $i; ?>"><?php echo arr_get(arr_get($form_errors, $i, array()), 'first_name'); ?></div>
+          </div>
 
-    <fieldset>
-      <legend>Payment</legend>
+          <div class="form_field<?php if(arr_get(arr_get($form_errors, $i, array()), 'last_name')): ?> error<?php endif; ?>">
+            <label for="last_name_<?php echo $i; ?>">Last Name <span class="required">Required</span></label>
+            <input id="last_name_<?php echo $i; ?>" name="last_name_<?php echo $i; ?>" data-validate="required" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "last_name_" . $i)); ?>" />
+            <div class="form_error" id="error_last_name_<?php echo $i; ?>"><?php echo arr_get(arr_get($form_errors, $i, array()), 'last_name'); ?></div>
+          </div>
 
-      <div class="payment-errors"><?php if($stripe_error) { echo htmlspecialchars($stripe_error); } ?></div>
-      
-      <div class="form_field<?php if(arr_get($form_errors, 'receipt_email', false)): ?> error<?php endif; ?>">
-        <label for="receipt_email">
-          Receipt Email Address
-          <span class="required">Required</span>
-        </label>
-        <input type="text" data-validate="email" id="receipt_email" name="receipt_email" value="<?php echo htmlspecialchars($receipt_email); ?>"/>
-        <div class="form_error"><?php echo arr_get($form_errors, 'receipt_email', ''); ?></div>
-      </div>
+          <div class="form_field <?php if(arr_get(arr_get($form_errors, $i, array()), 'email')): ?> error<?php endif; ?>">
+            <label for="email_<?php echo $i; ?>">Email Address <span class="required">Required</span></label>
+            <input id="email_<?php echo $i; ?>" name="email_<?php echo $i; ?>" data-validate="email" type="text" value="<?php echo arr_get($_POST, "email_" . $i); ?>" />
+            <div class="form_error" id="error_email_<?php echo $i; ?>"><?php echo arr_get(arr_get($form_errors, $i, array()), 'email'); ?></div>
+          </div>
 
-      <div class="form_field">
-        <label for="creditcard">
-          Card Number
-          <span class="required">Required</span>
-        </label>
-        <input id="creditcard" type="text" size="20" data-stripe="number" data-validate="creditcard" />
-        <div class="form_error"></div>
-      </div>
+          <div class="form_field">
+            <label for="twitter_<?php echo $i; ?>">Twitter Username</label>
+            <input id="twitter_<?php echo $i; ?>" name="twitter_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "twitter_" . $i)); ?>" />
+          </div>
 
-      <div class="form_field">
-        <label for="cvc">
-          CVC
-          <span class="required">Required</span>
-        </label>
-        <input id="cvc" type="text" size="4" data-stripe="cvc" data-validate="cvc"/>
-        <div class="form_error"></div>
+          <div class="form_field">
+            <label for="company_<?php echo $i; ?>">Company</label>
+            <input id="company_<?php echo $i; ?>" name="company_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "company_" . $i)); ?>" />
+          </div>
+
+          <div class="form_field">
+            <label for="job_title_<?php echo $i; ?>">Job Title</label>
+            <input id="job_title_<?php echo $i; ?>" name="job_title_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "job_title_" . $i)); ?>" />
+          </div>
+        </fieldset>
+      <?php endfor; ?>
       </div>
 
-      <div class="form_field">
-        <label for="exp-month">Expiration (MM/YYYY) <span class="required">Required</span></label>
-        <input id="exp-month" type="text" class="short" size="2" data-stripe="exp-month" data-validate="required" style="width: 20%"/> 
-        <input type="text" class="short" size="4" data-stripe="exp-year" data-validate="required" style="width: 40%"/>
-        <div class="form_error"></div>
+      <fieldset>
+        <legend>Coupon</legend>
+        <div class="form_field">
+          <label for="coupon_code">Coupon Code</label>
+          <input type="text" name="coupon_code" id="coupon_code" value="<?php echo $coupon_code; ?>" />
+          <button type="button" id="update_coupon" class="btn-tertiary">Apply Code</button>
+        </div>
+      </fieldset>
+
+      <div class="total">
+        <h3>Total</h3>
+        $<span id="current_price"><?php echo $ticket_price; ?></span> &times; <span id="ticket_count"><?php echo $number_of_tickets; ?></span> = <span id="ticket_total">$<?php echo $ticket_price * $number_of_tickets; ?></span>
+        <p class="note">Early Bird Pricing is now in effect. Only 40 Early Bird Tickets are available and will be sold on a first come first serve basis! Once they’re gone, the full ticket price ($240) will take effect.</p>
       </div>
 
-    </fieldset>
-  </div><!-- /.content -->
+      <fieldset>
+        <legend>Payment</legend>
 
-  <button type="submit" class="btn-primary">Purchase Tickets</button>
+        <div class="payment-errors"><?php if($stripe_error) { echo htmlspecialchars($stripe_error); } ?></div>
+        
+        <div class="form_field<?php if(arr_get($form_errors, 'receipt_email', false)): ?> error<?php endif; ?>">
+          <label for="receipt_email">
+            Receipt Email Address
+            <span class="required">Required</span>
+          </label>
+          <input type="text" data-validate="email" id="receipt_email" name="receipt_email" value="<?php echo htmlspecialchars($receipt_email); ?>"/>
+          <div class="form_error"><?php echo arr_get($form_errors, 'receipt_email', ''); ?></div>
+        </div>
 
-  <div style="margin-top: 20px;">
-    <img src="/assets/img/stripe.png" alt="Powered By Stripe" style="width: 100px;" />
-  </div>
+        <div class="form_field">
+          <label for="creditcard">
+            Card Number
+            <span class="required">Required</span>
+          </label>
+          <input id="creditcard" type="text" size="20" data-stripe="number" data-validate="creditcard" />
+          <div class="form_error"></div>
+        </div>
 
-</form>
+        <div class="form_field">
+          <label for="cvc">
+            CVC
+            <span class="required">Required</span>
+          </label>
+          <input id="cvc" type="text" size="4" data-stripe="cvc" data-validate="cvc"/>
+          <div class="form_error"></div>
+        </div>
+
+        <div class="form_field">
+          <label for="exp-month">Expiration (MM/YYYY) <span class="required">Required</span></label>
+          <input id="exp-month" type="text" class="short" size="2" data-stripe="exp-month" data-validate="required" style="width: 20%"/> 
+          <input type="text" class="short" size="4" data-stripe="exp-year" data-validate="required" style="width: 40%"/>
+          <div class="form_error"></div>
+        </div>
+
+      </fieldset>
+    </div><!-- /.content -->
+
+    <button type="submit" class="btn-primary">Purchase Tickets</button>
+
+  </form>
 
 <script type="text/html" id="ticket_block_template">
 <legend>Attendee #{{block_number}}</legend>
@@ -414,7 +452,7 @@ layout: page
 
     function updateForm () {
         var i, block, ticket_blocks = parseInt($ticket_select.value, 10);
-        for(i = 1; i <= <?php echo $config['checkout']['max_tickets']; ?>; i++) {
+        for(i = 1; i <= <?php echo $available_tickets; ?>; i++) {
           block = document.getElementById("ticket_block_" + i);
           // Delete old blocks
           if(i > ticket_blocks) { 
@@ -443,5 +481,6 @@ layout: page
     }
   });
 </script>
+  <?php } ?>
 <?php } ?>
 {% endraw %}
