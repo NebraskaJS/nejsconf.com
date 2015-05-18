@@ -117,6 +117,7 @@ ExpiresByType text/javascript "access plus 2 months"
 
 <IfModule mod_headers.c>
 Header append Cache-Control "public"
+Header set Strict-Transport-Security "max-age=31536000"
 </IfModule>
 	
 </IfModule>
