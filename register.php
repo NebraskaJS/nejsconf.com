@@ -24,13 +24,15 @@ layout: page
   if(! $_POST && $tickets_already_sold >= $config['checkout']['tickets_available']) {
     // Sold out!
 ?>
-  <h4>Sold Out!</h4>
+<div class="content skinny-content" id="post" data-role="main">
+  <h1>Sold Out!</h1>
   <p>
     We seem to have sold out of tickets for this round. Please watch our Twitter for announcements!
   </p>
   <p>
-    If you have questions, please don't hesitate to contact us at <a href="mailto:tickets@nejsconf.com">tickets@nejsconf.com</a>
+    If you have questions, please don't hesitate to contact us at <a href="mailto:tickets@nejsconf.com" style="color: #FFF; text-shadow: none;">tickets@nejsconf.com</a>
   </p>
+</div>
 <?php
   }
   else {
@@ -178,13 +180,15 @@ layout: page
 
     if($show_purchase_success) {
   ?>
-    <h4>Success!</h4>
-    <p>
-      You should receive confirmation emails shortly.
-    </p>
-    <p>
-      If you have questions, please don't hesitate to contact us at <a href="mailto:tickets@nejsconf.com">tickets@nejsconf.com</a>
-    </p>
+    <div class="content skinny-content" id="post" data-role="main">
+      <h1>Success!</h1>
+      <p>
+        You should receive confirmation emails shortly.
+      </p>
+      <p>
+        If you have questions, please don't hesitate to contact us at <a href="mailto:tickets@nejsconf.com" style="color: #FFF; text-shadow: none;">tickets@nejsconf.com</a>
+      </p>
+    </div>
   <?php
     }
     else {
