@@ -19,6 +19,7 @@ module.exports = function(grunt) {
 			cssSrc: '<%= config.root %>assets/css/',
 			imgSrc: '<%= config.root %>assets/img/',
 			iconsSrc: '<%= config.imgSrc %>icons/',
+			sponsorsSrc: '<%= config.imgSrc %>sponsors/',
 			distFolder: '<%= config.root %>dist/<%= pkg.version %>/',
 			distFeed: '<%- config.root %>_site/feed/atom.xml'
 		},
@@ -130,8 +131,19 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd: '<%= config.iconsSrc %>',
-					src: [ '*.svg', '*.png' ],
+					src: [ '*.svg' ],
 					dest: '<%= config.distFolder %>icons/',
+				}],
+				options: {
+					customselectors: {}
+				}
+			},
+			sponsors: {
+				files: [{
+					expand: true,
+					cwd: '<%= config.sponsorsSrc %>',
+					src: [ '*.svg', '*.png' ],
+					dest: '<%= config.distFolder %>sponsors/',
 				}],
 				options: {
 					customselectors: {}

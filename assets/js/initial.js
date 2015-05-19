@@ -41,6 +41,10 @@ var NEJSConf = {
 			}
 		});
 
+	grunticon( [ distFolder + "sponsors/icons.data.svg.css",
+		distFolder + "sponsors/icons.data.png.css",
+		distFolder + "sponsors/icons.fallback.css" ]);
+
 })( document );
 
 // TypeKit
