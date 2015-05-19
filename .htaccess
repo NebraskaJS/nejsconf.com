@@ -1,6 +1,11 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
+# Redirect to HTTPS
+RewriteCond %{http:X-FORWARDED-PROTO} !https
+RewriteCond %{HTTP_HOST} ^nejsconf\.com$ [NC]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R,L]
+# End
 RewriteCond %{HTTP:Accept-Encoding} gzip
 RewriteCond %{REQUEST_FILENAME}.zgz -f 
 RewriteRule ^(.*)$ $1.zgz [L]
@@ -117,6 +122,7 @@ ExpiresByType text/javascript "access plus 2 months"
 
 <IfModule mod_headers.c>
 Header append Cache-Control "public"
+Header set Strict-Transport-Security "max-age=31536000"
 </IfModule>
 	
 </IfModule>
