@@ -39,11 +39,11 @@ var NEJSConf = {
 			if( grunticon.method ){
 				doc.documentElement.className += " grunticon-" + grunticon.method;
 			}
-		});
 
-	grunticon( [ distFolder + "sponsors/icons.data.svg.css",
-		distFolder + "sponsors/icons.data.png.css",
-		distFolder + "sponsors/icons.fallback.css" ]);
+			grunticon( [ distFolder + "sponsors/icons.data.svg.css",
+				distFolder + "sponsors/icons.data.png.css",
+				distFolder + "sponsors/icons.fallback.css" ]);
+		});
 
 })( document );
 
