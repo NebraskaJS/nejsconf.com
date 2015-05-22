@@ -20,7 +20,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*) $1.php [L]
 
-RewriteRule ^(.*).php /$1 [R=301,L]
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule ^(.+)\.php $1 [R=301,L]
 </IfModule>
 
 # mod_deflate isn't included on the production host, so we have a workaround
