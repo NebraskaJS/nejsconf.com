@@ -158,9 +158,13 @@ body {
 	right: 1em;
 	width: 32px;
 	height: 27px;
+	text-indent: -9999px;
 }
 .grunticon-svg .navigation .icon-twitter svg {
 	fill: #fff;
+	position: absolute;
+	left: 0;
+	top: 0;
 }
 
 /* Buttons */
@@ -327,6 +331,11 @@ form, div.form-result {
 	padding-top: 2em;
 	padding-bottom: 2em;
 	max-width: 900px;
+}
+.home-content p,
+.home-content ul,
+.home-content ol {
+	text-align: left;
 }
 .page-content {
 	max-width: 768px;
