@@ -131,7 +131,7 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd: '<%= config.iconsSrc %>',
-					src: [ '*.svg' ],
+					src: [ '*.svg', '*.png' ],
 					dest: '<%= config.distFolder %>icons/',
 				}],
 				options: {
