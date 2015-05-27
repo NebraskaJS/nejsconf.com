@@ -268,11 +268,14 @@ layout: page
           <button type="button" id="update_coupon" class="btn-tertiary">Apply Code</button>
         </div>
       </fieldset>
+      <div class="total">
+        <p class="note">Are you a student? We do offer a heavily discounted coupon code for students (valid Student ID required upon admission). <a href="https://twitter.com/intent/tweet?text=%40nejsconf%20Hook%20me%20up%20with%20the%20Student%20coupon%20code%20!">Send us a tweet</a> for the code!</p>
+      </div>
 
       <div class="total">
         <h3>Total</h3>
         $<span id="current_price"><?php echo $ticket_price; ?></span> &times; <span id="ticket_count"><?php echo $number_of_tickets; ?></span> = <span id="ticket_total">$<?php echo $ticket_price * $number_of_tickets; ?></span>
-        <p class="note">Early Bird Pricing is now in effect. Only 40 Early Bird Tickets are available and will be sold on a first come first serve basis! Once they’re gone, the full ticket price ($240) will take effect.</p>
+        <p class="note">Early Bird Pricing is now in effect. Only 40 Early Bird Tickets are available and will be sold on a first come first serve basis! Once they’re gone, the full ticket price ($240) will be applied.</p>
       </div>
 
       <fieldset>
