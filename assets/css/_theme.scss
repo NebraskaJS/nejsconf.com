@@ -474,15 +474,50 @@ form, div.form-result {
 }
 
 /* Avatars */
-.beep {
+.speaker {
 	/* Thanks http://demosthenes.info/blog/888/Create-Monochromatic-Color-Tinted-Images-With-CSS-blend */
-	background: url(/assets/img/posts/beep.png) no-repeat center $primary;
 	background-blend-mode: luminosity;
 	transition: .4s linear;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: $primary;
+	&:hover {
+		background-color: rgba(0, 0, 0, 0);
+	}
 }
-.beep:hover {
-	background-color: rgba(0, 0, 0, 0);
+
+.beep {
+	background-image: url(/assets/img/posts/beep.png);
 }
+
+.pamasaur {
+	background-image: url(/assets/img/icons/speaker-pamasaur.png);
+}
+
+.brucecoddington {
+	background-image: url(/assets/img/icons/speaker-brucecoddington.png);
+}
+
+.amandaharlin {
+	background-image: url(/assets/img/icons/speaker-amandaharlin.png);
+}
+
+.julia67 {
+	background-image: url(/assets/img/icons/speaker-julia67.png);
+}
+
+.nzgb {
+	background-image: url(/assets/img/icons/speaker-nzgb.png);
+}
+
+.mmacaula {
+	background-image: url(/assets/img/icons/speaker-mmacaula.png);
+}
+
+.imurchie {
+	background-image: url(/assets/img/icons/speaker-imurchie.png);
+}
+
 
 /* Sponsors */
 .sponsors {
