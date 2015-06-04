@@ -286,7 +286,6 @@ form, div.form-result {
 	border-radius: 1.5em;
 	width: 96%;
 	max-width: 13em;
-	-webkit-box-shadow: inset 0 0 6px 0 #aaa; /* Android 2.3+, iOS 4.0.2-4.2, Safari 3-4 */
 	box-shadow: inset 0 0 6px 0 #aaa;
 
 	@include placeholder {
@@ -448,7 +447,7 @@ form, div.form-result {
 }
 .person .twitter {
 	color: $primary;
-	font-size: 18px;
+	font-size: 16px;
 	letter-spacing: 1.25px;
 }
 .wf-effra-i9-active .person.tba .name {
@@ -463,6 +462,7 @@ form, div.form-result {
 .person .title {
 	font-size: 18px;
 	letter-spacing: 1px;
+	line-height: 105%;
 }
 .person .name,
 .person .title {
@@ -487,35 +487,35 @@ form, div.form-result {
 }
 
 .beep {
-	background-image: url(/assets/img/posts/beep.png);
+	background-image: url(/assets/img/speakers/speaker-beep.jpg);
 }
 
 .pamasaur {
-	background-image: url(/assets/img/icons/speaker-pamasaur.png);
+	background-image: url(/assets/img/speakers/speaker-pamasaur.jpg);
 }
 
 .brucecoddington {
-	background-image: url(/assets/img/icons/speaker-brucecoddington.png);
+	background-image: url(/assets/img/speakers/speaker-brucecoddington.jpg);
 }
 
 .amandaharlin {
-	background-image: url(/assets/img/icons/speaker-amandaharlin.png);
+	background-image: url(/assets/img/speakers/speaker-amandaharlin.jpg);
 }
 
 .julia67 {
-	background-image: url(/assets/img/icons/speaker-julia67.png);
+	background-image: url(/assets/img/speakers/speaker-julia67.jpg);
 }
 
 .nzgb {
-	background-image: url(/assets/img/icons/speaker-nzgb.png);
+	background-image: url(/assets/img/speakers/speaker-nzgb.jpg);
 }
 
 .mmacaula {
-	background-image: url(/assets/img/icons/speaker-mmacaula.png);
+	background-image: url(/assets/img/speakers/speaker-mmacaula.jpg);
 }
 
 .imurchie {
-	background-image: url(/assets/img/icons/speaker-imurchie.png);
+	background-image: url(/assets/img/speakers/speaker-imurchie.jpg);
 }
 
 
