@@ -117,6 +117,17 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		postcss: {
+			options: {
+				map: true,
+				processors: [
+					require('autoprefixer-core')({browsers: 'last 3 versions'})
+				]
+			},
+			dist: {
+				src: '<%= config.distFolder %>*.css'
+			}
+		},
 		copy: {
 			// For CSS inlining
 			includes: {
@@ -276,7 +287,7 @@ module.exports = function(grunt) {
 	});
 
 	// Default task.
-	grunt.registerTask('assets', ['sass', 'jshint', 'concat', 'uglify', 'cssmin']);
+	grunt.registerTask('assets', ['sass', 'jshint', 'concat', 'uglify', 'postcss', 'cssmin']);
 	grunt.registerTask('images', ['grunticon']);
 	grunt.registerTask('config', ['yaml']);
 	grunt.registerTask('content', ['copy:includes', 'shell:jekyll']);
