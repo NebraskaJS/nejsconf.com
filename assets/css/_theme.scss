@@ -414,6 +414,9 @@ form, div.form-result {
 	margin-bottom: 2em;
 	@include clearfix;
 }
+.has-gradient .content a.person.person {
+	background: none;
+}
 @include respond-min( 40em ) {
 	.person {
 		padding: .8em;
@@ -437,8 +440,8 @@ form, div.form-result {
 	@include aspect-ratio(1, 1);
 	background-size: contain;
 }
-.person > .avatar + div,
-.person > .avatar-placeholder + div {
+.person .avatar + div,
+.person .avatar-placeholder + div {
 	width: 68%;
 }
 .person .twitter {
@@ -477,11 +480,10 @@ form, div.form-result {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-color: $primary;
-	&:hover {
-		background-color: rgba(0, 0, 0, 0);
-	}
 }
-
+.person:hover .speaker {
+	background-color: rgba(0, 0, 0, 0);
+}
 .beep {
 	background-image: url(/assets/img/speakers/speaker-beep.jpg);
 }
