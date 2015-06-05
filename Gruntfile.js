@@ -50,7 +50,7 @@ module.exports = function(grunt) {
 				dest: '<%= config.distFolder %>initial.js'
 			},
 			jsDefer: {
-				src: ['<%= config.jsSrc %>defer.js'],
+				src: ['<%= config.jsSrc %>shoestring-nejsconf.js', '<%= config.jsSrc %>defer.js'],
 				dest: '<%= config.distFolder %>defer.js'
 			}
 			// CSS concat handled by SASS

@@ -1,4 +1,4 @@
-;(function( doc ) {
+;(function( doc, $ ) {
 	// IE9+
 	if( !( 'geolocation' in navigator ) ) {
 		return;
@@ -9,8 +9,13 @@
 		}, 200);
 	}
 
-	var venuePhoto = document.getElementById( 'venue-photo' );
-	if( venuePhoto ) {
-		venuePhoto.innerHTML = '<img src="/assets/img/venue.jpg" alt="Panorama of the Zoo Venue">';
-	}
-})( document );
+	$( '#venue-photo' ).html( '<img src="/assets/img/venue.jpg" alt="Panorama of the Zoo Venue">' );
+
+	$.get( "/tickets-sold?rand=" + Math.random(), function( data ) {
+		var sold = parseInt( data, 10 );
+		if( !isNaN( sold ) ) {
+			var left = 75 - sold;
+			$( '#tickets-left' ).html( left + ' Ticket' + ( left !== 1 ? 's' : '' ) + ' Left at this Price!' );
+		}
+	});
+})( document, shoestring );
