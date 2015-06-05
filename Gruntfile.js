@@ -112,8 +112,7 @@ module.exports = function(grunt) {
 				},
 				files: {
 					'<%= config.distFolder %>initial.min.css': ['<%= config.distFolder %>initial.css'],
-					'<%= config.distFolder %>ie8.min.css': ['<%= config.distFolder %>ie8.css'],
-					'<%= config.distFolder %>icons.min.css': ['<%= config.distFolder %>icons.css']
+					'<%= config.distFolder %>ie8.min.css': ['<%= config.distFolder %>ie8.css']
 				}
 			}
 		},
@@ -144,17 +143,6 @@ module.exports = function(grunt) {
 					cwd: '<%= config.iconsSrc %>',
 					src: [ '*.svg', '*.png' ],
 					dest: '<%= config.distFolder %>icons/',
-				}],
-				options: {
-					customselectors: {}
-				}
-			},
-			sponsors: {
-				files: [{
-					expand: true,
-					cwd: '<%= config.sponsorsSrc %>',
-					src: [ '*.svg', '*.png' ],
-					dest: '<%= config.distFolder %>sponsors/',
 				}],
 				options: {
 					customselectors: {}
@@ -230,7 +218,7 @@ module.exports = function(grunt) {
 			}
 		},
 		clean: {
-			js: [ '<%= config.root %>/_site/**/*.zgz' ]
+			zgz: [ '<%= config.root %>/dist/**/*.zgz', '<%= config.root %>/_site/' ]
 		},
 		watch: {
 			assets: {
@@ -294,6 +282,10 @@ module.exports = function(grunt) {
 	grunt.registerTask('default', ['clean', 'config', 'assets', 'images', 'content']);
 
 	grunt.registerTask('stage', ['default', 'htmlmin', 'zopfli']);
+
 	// Upload to Production
-	// grunt stage && ./deploy.sh
+	// ./deploy.sh
+
+	// Upload to Staging
+	// ./deploy-staging.sh
 };
