@@ -11,8 +11,7 @@ body {
 	color: $tertiary;
 }
 .wf-effra-n4-active .sponsor {
-	font-family: Effra;
-	font-weight: 400;
+	@include webfont(400);
 }
 
 /* Header */
@@ -398,9 +397,6 @@ form, div.form-result {
 	margin: .8em 0;
 	line-height: 1.2;
 }
-.posts li > a {
-	display: block;
-}
 
 /* Speakers */
 .people {
@@ -521,6 +517,9 @@ form, div.form-result {
 	font-size: 18px;
 	line-height: 142px;
 	text-transform: uppercase;
+}
+.sponsors .sponsor.sponsor a {
+	background-image: none;
 }
 .wf-effra-i9-active .sponsors .sponsor a {
 	font-weight: 900;

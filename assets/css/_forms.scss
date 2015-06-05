@@ -36,14 +36,9 @@ input[type=text] {
   font-family: effra,sans-serif;
   font-size: 0.85em;
   border-radius: 5px;
-  -webkit-box-shadow: inset 0px 2px 2px 0px #E4E4E4;
-  -moz-box-shadow: inset 0px 2px 2px 0px #E4E4E4;
   box-shadow: inset 0px 2px 2px 0px #E4E4E4;
   outline: none;
-  -webkit-transition: all 0.20s ease-in-out;
-  -moz-transition: all 0.20s ease-in-out;
-  -ms-transition: all 0.20s ease-in-out;
-  -o-transition: all 0.20s ease-in-out;
+  transition: all 0.20s ease-in-out;
 }
 input[type=text]:focus {
   background: #E8E8E8;
