@@ -485,6 +485,20 @@ form, div.form-result {
 .beep {
 	background-image: url(/assets/img/speakers/speaker-beep.jpg);
 }
+.pamasaur {
+	background-image: url(/assets/img/speakers/speaker-pamasaur.jpg);
+}
+.avatar-inline {
+	max-width: 100%;
+}
+@include respond-min( $bpFixed ) {
+	.avatar-inline {
+		float: right;
+		max-width: 300px;
+		margin-left: 1em;
+		margin-bottom: 1em;
+	}
+}
 
 /* Sponsors */
 .sponsors {
