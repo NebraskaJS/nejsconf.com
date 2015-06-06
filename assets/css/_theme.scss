@@ -424,6 +424,9 @@ form, div.form-result {
 		width: 50%;
 	}
 }
+.person.tba {
+	color: rgba(0, 0, 0, .4);
+}
 .person .avatar,
 .person .avatar-placeholder {
 	float: left;
@@ -443,6 +446,9 @@ form, div.form-result {
 .person .avatar + div,
 .person .avatar-placeholder + div {
 	width: 68%;
+}
+.person.tba .avatar-placeholder {
+	opacity: .7;
 }
 .person .twitter {
 	color: $primary;
@@ -489,6 +495,9 @@ form, div.form-result {
 }
 .pamasaur {
 	background-image: url(/assets/img/speakers/speaker-pamasaur.jpg);
+}
+.imurchie {
+	background-image: url(/assets/img/speakers/speaker-imurchie.jpg);
 }
 .avatar-inline {
 	max-width: 100%;

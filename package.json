@@ -1,6 +1,6 @@
 {
   "name": "nejsconf.com",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "The website of the NebraskaJS Conference",
   "dependencies": {
     "grunt-cli": "~0.1.13"
