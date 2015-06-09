@@ -4,6 +4,12 @@ author: Zach Leatherman
 layout: post
 ---
 
+### Update!
+
+Sorry! Early and noon-day bird tickets are *sold out*.  Full price tickets are now available for purchase.
+
+--------------------
+
 If you were sad because you thought you were going to have to pay full price for NEJS CONF—fret not. We’re [selling 25 tickets at a reduced price of $195][link]!
 
 Hurry—they will sell quickly!
