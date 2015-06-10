@@ -7,7 +7,7 @@ markdown: rdiscount
 permalink: /:year/:title/
 highlighter: pygments
 relative_permalinks: false
-distFolder: /dist/1.0.8/
+distFolder: /dist/1.0.9/
 exclude:
  - node_modules
  - Gruntfile.js
