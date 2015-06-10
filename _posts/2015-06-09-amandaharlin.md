@@ -9,7 +9,7 @@ We are excited to announce our fourth of seven speakers, Amanda Harlin!
 * Twitter: [@amandaharlin](https://twitter.com/amandaharlin)
 * GitHub: [@amandaharlin](https://github.com/amandaharlin)
 * Website: [amandaharlin.com](http://amandaharlin.com/)
-* Employer: [University of Oklahoma](http://www.ou.edu/)
+* Employer: [Techlahoma](http://techlahoma.org/)
 * Hails from: Norman, Oklahoma
 
 <img src="/assets/img/speakers/speaker-amandaharlin-large.jpg" alt="Photo of Amanda Harlin" class="avatar-inline">
