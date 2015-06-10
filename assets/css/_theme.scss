@@ -570,7 +570,8 @@ form, div.form-result {
 	background-size: 230px auto;
 	margin-top: -2.5em;
 }
-.sponsors .sponsor.elephant:first-child:last-child {
+.sponsors .sponsor.elephant:first-child:last-child,
+.sponsors .sponsor.solo:first-child:last-child {
 	width: 100%;
 }
 .sponsors .sponsor.elephant a {
