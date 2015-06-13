@@ -2,6 +2,8 @@
 title: Architecting Communities—Amanda Harlin
 author: Zach Leatherman
 layout: post
+tags:
+  - speaker
 ---
 
 We are excited to announce our fourth of seven speakers, Amanda Harlin!
