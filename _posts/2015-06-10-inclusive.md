@@ -14,7 +14,7 @@ That's part of the reason why NEJS CONF is committed to hosting a safe, stimulat
 	<li class="sponsor solo icon-sponsor icon-sponsor-bigwheelbrigade"><a href="http://www.bigwheelbrigade.com/">Big Wheel Brigade</a></li>
 </ul>
 
-If you're a member of a marginalized or under-represented community* and want to attend NEJS CONF, send an email to [Beth Haubert](mailto:beth@bigwheelbrigade.com) and she'll arrange your ticket.
+If you're a member of a marginalized or under-represented community* and want to attend NEJS CONF, please fill out [a form on bigwheelbrigade.com](http://www.bigwheelbrigade.com/nejs) and [Beth Haubert](mailto:beth@bigwheelbrigade.com) will arrange your ticket.
 
 Coupled with our [Code of Conduct](/2015/code-of-conduct/), this initiative will help ensure that our conference experience is more interesting, educational, and rewarding.
 
