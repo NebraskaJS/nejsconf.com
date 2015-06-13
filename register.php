@@ -414,39 +414,39 @@ layout: page
       $form.find('input').each(function (i, e) {
         
         var $input = $(e),
-          $wrapper = $input.parent(),
+          $wrapper = $input.closest(".form_field"),
      $errorMessage = $wrapper.find(".form_error"),
-         validates = $input.data('validate'),
+         validates = $input.attr('data-validate'),
              value = e.value.replace(/^\s+|\s+$/g, '');
 
         $wrapper.removeClass("error");
-        $errorMessage.text('');
+        $errorMessage.html('');
 
         if( validates === 'required') {
-          if(! validator.isLength(value, 1)) {
+          if(!validator.isLength(value, 1)) {
             $wrapper.addClass('error');
-            $errorMessage.text('This field is required.');
+            $errorMessage.html('This field is required.');
             errors = true;
           }
         }
         else if ( validates === 'email' ) {
-          if(! validator.isEmail(value)) {
+          if(!validator.isEmail(value)) {
             $wrapper.addClass('error');
-            $errorMessage.text('An email is required.');
+            $errorMessage.html('An email is required.');
             errors = true;
           }
         }
-        else if ( validates == 'creditcard' ) {
-          if( ! Stripe.card.validateCardNumber(value) ) {
+        else if ( validates === 'creditcard' ) {
+          if( !Stripe.card.validateCardNumber(value) ) {
             $wrapper.addClass('error');
-            $errorMessage.text('A valid credit card number is required.');
+            $errorMessage.html('A valid credit card number is required.');
             errors = true;
           }
         }
-        else if ( validates == 'cvc' ) {
-          if( ! Stripe.card.validateCVC(value) ) {
+        else if ( validates === 'cvc' ) {
+          if( !Stripe.card.validateCVC(value) ) {
             $wrapper.addClass('error');
-            $errorMessage.text('A valid CVC is required.');
+            $errorMessage.html('A valid CVC is required.');
             errors = true;
           }
         }
