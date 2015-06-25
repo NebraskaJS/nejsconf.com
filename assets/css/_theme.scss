@@ -5,12 +5,18 @@ body {
 }
 
 /* Sponsor Link */
-.sponsor {
+p.sponsor {
 	font-size: 18px;
 	text-align: center;
 	color: $tertiary;
+	margin-left: 1em;
+	margin-right: 1em;
 }
-.wf-effra-n4-active .sponsor {
+p.sponsor span,
+p.sponsor a {
+	white-space: nowrap;
+}
+.wf-effra-n4-active p.sponsor {
 	@include webfont(400);
 }
 
@@ -554,7 +560,7 @@ form, div.form-result {
 	max-width: 320px;
 	margin: 0 auto;
 	color: #000;
-	font-size: 18px;
+	font-size: 17px;
 	line-height: 142px;
 	text-transform: uppercase;
 }
@@ -578,7 +584,7 @@ form, div.form-result {
 	width: 100%;
 }
 .sponsors .sponsor.elephant a {
-	height: 230px;
+	height: 245px;
 }
 @include respond-min( 38em ) {
 	.sponsors .sponsor {
