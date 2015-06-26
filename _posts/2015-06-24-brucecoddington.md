@@ -20,4 +20,4 @@ One of the newest buzz words in web development is ‘isomorphic’ which basica
 
 ## Bio
 
-Bruce is an ex-rockstar wannabe that stumbled across web development over a decade ago. He loves writing JavaScript, trying new frameworks, and using other people’s good ideas to make his life easier. When he is not coding, he’s hanging out with his wife and watching their sons play hockey. He is currently the Chief Operating Officer for a small finance company so all of my coding is officially for fun.
+Bruce is an ex-rockstar wannabe that stumbled across web development over a decade ago. He loves writing JavaScript, trying new frameworks, and using other people’s good ideas to make his life easier. When he is not coding, he’s hanging out with his wife and watching their sons play hockey. He is currently the Chief Operating Officer for a small finance company so all of his coding is officially for fun.
