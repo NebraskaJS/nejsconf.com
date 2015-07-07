@@ -3,13 +3,21 @@ layout: home
 ---
 
 <div class="content home-content" data-role="main">
+	<ul class="menu">
+		<li><a href="#speakers">Speakers</a></li>
+		<li><a href="#news">News</a></li>
+		<li><a href="#schedule">Schedule</a></li>
+		<li><a href="#sponsors">Sponsors</a></li>
+		<li><a href="#hotel">Hotel</a></li>
+		<li><a href="#venue">Venue</a></li>
+	</ul>
 	<div class="spacetime">
 		<div class="icon-nebraska" data-grunticon-embed></div>
 		<time datetime="2015-08-07">August 7, 2015</time>
 		<div class="location">Henry Doorly Zoo &amp; Aquarium &ndash; Omaha,&nbsp;NE&nbsp;USA</div>
 	</div>
 	<div>
-		<h2>
+		<h2 id="details">
 			<div class="icon-leaf-2" data-grunticon-embed></div>
 			<span>Details</span>
 		</h2>
@@ -21,7 +29,7 @@ layout: home
 			<li>Brought to you by <a href="http://www.nebraskajs.com/">NebraskaJS</a> (Omaha) and organized by the <a href="/team/">NEJS CONF Team</a>.</li>
 		</ul>
 	</div>
-	<h2>
+	<h2 id="speakers">
 		<div class="icon-leaf" data-grunticon-embed></div>
 		<span>Keynotes</span>
 	</h2>
@@ -114,7 +122,7 @@ layout: home
 			</a>
 		</li>
 	</ol>
-	<h2>
+	<h2 id="news">
 		<div class="icon-leaf" data-grunticon-embed></div>
 		<span>News</span>
 	</h2>
@@ -126,7 +134,34 @@ layout: home
 			{% endif %}
 		{% endfor %}
 	</ul>
-	<h2>
+	<div>
+		<h2 id="schedule">
+			<div class="icon-leaf" data-grunticon-embed></div>
+			<span>Schedule</span>
+		</h2>
+		<em>The posted schedule is tentative and may be subject to change.</em>
+		<h3>August 6th</h3>
+		<ul class="schedule">
+			<li><strong>9PM–?</strong> <span>Informal Pre-party, Details soon.</span></li>
+		</ul>
+		<h3>August 7th</h3>
+		<ul class="schedule">
+			<li><strong>8AM</strong> <span>Registration</span></li>
+			<li><strong>9AM</strong> <span>Introductions / Welcome</span></li>
+			<li><strong>9:15AM</strong> <a href="/2015/keynote-christian-heilmann/">Keynote—Christian Heilmann</a></li>
+			<li><strong>10:00AM</strong> <a href="/2015/pamasaur/">Believe in Streams—Pam Selle</a></li>
+			<li><strong>10:45AM</strong> <a href="/2015/mmacaula/">Add a tool to your development swiss army knife.  Using Custom Elements today—Mike Macaulay</a></li>
+			<li><strong>11:15AM</strong> <a href="/2015/nzgb/">High Performance in the Critical Rendering Path—Nicolas Bevacqua</a></li>
+			<li><strong>11:45AM</strong> Lunch (provided)</li>
+			<li><strong>1:00PM</strong> <a href="/2015/brucecoddington/">Reacting to the Isomorphic Buzz—Bruce Coddington</a></li>
+			<li><strong>1:30PM</strong> <a href="/2015/amandaharlin">Architecting Communities—Amanda Harlin</a></li>
+			<li><strong>2:30PM</strong> <a href="/2015/julia67/">SVG Animation with Snap.svg—Julia Smith</a></li>
+			<li><strong>3:15PM</strong> <a href="/2015/imurchie/">You and the Temporal Dead Zone: ES6 variables for fun and profit—Isaac Murchie</a></li>
+			<li><strong>4PM</strong> <a href="/2015/keynote-ethan-marcotte/">Keynote—Ethan Marcotte</a></li>
+			<li><strong><abbr title="To Be Announced">TBA</abbr></strong> <span>After Party, Details soon.</span></li>
+		</ul>
+	</div>
+	<h2 id="sponsors">
 		<div class="icon-leaf-2" data-grunticon-embed></div>
 		<span>Sponsors</span>
 	</h2>
@@ -148,11 +183,28 @@ layout: home
 		<li class="sponsor"><a href="mailto:sponsor@nejsconf.com">Sponsor NEJS CONF</a></li>
 	</ul>
 	<div>
-		<h2>
+		<h2 id="hotel">
+			<div class="icon-leaf-2" data-grunticon-embed></div>
+			<span>Hotel</span>
+		</h2>
+		<h3><a href="http://www.marriott.com/meeting-event-hotels/group-corporate-travel/groupCorp.mi?resLinkData=Nebraska%20Javascript%20Conference%5Eomacy%60NJSNJSA%60129.00%60USD%60false%604%608/6/15%608/8/15%607/22/15&app=resvlink&stop_mobi=yes">Courtyard Omaha Downtown/Old Market Area</a></h3>
+		<a class="map" id="hotel-map" href="https://www.google.com/maps/place/101+S+10th+St+Omaha,+NE+68102/">Show on Google Maps</a>
+		<ul>
+			<li>NEJS CONF will be providing a shuttle to and from the Zoo</li> 
+			<li>Conference discount rate of $129/night <strong>(this rate expires July 22nd, so book your room soon!)</strong></li>
+			<li>Free in-room Wi-Fi</li>
+			<li>Indoor Pool</li>
+			<li>Free Airport Shuttle</li>
+			<li>On site parking costs $8/day USD</li>
+		</ul>
+	</div>
+	<div>
+		<h2 id="venue">
 			<div class="icon-leaf" data-grunticon-embed></div>
 			<span>Venue</span>
 		</h2>
 		<h3><a href="http://www.omahazoo.com/">Omaha’s Henry Doorly Zoo &amp; Aquarium</a></h3>
+		<a class="map" id="venue-map" href="https://www.google.com/maps/place/Suzanne+and+Walter+Scott+Aquarium/@41.2249487,-95.9268417,18z/data=!4m2!3m1!1s0x0000000000000000:0x8663afb5b7644d69">Show on Google Maps</a>
 		<p>“Explore the wonders of the ocean in the <a href="http://www.omahazoo.com/exhibits/aquarium/">Suzanne and Walter Scott Aquarium</a> Education and Conference Center. Located on the west side of the Scott Aquarium, the 13,000 square foot Education and Conference Center is a meeting place and classroom unlike any other. As you walk through the 1,062 square foot conference center foyer, guests are greeted by a 10 foot coral reef tropical fish aquarium. One wall features a wave-like 75 foot long Modular Arts wall that can be illuminated by a variety of colored lights. The centerpiece of the opposite wall is a 24 foot 10,000 gallon reef aquarium.” —via <a href="http://www.omahazoo.com/">omahazoo.com</a></p>
 		<p id="venue-photo"></p>
 	</div>
