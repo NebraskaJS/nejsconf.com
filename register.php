@@ -98,25 +98,37 @@ layout: page
       }
 
       if(0 == count($form_errors)) {
-        $stripe_token = $_POST['stripeToken'];
 
+        $charge = false; 
+        $stripe_token = arr_get($_POST, 'stripeToken');
         $ticket_price_as_pennies = $ticket_price * 100;
         $total_as_pennies = $ticket_price_as_pennies * $number_of_tickets;
 
-        try {
-          $charge = \Stripe\Charge::create(array(
-            "amount"        => $total_as_pennies,
-            "currency"      => "usd",
-            "source"        => $stripe_token,
-            "description"   => "$number_of_tickets NEJSCONF 2015 Tickets",
-            "receipt_email" => $receipt_email,
-            "metadata"      => array(
-              "coupon_code"       => $coupon_code,
-              "ticket_price"      => $ticket_price,
-              "number_of_tickets" => $number_of_tickets,
-            ),
-          ));
+        if( $total_as_pennies > 0 ) {
+          try {
+            $charge = \Stripe\Charge::create(array(
+              "amount"        => $total_as_pennies,
+              "currency"      => "usd",
+              "source"        => $stripe_token,
+              "description"   => "$number_of_tickets NEJSCONF 2015 Tickets",
+              "receipt_email" => $receipt_email,
+              "metadata"      => array(
+                "coupon_code"       => $coupon_code,
+                "ticket_price"      => $ticket_price,
+                "number_of_tickets" => $number_of_tickets,
+              ),
+            ));
+          }
+          catch(\Stripe\Error\Card $e) {
+            $error_json = $e->getJsonBody();
+            $stripe_error = $error_json['error']['message'];
+          }
+          catch(\Stripe\Error $e) {
+            $stripe_error = "An error occurred charging your card. Please try again.";
+          }
+        }
 
+        if(false == $stripe_error) {
           $mandrill = new Mandrill($config['mandrill']['api_key']);
 
           $to_dict = array();
@@ -153,13 +165,21 @@ layout: page
           if(!$statement) {
             die($mysql->error);
           }
-          $charge_id = $charge['id'];
+
+          $charge_id = 'NONE';
+          if( $charge ) {
+            $charge_id = arr_get($charge, 'id', 'NONE');
+          }
           $statement->bind_param('ssisii', $charge_id, $receipt_email, $number_of_tickets, $coupon_code, $ticket_price_as_pennies, $total_as_pennies);
           $statement->execute();
           $sale_id = $statement->insert_id;
           $statement->close();
 
           $statement = $mysql->prepare("INSERT INTO `tickets` (`sale_id`, `first_name`, `last_name`, `email`, `twitter`, `company`, `job_title`, `shirt_size`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+          if(!$statement) {
+            die($mysql->error);
+          }
+
           foreach($attendee_data as $attendee) {
             $statement->bind_param('isssssss', $sale_id, $attendee['first_name'], $attendee['last_name'], $attendee['email'], $attendee['twitter'], $attendee['company'], $attendee['job_title'], $attendee['shirt_size']);
             $statement->execute();
@@ -167,13 +187,6 @@ layout: page
           $statement->close();
 
           $show_purchase_success = true;
-        }
-        catch(\Stripe\Error\Card $e) {
-          $error_json = $e->getJsonBody();
-          $stripe_error = $error_json['error']['message'];
-        }
-        catch(\Stripe\Error $e) {
-          $stripe_error = "An error occurred charging your card. Please try again.";
         }
       }
 
@@ -291,28 +304,28 @@ layout: page
           <div class="form_error"><?php echo arr_get($form_errors, 'receipt_email', ''); ?></div>
         </div>
 
-        <div class="form_field">
+        <div class="form_field" id="ccnumber">
           <label for="creditcard">
             Card Number
-            <span class="required">Required</span>
+            <span class="required-payment">Required</span>
           </label>
           <input id="creditcard" type="text" size="20" data-stripe="number" data-validate="creditcard" />
           <div class="form_error"></div>
         </div>
 
-        <div class="form_field">
+        <div class="form_field" id="cccvc">
           <label for="cvc">
             CVC
-            <span class="required">Required</span>
+            <span class="required-payment">Required</span>
           </label>
           <input id="cvc" type="text" size="4" data-stripe="cvc" data-validate="cvc"/>
           <div class="form_error"></div>
         </div>
 
-        <div class="form_field">
+        <div class="form_field" id="ccexp">
           <label for="exp-month">Expiration (MM/YYYY) <span class="required">Required</span></label>
-          <input id="exp-month" type="text" class="short" size="2" data-stripe="exp-month" data-validate="required" style="width: 20%"/> 
-          <input type="text" class="short" size="4" data-stripe="exp-year" data-validate="required" style="width: 40%"/>
+          <input id="exp-month" type="text" class="short" size="2" data-stripe="exp-month" data-validate="required-payment" style="width: 20%"/> 
+          <input type="text" class="short" size="4" data-stripe="exp-year" data-validate="required-payment" style="width: 40%"/>
           <div class="form_error"></div>
         </div>
 
@@ -418,7 +431,7 @@ layout: page
         $wrapper.removeClass("error");
         $errorMessage.html('');
 
-        if( validates === 'required') {
+        if( validates === 'required' || ( validates == 'required-payment' && current_ticket_price > 0 ) ) {
           if(!validator.isLength(value, 1)) {
             $wrapper.addClass('error');
             $errorMessage.html('This field is required.');
@@ -432,14 +445,14 @@ layout: page
             errors = true;
           }
         }
-        else if ( validates === 'creditcard' ) {
+        else if ( validates === 'creditcard' && current_ticket_price > 0 ) {
           if( !Stripe.card.validateCardNumber(value) ) {
             $wrapper.addClass('error');
             $errorMessage.html('A valid credit card number is required.');
             errors = true;
           }
         }
-        else if ( validates === 'cvc' ) {
+        else if ( validates === 'cvc' && current_ticket_price > 0 ) {
           if( !Stripe.card.validateCVC(value) ) {
             $wrapper.addClass('error');
             $errorMessage.html('A valid CVC is required.');
@@ -449,8 +462,13 @@ layout: page
       });
 
       if( ! errors ) {
-        Stripe.card.createToken(this, stripeResponseHandler);
-        $form.find('button').prop('disabled', true);
+        if(current_ticket_price > 0) {
+          Stripe.card.createToken(this, stripeResponseHandler);
+          $form.find('button').prop('disabled', true);
+        }
+        else {
+          return true;
+        }
       }
 
       return false;
@@ -496,9 +514,20 @@ layout: page
       }
 
     function updatePrice () {
-      $current_price.innerHTML = current_ticket_price;
-      $ticket_count.innerHTML = parseInt($ticket_select.value, 10);
-      $ticket_total.innerHTML = "$" + (current_ticket_price * parseInt($ticket_select.value, 10));
+      $current_price.innerText = current_ticket_price;
+      $ticket_count.innerText = parseInt($ticket_select.value, 10);
+      $ticket_total.innerText = "$" + (current_ticket_price * parseInt($ticket_select.value, 10));
+
+      if(current_ticket_price <= 0) {
+        $("#ccnumber").hide();
+        $("#cccvc").hide();
+        $("#ccexp").hide();
+      }
+      else {
+        $("#ccnumber").show();
+        $("#cccvc").show();
+        $("#ccexp").show();
+      }
     }
   });
 </script>
