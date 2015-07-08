@@ -54,7 +54,7 @@ layout: page
       // Validate Coupon Code
       if(($coupon_code = arr_get($_POST, 'coupon_code')) != null) {
         $coupon_price = arr_get($config['checkout']['coupons'], $coupon_code);
-        if(null == $coupon_price) {
+        if(null === $coupon_price) {
           $coupon_code = null;
         }
         else {
@@ -396,11 +396,7 @@ layout: page
           $coupon_code.value = '';
           alert("Sorry, that coupon code does not exist.");
         }
-        if( data['price'] < 0 ) {
-          current_ticket_price = original_ticket_price + data['price'];
-        } else {
-          current_ticket_price = data['price'];
-        }
+        current_ticket_price = data['price'];
 
         updatePrice();
       });
@@ -500,9 +496,9 @@ layout: page
       }
 
     function updatePrice () {
-      $current_price.innerText = current_ticket_price;
-      $ticket_count.innerText = parseInt($ticket_select.value, 10);
-      $ticket_total.innerText = "$" + (current_ticket_price * parseInt($ticket_select.value, 10));
+      $current_price.innerHTML = current_ticket_price;
+      $ticket_count.innerHTML = parseInt($ticket_select.value, 10);
+      $ticket_total.innerHTML = "$" + (current_ticket_price * parseInt($ticket_select.value, 10));
     }
   });
 </script>
