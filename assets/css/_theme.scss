@@ -617,12 +617,21 @@ form, div.form-result {
 
 /* Menu */
 .menu {
+	@include webfont(400);
 	padding: 0;
-	margin: -1.5em 0 2em 0;
+	margin: 1em auto;
 	text-transform: uppercase;
 	font-size: 19px;
 	list-style: none;
 	overflow: hidden;
+	max-width: 900px;
+}
+.menu a {
+	text-decoration: none;
+}
+.menu a:hover,
+.menu a:active {
+	text-decoration: underline;
 }
 .menu li {
 	float: left;
@@ -650,6 +659,9 @@ form, div.form-result {
 .schedule li {
 	overflow: hidden;
 	margin-bottom: .2em;
+}
+.schedule .off {
+	background-color: #f4f4f4;
 }
 .schedule li strong:first-child {
 	float: left;
