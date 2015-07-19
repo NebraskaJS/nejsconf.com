@@ -20,7 +20,7 @@
 	// 			var left = json.tickets;
 	// 			if( !isNaN( left ) ) {
 	// 				left = Math.max( 0, left );
-	// 				$( '#tickets-left' ).html( left + ' Ticket' + ( left !== 1 ? 's' : '' ) + ' Left at this Price!' );
+	// 				$( '#tickets-left' ).html( left + ' Ticket' + ( left !== 1 ? 's' : '' ) + ' Left!' );
 	// 			}
 	// 		}
 	// 	});
