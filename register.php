@@ -283,6 +283,7 @@ layout: page
       </fieldset>
       <div class="total">
         <p class="note">Are you a student? We do offer a heavily discounted coupon code for students (valid Student ID required upon admission). <a href="https://twitter.com/intent/tweet?text=%40nejsconf%20Hook%20me%20up%20with%20the%20Student%20coupon%20code%20!">Send us a tweet</a> for the code!</p>
+        <p class="note">Are you a member of an underrepresented group (including but not limited to underrepresented by gender, sex, sexuality, race, veteran status)? Go read about our <a href="/2015/inclusive/">Diversity Scholarships</a>—free, confidential tickets are still available!</p>
       </div>
 
       <div class="total">
