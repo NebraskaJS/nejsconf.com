@@ -578,9 +578,8 @@ form, div.form-result {
 	text-indent: -9999px;
 }
 .sponsors .sponsor.elephant {
-	width: 50%;
 	background-size: 230px auto;
-	margin-top: -2.5em;
+	top: 0;
 }
 .sponsors .sponsor.elephant:first-child:last-child,
 .sponsors .sponsor.solo:first-child:last-child {
@@ -593,10 +592,16 @@ form, div.form-result {
 	.sponsors .sponsor {
 		width: 50%;
 	}
+	.sponsors .sponsor.elephant {
+		margin-top: -2.5em;
+	}
 }
 @include respond-min( 56em ) {
 	.sponsors .sponsor {
 		width: 25%;
+	}
+	.sponsors .sponsor.elephant {
+		width: 50%;
 	}
 }
 
