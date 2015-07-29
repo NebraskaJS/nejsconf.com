@@ -71,6 +71,7 @@ layout: page
           'twitter'    => trim(arr_get($_POST, 'twitter_' . $i, '')),
           'company'    => trim(arr_get($_POST, 'company_' . $i, '')),
           'job_title'  => trim(arr_get($_POST, 'job_title_' . $i, '')),
+          'shirt_size' => "TOO_LATE",
         );
         $attendee_data[$i] = $attendee;
 
@@ -180,7 +181,7 @@ layout: page
           }
 
           foreach($attendee_data as $attendee) {
-            $statement->bind_param('isssssss', $sale_id, $attendee['first_name'], $attendee['last_name'], $attendee['email'], $attendee['twitter'], $attendee['company'], $attendee['job_title'], 'TOO_LATE');
+            $statement->bind_param('isssssss', $sale_id, $attendee['first_name'], $attendee['last_name'], $attendee['email'], $attendee['twitter'], $attendee['company'], $attendee['job_title'], $attendee['shirt_size']);
             $statement->execute();
           }
           $statement->close();
