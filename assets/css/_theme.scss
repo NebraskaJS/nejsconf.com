@@ -575,6 +575,9 @@ form, div.form-result {
 .sponsors .sponsor.sponsor a {
 	background-image: none;
 }
+.sponsors .sponsor.sponsor a:not(.btn-secondary):not(.sponsor-inline) {
+	background-image: none;
+}
 .wf-effra-i9-active .sponsors .sponsor a {
 	font-weight: 900;
 	font-style: italic;
