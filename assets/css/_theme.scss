@@ -609,6 +609,15 @@ form, div.form-result {
 		width: 50%;
 	}
 }
+/* Inline sponsor link */
+.sponsor-inline {
+	display: inline-block;
+	width: 3.5em;
+	height: 1.5em;
+	margin: 0 .5em;
+	text-indent: -9999px;
+	background-size: contain;
+}
 
 /* Share */
 .share .btn-secondary {
