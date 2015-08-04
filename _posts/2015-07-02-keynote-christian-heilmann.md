@@ -2,6 +2,8 @@
 title: Keynote Speaker, Christian Heilmann
 author: Zach Leatherman
 layout: post
+tags:
+  - speaker
 ---
 
 We are very excited to announce our second keynote speaker for the NebraskaJS Conference: Christian Heilmann! You may also know him as [@codepo8](https://twitter.com/codepo8) on Twitter.

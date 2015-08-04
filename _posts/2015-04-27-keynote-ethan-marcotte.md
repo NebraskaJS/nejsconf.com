@@ -2,6 +2,8 @@
 title: Keynote Speaker, Ethan Marcotte
 author: Zach Leatherman
 layout: post
+tags:
+  - speaker
 ---
 
 We are very excited to announce our first keynote speaker for the NebraskaJS Conference: Ethan Marcotte! You may also know him as [@beep](https://twitter.com/beep) on Twitter.

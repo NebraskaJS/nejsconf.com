@@ -682,8 +682,14 @@ form, div.form-result {
 	overflow: hidden;
 	margin-bottom: .2em;
 	text-align: center;
+	margin-bottom: 1.5em;
 }
-.schedule .off {}
+.schedule .off {
+	margin-bottom: 1em;
+}
+.schedule .person {
+	margin-bottom: 0;
+}
 .schedule li strong:first-child {
 	display: block;
 	text-align: center;
@@ -697,10 +703,15 @@ form, div.form-result {
 @include respond-min( 32em ) {
 	.schedule li {
 		text-align: left;
+		display: flex;
+		align-items: center;
+	}
+	.schedule .off {
+		display: block;
 	}
 	.schedule li strong:first-child {
 		float: left;
-		width: 30%;
+		width: 24%;
 		text-align: right;
 		padding-right: 1em;
 		padding-top: 0;
@@ -710,7 +721,7 @@ form, div.form-result {
 	.schedule li strong:first-child + a,
 	.schedule li strong:first-child + span {
 		float: left;
-		width: 70%;
+		width: 76%;
 	}
 }
 
