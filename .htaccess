@@ -1,11 +1,27 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
+
+# Redirect to HTTPS
+RewriteCond %{http:X-FORWARDED-PROTO} !https
+RewriteCond %{HTTP_HOST} ^nejsconf\.com$ [NC]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R,L]
+# End
+
 RewriteCond %{HTTP:Accept-Encoding} gzip
 RewriteCond %{REQUEST_FILENAME}.zgz -f 
 RewriteRule ^(.*)$ $1.zgz [L]
+
 RedirectMatch 301 ^/cfp$ https://docs.google.com/forms/d/1vqaODm8zG0_R8oXi1xVvWG4VrKEP5IicKYfjOLfntIk/viewform
 RedirectMatch 301 ^/cfp/$ https://docs.google.com/forms/d/1vqaODm8zG0_R8oXi1xVvWG4VrKEP5IicKYfjOLfntIk/viewform
+
+RedirectMatch 301 ^/coc$ /2015/code-of-conduct/
+ 
+
+# Clean off .php extensions
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*) $1.php [L]
 </IfModule>
 
 # mod_deflate isn't included on the production host, so we have a workaround
@@ -117,6 +133,7 @@ ExpiresByType text/javascript "access plus 2 months"
 
 <IfModule mod_headers.c>
 Header append Cache-Control "public"
+Header set Strict-Transport-Security "max-age=31536000"
 </IfModule>
 	
 </IfModule>

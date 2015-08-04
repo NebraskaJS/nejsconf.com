@@ -19,6 +19,7 @@ module.exports = function(grunt) {
 			cssSrc: '<%= config.root %>assets/css/',
 			imgSrc: '<%= config.root %>assets/img/',
 			iconsSrc: '<%= config.imgSrc %>icons/',
+			sponsorsSrc: '<%= config.imgSrc %>sponsors/',
 			distFolder: '<%= config.root %>dist/<%= pkg.version %>/',
 			distFeed: '<%- config.root %>_site/feed/atom.xml'
 		},
@@ -49,7 +50,7 @@ module.exports = function(grunt) {
 				dest: '<%= config.distFolder %>initial.js'
 			},
 			jsDefer: {
-				src: ['<%= config.jsSrc %>defer.js'],
+				src: ['<%= config.jsSrc %>shoestring-nejsconf.js', '<%= config.jsSrc %>defer.js'],
 				dest: '<%= config.distFolder %>defer.js'
 			}
 			// CSS concat handled by SASS
@@ -111,9 +112,19 @@ module.exports = function(grunt) {
 				},
 				files: {
 					'<%= config.distFolder %>initial.min.css': ['<%= config.distFolder %>initial.css'],
-					'<%= config.distFolder %>ie8.min.css': ['<%= config.distFolder %>ie8.css'],
-					'<%= config.distFolder %>icons.min.css': ['<%= config.distFolder %>icons.css']
+					'<%= config.distFolder %>ie8.min.css': ['<%= config.distFolder %>ie8.css']
 				}
+			}
+		},
+		postcss: {
+			options: {
+				map: true,
+				processors: [
+					require('autoprefixer-core')({browsers: 'last 3 versions'})
+				]
+			},
+			dist: {
+				src: '<%= config.distFolder %>*.css'
 			}
 		},
 		copy: {
@@ -207,7 +218,7 @@ module.exports = function(grunt) {
 			}
 		},
 		clean: {
-			js: [ '<%= config.root %>/_site/**/*.zgz' ]
+			zgz: [ '<%= config.root %>/dist/**/*.zgz', '<%= config.root %>/_site/' ]
 		},
 		watch: {
 			assets: {
@@ -265,13 +276,17 @@ module.exports = function(grunt) {
 	});
 
 	// Default task.
-	grunt.registerTask('assets', ['sass', 'jshint', 'concat', 'uglify', 'cssmin']);
+	grunt.registerTask('assets', ['sass', 'jshint', 'concat', 'uglify', 'postcss', 'cssmin']);
 	grunt.registerTask('images', ['grunticon']);
 	grunt.registerTask('config', ['yaml']);
 	grunt.registerTask('content', ['copy:includes', 'shell:jekyll']);
 	grunt.registerTask('default', ['clean', 'config', 'assets', 'images', 'content']);
 
 	grunt.registerTask('stage', ['default', 'htmlmin', 'zopfli']);
+
 	// Upload to Production
-	// grunt stage && ./deploy.sh
+	// ./deploy.sh
+
+	// Upload to Staging
+	// ./deploy-staging.sh
 };

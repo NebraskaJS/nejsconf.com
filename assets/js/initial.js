@@ -12,7 +12,7 @@ var NEJSConf = {
 
 ;(function( doc ) {
 	// IE9+
-	if( !( 'geolocation' in navigator ) ) {
+	if( !( 'geolocation' in navigator ) || !( 'addEventListener' in window ) ) {
 		return;
 	}
 
@@ -21,6 +21,15 @@ var NEJSConf = {
 		( templateName ? " tmpl-" + templateName.content : "" ) +
 		// gradient inference
 		( 'matchMedia' in window ? " has-gradient" : "" );
+
+	// Load the deferred JS onload
+	window.addEventListener( "load", function() {
+		var ref = doc.getElementsByTagName( "script" )[ 0 ];
+		var defer = doc.createElement( "script" );
+		defer.async = true;
+		defer.src = NEJSConf.getDistFolder() + "defer.min.js";
+		ref.parentNode.insertBefore( defer, ref );
+	}, false)
 })( document );
 
 // Grunticon

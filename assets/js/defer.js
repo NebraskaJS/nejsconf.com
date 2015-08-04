@@ -1,4 +1,4 @@
-;(function( doc ) {
+;(function( doc, $ ) {
 	// IE9+
 	if( !( 'geolocation' in navigator ) ) {
 		return;
@@ -8,13 +8,24 @@
 			history.replaceState( "", doc.title, window.location.pathname );
 		}, 200);
 	}
-})( document );
 
-// Google Analytics
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	$( '#venue-photo' ).html( '<img src="/assets/img/venue.jpg" alt="Panorama of the Zoo Venue">' );
+	$( '#hotel-map' ).html( '<img src="http://maps.googleapis.com/maps/api/staticmap?center=101+S+10th+St+Omaha,+NE+68102&zoom=13&scale=2&size=300x200&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:red%7Clabel:1%7C101+S+10th+St+Omaha,+NE+68102" alt="Google Map of Hotel">' );
+	$( '#venue-map' ).html( '<img src="http://maps.googleapis.com/maps/api/staticmap?center=3701+S+10th+St+Omaha,+NE+68107&zoom=13&scale=2&size=300x200&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:red%7Clabel:2%7C3701+S+10th+St+Omaha,+NE+68107" alt="Google Map of the Zoo">' );
 
-ga('create', 'UA-33622676-2', 'auto');
-ga('send', 'pageview');
+	if( "JSON" in window ) {
+		$.get( "/tickets-remaining", function( data ) {
+			var json = JSON.parse( data );
+			if( json ) {
+				var left = json.tickets;
+				if( !isNaN( left ) ) {
+					left = Math.max( 0, left );
+					if( left <= 30 ) {
+						$( '#tickets-left' ).html( left + ' Ticket' + ( left !== 1 ? 's' : '' ) + ' Left!' );
+					}
+				}
+			}
+		});
+	}
+
+})( document, shoestring );

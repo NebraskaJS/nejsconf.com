@@ -1,8 +1,6 @@
 @import "config";
 
 * {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 .a11y-only {
@@ -21,9 +19,9 @@ html {
 	-webkit-text-size-adjust: 100%;
 }
 
-.has-gradient.tmpl-page .content a {
+/* :not is ok here since we’re feature test scoped to gradients */
+.has-gradient .content a:not(.btn-secondary):not(.sponsor-inline) {
 	text-decoration: none;
-	background-image: -webkit-linear-gradient(top, currentColor 75%, currentColor 75%);
 	background-image: linear-gradient(to bottom, currentColor 75%, currentColor 75%);
 	text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
 	background-repeat: repeat-x;

@@ -2,6 +2,8 @@
 title: Keynote Speaker, Ethan Marcotte
 author: Zach Leatherman
 layout: post
+tags:
+  - speaker
 ---
 
 We are very excited to announce our first keynote speaker for the NebraskaJS Conference: Ethan Marcotte! You may also know him as [@beep](https://twitter.com/beep) on Twitter.
@@ -14,4 +16,4 @@ Ethan has been a featured speaker at An Event Apart, SXSW Interactive, and Webst
 
 He blogs occasionally at [Unstoppable Robot Ninja](http://unstoppablerobotninja.com/) and is known for his prolific use of the [Favorite button on Twitter](https://twitter.com/beep) (138K favorites at time of writing). You may browse his ever-growing GIF collection at [bukk.it](http://bukk.it/).
 
-*A reminder that our [call for speakers](http://nejsconf.com/2015/cfp/) closes on April 30th. If you’d like a chance to speak at NebraskaJS Conference, please submit your talk idea!*
+### [See Ethan Marcotte speak in Omaha—get your tickets for NEJS CONF!](/register)
