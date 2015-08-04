@@ -15,6 +15,9 @@ RewriteRule ^(.*)$ $1.zgz [L]
 RedirectMatch 301 ^/cfp$ https://docs.google.com/forms/d/1vqaODm8zG0_R8oXi1xVvWG4VrKEP5IicKYfjOLfntIk/viewform
 RedirectMatch 301 ^/cfp/$ https://docs.google.com/forms/d/1vqaODm8zG0_R8oXi1xVvWG4VrKEP5IicKYfjOLfntIk/viewform
 
+RedirectMatch 301 ^/coc$ /2015/code-of-conduct/
+ 
+
 # Clean off .php extensions
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
