@@ -572,10 +572,23 @@ form, div.form-result {
 	line-height: 142px;
 	text-transform: uppercase;
 }
-.sponsors .sponsor a:first-child + a {
+.sponsors .sponsor.sponsor a.more {
 	text-transform: uppercase;
-	color: #bbb;
-	font-size: 15px;
+	color: #fff;
+	font-size: 13px;
+	letter-spacing: 1px;
+	background: rgba( 0, 0, 0, .4 );
+	text-shadow: none;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	height: auto;
+	padding: .0 .6em;
+	line-height: 1.6;
+	display: none;
+}
+.sponsors .sponsor.sponsor:hover a.more {
+	display: block;
 }
 .sponsors .sponsor.sponsor a {
 	background-image: none;
@@ -598,7 +611,11 @@ form, div.form-result {
 .sponsors .sponsor.solo:first-child:last-child {
 	width: 100%;
 }
-.sponsors .sponsor.elephant a {
+.sponsors .sponsor.solo:first-child:last-child {
+	height: 300px;
+	background-size: contain;
+}
+.sponsors .sponsor.elephant a:first-child {
 	height: 245px;
 }
 @include respond-min( 38em ) {
