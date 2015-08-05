@@ -5,7 +5,7 @@ permalink: /sponsor/objectpartners/
 ---
 
 <ul class="sponsors">
-	<li class="sponsor solo icon-sponsor icon-sponsor-objectpartners"><a href="https://objectpartners.com/">Object Partners</a></li>
+	<li class="sponsor solo raster icon-sponsor icon-sponsor-objectpartners"><a href="https://objectpartners.com/">Object Partners</a></li>
 </ul>
 
 Continue to <a href="https://objectpartners.com/">https://objectpartners.com/</a>

@@ -615,23 +615,36 @@ form, div.form-result {
 	height: 300px;
 	background-size: contain;
 }
+.sponsors .sponsor.solo.raster:first-child:last-child {
+	background-size: 350px auto;
+	border: none;
+}
 .sponsors .sponsor.elephant a:first-child {
 	height: 245px;
 }
 @include respond-min( 38em ) {
+	.sponsors.elephants {
+		margin-top: -2.5em;
+	}
 	.sponsors .sponsor {
 		width: 50%;
 	}
 	.sponsors .sponsor.elephant {
-		margin-top: -2.5em;
+		background-size: 260px auto;
+		width: 100%;
+		left: 2px;
 	}
 }
 @include respond-min( 56em ) {
+	.sponsors.elephants {
+		margin-top: 0;
+	}
 	.sponsors .sponsor {
 		width: 25%;
 	}
 	.sponsors .sponsor.elephant {
-		width: 50%;
+		width: 33.333333%;
+		background-size: 230px auto;
 	}
 }
 /* Inline sponsor link */

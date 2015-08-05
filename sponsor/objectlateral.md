@@ -9,3 +9,5 @@ permalink: /sponsor/objectlateral/
 </ul>
 
 Continue to <a href="http://objectlateral.com/">http://objectlateral.com/</a>
+
+> Thoughtful, custom software. And mean back rubs.
