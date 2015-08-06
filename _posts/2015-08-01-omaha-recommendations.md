@@ -59,6 +59,7 @@ tags:
 	</li>
 	<li><strong><a href="http://www.krugpark.com/">Krug Park</a></strong>. Via <em>Sandi Barr</em></li>
 	<li><strong>Moe &amp; Curly’s</strong>: Karaoke 8 nights a week. Via <em>Nick Nisi</em>.</li>
+	<li><strong><a href="http://spielbound.com/">Spielbound</a></strong>: board game heaven. Be sure to play a round of "Discount Salmon". Via <em>Derek Eskens</em></li>
 </ul>
 
 <div class="fluid-width-video-wrapper">
