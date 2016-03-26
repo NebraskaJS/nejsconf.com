@@ -1,0 +1,117 @@
+// Mixins
+@mixin a11y-only {
+	position: absolute;
+	height: 1px;
+	width: 1px; 
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+}
+@mixin undo-a11y-only($position: static) {
+	position: $position;
+	height: auto;
+	width: auto; 
+	overflow: visible;
+	clip: auto;
+}
+
+@mixin placeholder {
+	&::-webkit-input-placeholder {@content}
+	&:-moz-placeholder           {@content}
+	&::-moz-placeholder          {@content}
+	&:-ms-input-placeholder      {@content}
+}
+
+// Handle mqs and oldie stuff
+$fix-mqs: false !default;
+
+@mixin respond-only-all() {
+	@if $fix-mqs {
+		@content;
+	}
+	@else {
+		@media only all {
+			@content;
+		}
+	}
+}
+
+@mixin respond-min($width) {
+	@if $fix-mqs {
+		@if $fix-mqs >= $width {
+			@content;
+		}
+	}
+	@else {
+		@media (min-width: $width) {
+			@content;
+		}
+	}
+}
+
+@mixin respond-max($width) {
+	@if $fix-mqs {
+		@if $fix-mqs <= $width {
+			@content;
+		}
+	}
+	@else {
+		@media (max-width: $width) {
+			@content;
+		}
+	}
+}
+
+@mixin respond-min-max($minwidth,$maxwidth) {
+	@if $fix-mqs {
+		@if $fix-mqs >= $minwidth and $fix-mqs <= $maxwidth {
+			@content;
+		}
+	}
+	@else {
+		@media (min-width: $minwidth) and (max-width: $maxwidth)  {
+			@content;
+		}
+	}
+}
+
+$old-ie: false !default;
+
+@mixin old-ie {
+	@if $old-ie {
+		@content;
+	}
+}
+
+@mixin webfont($weight: 400) {
+	font-family: effra, $sansSerifFont;
+	font-weight: $weight;
+}
+
+@mixin clearfix {
+	&:before,
+	&:after {
+		content:" ";
+		display:table;
+	}
+	&:after {
+		clear:both;
+	}
+}
+
+/* https://css-tricks.com/snippets/sass/maintain-aspect-ratio-mixin/ */
+@mixin aspect-ratio($width, $height) {
+	position: relative;
+	&:before {
+		display: block;
+		content: "";
+		width: 100%;
+		padding-top: ($height / $width) * 100%;
+	}
+	> .aspect-ratio {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+}

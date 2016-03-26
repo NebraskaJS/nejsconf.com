@@ -15,7 +15,7 @@ legend {
   text-transform: uppercase;
 }
 label {
-  color: #A8841C;
+  color: #333;
   font-family: effra,sans-serif;
   font-weight: lighter;
   font-size: 0.85em;
@@ -31,7 +31,7 @@ select {
 }
 input[type=text] {
   width: 100%;
-  border: 1px solid #DCBB3B;
+  border: 1px solid #666;
   padding: 10px;
   font-family: effra,sans-serif;
   font-size: 0.85em;
@@ -86,7 +86,7 @@ input#coupon_code {
   max-width: 400px;
   margin: 1em auto 0;
   padding: 20px;
-  border: 1px solid #DCBB3B;
+  border: 1px solid #666;
   font-family: effra,sans-serif;
   border-radius: 5px;
   color: #6E6C63;

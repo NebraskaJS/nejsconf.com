@@ -1,0 +1,42 @@
+@import "mixins";
+@import "config";
+
+body {
+	background: #333;
+	color: #ddd;
+	font-family: sans-serif;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+.wf-effra-n4-active body {
+	@include webfont(400);
+}
+:link,
+:visited {
+	color: #ccc;
+}
+
+.wf-effra-n9-active .header_title {
+	@include webfont(900);
+}
+
+@media ( min-height: 12.5em ) {
+	.header {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 20em; /* 320px */
+		margin-left: -10em;
+		margin-top: -1.375em; /* -22px */
+	}
+	.header_title {
+		margin: 0;
+		font-size: 2.375em;
+	}
+	.footer {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+	}
+}

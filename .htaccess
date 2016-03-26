@@ -12,10 +12,11 @@ RewriteCond %{HTTP:Accept-Encoding} gzip
 RewriteCond %{REQUEST_FILENAME}.zgz -f 
 RewriteRule ^(.*)$ $1.zgz [L]
 
-RedirectMatch 301 ^/cfp$ https://docs.google.com/forms/d/1vqaODm8zG0_R8oXi1xVvWG4VrKEP5IicKYfjOLfntIk/viewform
-RedirectMatch 301 ^/cfp/$ https://docs.google.com/forms/d/1vqaODm8zG0_R8oXi1xVvWG4VrKEP5IicKYfjOLfntIk/viewform
+# RedirectMatch 301 ^/cfp$ https://docs.google.com/forms/d/1vqaODm8zG0_R8oXi1xVvWG4VrKEP5IicKYfjOLfntIk/viewform
+# RedirectMatch 301 ^/cfp/$ https://docs.google.com/forms/d/1vqaODm8zG0_R8oXi1xVvWG4VrKEP5IicKYfjOLfntIk/viewform
 
-RedirectMatch 301 ^/coc$ /2015/code-of-conduct/
+RedirectMatch 301 ^/coc$ /code-of-conduct/
+RedirectMatch 301 ^/2015/(.*)$ http://2015.nejsconf.com/2015/$1
  
 
 # Clean off .php extensions
