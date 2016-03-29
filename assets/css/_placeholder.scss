@@ -52,6 +52,14 @@ body {
 	text-decoration: none;
 	@include webfont(900);
 }
+.twitter {
+	line-height: 2;
+	padding: .5em 0 .5em 2.5em;
+}
+.twitter:link,
+.twitter:visited {
+	color: #00c9ff;
+}
 
 @media ( min-height: 31.25em ) {
 	.header {
