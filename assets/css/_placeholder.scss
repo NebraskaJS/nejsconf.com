@@ -5,8 +5,8 @@
 	box-sizing: border-box;
 }
 body {
-	background: #333;
-	color: #ddd;
+	background: #e4c20a;
+	color: #9c7c02;
 	font-family: sans-serif;
 	text-align: center;
 	padding: 0;
@@ -17,11 +17,15 @@ body {
 }
 :link,
 :visited {
-	color: #ccc;
+	color: #fff;
 }
-.header_title {
-	margin: 0;
-	font-size: 1em;
+.header {
+	.icon-logo {
+		width: 80%;
+		max-width: 40em;
+		padding-top: 32%;
+		margin: 4em auto;
+	}
 }
 .header_block {
 	display: block;
@@ -61,14 +65,18 @@ body {
 	color: #00c9ff;
 }
 
-@media ( min-height: 31.25em ) {
+@media (min-height: 31.25em) {
 	.header {
 		position: absolute;
-		left: 50%;
-		top: 50%;
-		width: 18.75em; /* 300px */
-		margin-left: -9.375em;
-		margin-top: -8.125em; /* -130px */
+		width: 100%;
+		top: 10%;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		text-align: center;
+	}
+	.header .icon-logo {
+		margin: 0 auto;
 	}
 	.footer {
 		position: absolute;
