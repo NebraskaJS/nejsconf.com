@@ -20,9 +20,11 @@ body {
 	color: #fff;
 }
 .header {
-	margin: 4em auto;
-	img {
+	.icon-logo {
 		width: 80%;
+		max-width: 40em;
+		padding-top: 32%;
+		margin: 4em auto;
 	}
 }
 .header_block {
@@ -72,9 +74,9 @@ body {
 		right: 0;
 		margin: 0 auto;
 		text-align: center;
-		img {
-			max-width: 800px;
-		}
+	}
+	.header .icon-logo {
+		margin: 0 auto;
 	}
 	.footer {
 		position: absolute;
