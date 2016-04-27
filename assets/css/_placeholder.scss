@@ -19,13 +19,12 @@ body {
 :visited {
 	color: #fff;
 }
-.header {
-	.icon-logo {
-		width: 80%;
-		max-width: 40em;
-		padding-top: 32%;
-		margin: 4em auto;
-	}
+.header .icon-logo {
+	width: 80%;
+	max-width: 40em;
+	padding-top: 24%;
+	margin: 4em auto;
+	background-position: 50% 50%;
 }
 .header_block {
 	display: block;
@@ -66,18 +65,18 @@ body {
 }
 
 @media (min-height: 31.25em) {
-	.header {
-		position: absolute;
-		width: 100%;
-		top: 10%;
-		left: 0;
-		right: 0;
-		margin: 0 auto;
-		text-align: center;
-	}
-	.header .icon-logo {
-		margin: 0 auto;
-	}
+	// .header {
+	// 	position: absolute;
+	// 	width: 100%;
+	// 	top: 10%;
+	// 	left: 0;
+	// 	right: 0;
+	// 	margin: 0 auto;
+	// 	text-align: center;
+	// }
+	// .header .icon-logo {
+	// 	margin: 1em auto;
+	// }
 	.footer {
 		position: absolute;
 		bottom: 0;
