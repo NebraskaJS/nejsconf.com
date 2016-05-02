@@ -4,9 +4,11 @@
 body {
 	padding-top: 2em;
 }
-
+small {
+	font-size: 60%;
+}
 .strike {
-  text-decoration: line-through;
+	text-decoration: line-through;
 }
 
 /* Sponsor Link */
@@ -53,12 +55,10 @@ p.sponsor a {
 
 .header {
 	display: block;
-	margin: 3em 0;
+	margin: 2em 0 0;
 	position: relative;
 
 	@media (min-width:42em) {
-		margin: 4em 0;
-
 		.tmpl-page & {
 			margin-bottom: -75px;
 		}
@@ -223,6 +223,11 @@ form, div.form-result {
 }
 
 /* Footer */
+.icon-durham {
+	max-width: 1000px;
+	margin: 2em auto 4em auto;
+	width: 90%;
+}
 .footer {
 	margin: 5em 0 3em;
 	font-size: 1.125em;
@@ -282,7 +287,6 @@ form, div.form-result {
 
 /* Page Content */
 .page-wrapper {
-	background-image: url(/assets/img/background-cropped.png);
 	padding: 4em 5%;
 }
 .home-content,
@@ -362,6 +366,14 @@ form, div.form-result {
 }
 .home-content h2 svg {
 	margin-bottom: 6px;
+}
+.home-content .icon-streamliner.divider svg {
+	max-width: 24em;
+}
+
+.home-content .durham-logo {
+	width: 50%;
+	margin: 2em auto;
 }
 
 /* Posts */
@@ -466,33 +478,6 @@ form, div.form-result {
 }
 .person:hover .speaker {
 	background-color: rgba(0, 0, 0, 0);
-}
-.beep {
-	background-image: url(/assets/img/speakers/speaker-beep.jpg);
-}
-.codepo8 {
-	background-image: url(/assets/img/speakers/speaker-codepo8.jpg);
-}
-.pamasaur {
-	background-image: url(/assets/img/speakers/speaker-pamasaur.jpg);
-}
-.imurchie {
-	background-image: url(/assets/img/speakers/speaker-imurchie.jpg);
-}
-.mmacaula {
-	background-image: url(/assets/img/speakers/speaker-mmacaula.jpg);
-}
-.amandaharlin {
-	background-image: url(/assets/img/speakers/speaker-amandaharlin.jpg);
-}
-.nzgb {
-	background-image: url(/assets/img/speakers/speaker-nzgb.jpg);
-}
-.julia67 {
-	background-image: url(/assets/img/speakers/speaker-julia67.jpg);
-}
-.brucecoddington {
-	background-image: url(/assets/img/speakers/speaker-brucecoddington.jpg);
 }
 .avatar-inline {
 	max-width: 100%;

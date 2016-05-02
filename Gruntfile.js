@@ -145,7 +145,8 @@ module.exports = function(grunt) {
 					dest: '<%= config.distFolder %>icons/',
 				}],
 				options: {
-					customselectors: {}
+					customselectors: {},
+					enhanceSVG: true
 				}
 			}
 		},
