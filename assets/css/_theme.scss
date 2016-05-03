@@ -33,13 +33,9 @@ p.sponsor a {
 	width: 100%;
 	text-align: center;
 	z-index: 0;
-	top: 25%;
+	top: 24%;
 	
 	@include webfont(400);
-
-	@media screen and (min-width: 38em) {
-		top: 3.5em;
-	}
 
 	h1 span {
 		display: block;
@@ -57,8 +53,11 @@ p.sponsor a {
 	display: block;
 	margin: 2em 0 0;
 	position: relative;
+	min-height: 75px;
 
 	@media (min-width:42em) {
+		min-height: 175px;
+
 		.tmpl-page & {
 			margin-bottom: -75px;
 		}
@@ -106,6 +105,11 @@ p.sponsor a {
 	.header:hover .header-title {
 		color: #fff
 	}
+}
+
+/* Newsletter Button */
+#newsletter-signup {
+	margin: 0 auto 2em;
 }
 
 /* Date and Location */
@@ -303,12 +307,12 @@ form, div.form-result {
 	border: 2px solid #C09802;
 	border-radius: 3px;
 	padding: 1em;
+	max-width: 900px;
 }
 .home-content {
 	text-align: center;
 	padding-top: 2em;
 	padding-bottom: 2em;
-	max-width: 900px;
 }
 .home-content p,
 .home-content ul,
@@ -316,8 +320,11 @@ form, div.form-result {
 	text-align: left;
 }
 .page-content {
-	max-width: 768px;
 	text-align: left;
+}
+.content.page-content h1 {
+	text-align: center;
+	margin: 1em 0;
 }
 @include respond-min( $bpFixed ) {
 	.home-content,
@@ -373,7 +380,7 @@ form, div.form-result {
 
 .home-content .durham-logo {
 	width: 50%;
-	margin: 2em auto;
+	margin: 0 auto 2em auto;
 }
 
 /* Posts */
@@ -384,6 +391,9 @@ form, div.form-result {
 .posts li {
 	margin: .8em 0;
 	line-height: 1.2;
+}
+.posts li small {
+	display: block;
 }
 
 /* Speakers */
@@ -443,6 +453,11 @@ form, div.form-result {
 	color: $primary;
 	font-size: 16px;
 	letter-spacing: 1.25px;
+	text-decoration: none;
+	background-repeat: no-repeat;
+	background-size: 16px 16px;
+	padding-left: 25px;
+	background-position: 0 50%;
 }
 .wf-effra-i9-active .person.tba .name {
 	font-style: italic;
@@ -462,7 +477,6 @@ form, div.form-result {
 .person .title {
 	margin: 0;
 }
-.wf-effra-n9-active .person .twitter,
 .wf-effra-n9-active .person .name {
 	font-weight: 900;
 }

@@ -45,6 +45,7 @@ var NEJSConf = {
 		distFolder + "icons/icons.data.png.css",
 		distFolder + "icons/icons.fallback.css" ], function(){
 			grunticon.svgLoadedCallback();
+			console.log(grunticon.method);
 			if( grunticon.method ){
 				doc.documentElement.className += " grunticon-" + grunticon.method;
 			}
