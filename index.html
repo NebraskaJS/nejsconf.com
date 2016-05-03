@@ -1,3 +1,68 @@
 ---
 layout: home
 ---
+
+<a href="http://eepurl.com/bd4Rm5" id="newsletter-signup" class="btn-primary">Get notified <span>when tickets go on sale</span></a>
+
+<ul class="menu">
+	<li><a href="#news">News</a></li>
+	<li><a href="#sponsors">Sponsor Us</a></li>
+	<li><a href="#venue">Venue</a></li>
+</ul>
+<div class="content home-content" data-role="main">
+	<div class="spacetime">
+		<div class="icon-nebraska" data-grunticon-embed></div>
+		<time datetime="2016-08-26">August 26, 2016</time>
+		<div class="location">The Durham Museum &ndash; Omaha,&nbsp;NE&nbsp;USA</div>
+	</div>
+	<div class="icon-streamliner divider" data-grunticon-embed></div>
+	<div>
+		<h2 id="details">
+			<span>Details</span>
+		</h2>
+		<ul>
+			<li>Single day, single track conference dedicated to Web Development and&nbsp;JavaScript.</li>
+			<li>Held at the historic <a href="#venue">Omaha Durham Museum</a></li>
+			<li>Conference passes include:
+				<ul>
+					<li>Free Museum Admission for the day</li>
+					<li>Midday meal (a.k.a. Lunch)</li>
+					<li>Snacks</li>
+					<li>Evening meal (a.k.a. Dinner and Drinks at the after party)</li>
+					<li><a href="http://www.durhammuseum.org/experience/soda-fountain.aspx">Old fashioned soda fountain</a> at the after party!</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<h2 id="news">
+		<span>News</span>
+	</h2>
+	<ul class="posts">
+		{% for post in site.posts %}
+			{% if post.tags contains 'speaker' or post.tags contains 'exclude' %}
+			{% else %}
+			<li><a href="{{ post.url }}">{{ post.title }}</a> <small>{{ post.date | date: "%d %h %Y" }}</small></li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+	<h2 id="sponsors">
+		<span>Sponsors</span>
+	</h2>
+	<p>Interested in sponsoring NEJS CONF?<br/><a href="mailto:sponsor@nejsconf.com">Get in touch!</a></p>
+	<div>
+		<h2 id="venue">
+			<span>Venue</span>
+		</h2>
+		<h3><img src="assets/img/Durham_Logo.jpg" alt="The Durham Museum" title="Omaha’s Durham Museum" class="durham-logo" /></h3>
+		<a class="map" id="venue-map" href="https://www.google.com/maps/place/The+Durham+Museum/@41.2514407,-95.9304515,17z/data=!4m6!1m3!3m2!1s0x87938fa653d6c967:0x5ddea1f2cc6f522f!2sThe+Durham+Museum!3m1!1s0x87938fa653d6c967:0x5ddea1f2cc6f522f"><img src="https://maps.googleapis.com/maps/api/staticmap?center=801+S+10th+St,+Omaha,+NE+68108&amp;zoom=13&amp;scale=2&amp;size=300x200&amp;maptype=roadmap&amp;format=png&amp;visual_refresh=true&amp;markers=size:mid%7Ccolor:red%7Clabel:1%7C801+S+10th+St,+Omaha++NE 68108" alt="Google Map of Venue"></a>
+		<p>“The <a href="http://www.durhammuseum.org/experience/lecture-hall/default.aspx">Stanley and Dorothy Truhlsen Lecture Hall</a> is a state-of-the-art theater seating 266 people. Most impressively, it is situated in the old boiler room, part of the original station built in 1899. When the station was torn down in 1929 and the current station completed in 1931, use of the boiler discontinued. In 1997, a $25 million addition and renovation project was completed - this included refurbishment of the original detail and finishes to create an environment to provide proper space for museum experience.” —via <a href="http://www.durhammuseum.org/">durhammuseum.org</a></p>
+		<img src="/assets/img/inside.jpg" alt="Inside Union Station" />
+	</div>
+	<div class="share">
+		<h2>
+			<span>Share NEJS CONF</span>
+		</h2>
+		<a href="https://twitter.com/intent/tweet?text=A%20one%20day%20JavaScript%20conference%20at%20the%20%231%20Zoo%20in%20the%20World!%20August%207%2C%202015%20%40nejsconf%20http%3A%2F%2Fnejsconf.com%2F" class="btn-secondary icon-twitter">Twitter</a>
+		<a href="https://www.facebook.com/sharer/sharer.php?u=https://www.nejsconf.com/" class="btn-secondary icon-facebook">Facebook</a>
+	</div>
+</div><!-- /.home-content -->
