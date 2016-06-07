@@ -669,6 +669,11 @@ form, div.form-result {
 		width: 33.333333333%;
 	}
 }
+@media (min-width: 37.5em) {
+	.menu li {
+		width: 25%;
+	}
+}
 
 /* Schedule */
 .schedule {
