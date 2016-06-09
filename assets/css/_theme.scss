@@ -216,7 +216,7 @@ form, div.form-result {
 	text-decoration: none;
 	display: block;
 	width: 96%;
-	max-width: 9em;
+	max-width: 16em;
 	margin: .4em auto 0;
 	text-align: center;
 	line-height: .9;
@@ -225,6 +225,10 @@ form, div.form-result {
 .btn-tertiary:hover,
 .btn-tertiary:focus {
 	background: darken( $secondary, 5% );
+}
+.btn-tertiary.btn-tertiary:link,
+.btn-tertiary.btn-tertiary:visited {
+	color: #fff;
 }
 
 /* Footer */

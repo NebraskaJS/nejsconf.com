@@ -21,7 +21,7 @@ html {
 }
 
 /* :not is ok here since we’re feature test scoped to gradients */
-.has-gradient .content a:not(.btn-secondary):not(.sponsor-inline):not(.twitter) {
+.has-gradient .content a:not(.btn-secondary):not(.btn-tertiary):not(.sponsor-inline):not(.twitter) {
 	text-decoration: none;
 	background-image: linear-gradient(to bottom, currentColor 75%, currentColor 75%);
 	text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
