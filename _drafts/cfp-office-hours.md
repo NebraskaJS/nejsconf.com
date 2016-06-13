@@ -7,7 +7,7 @@ permalink: /2016/cfp-office-hours/
 
 We know [submitting a conference talk proposal][cfp] can be intimidating, whether you're an experienced speaker or it's your first time submitting a talk (especially the latter).
 
-And for NEJS CONF to be a success, it's important that we get great *talks*, not just folks who already know howto naturally fill out a CFP.
+And for NEJS CONF to be a success, it's important that we get great *talks*, not just folks who already know how to fill out a CFP.
 
 To that end, we're hosting **CFP Office Hours** - scheduled sessions where you can chat with conference organizers [@mattdsteele][@mattdsteele] and [@your\_name\_here][@talk2] about anything related to NEJS CONF's CFP.
 
