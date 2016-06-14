@@ -13,7 +13,7 @@ To that end, we're hosting **CFP Office Hours** - scheduled sessions where you c
 
 Perhaps you have questions about the conference, want feedback on a proposal you've written, or just need someone to help convince you to actually submit your idea for a tlak, we're here for you.
 
-[Join us on Google Hangouts on **Sunday, June 19 from 6:00 - 7:00pm CST**][hangout]
+[Join us on Google Hangouts on **Monday, June 20 from 6:00pm - 7:00pm CST**][hangout]
 
 Of course, you can always send us questions [through Twitter][twitter] (our DMs are open), or via [e-mail][email].
 
