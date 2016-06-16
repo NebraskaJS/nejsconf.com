@@ -14,6 +14,7 @@ Prerequisites: Node.js and Ruby
 
 		127.0.0.1	nejsconf.com.local
 
+1. `bundle install`
 1. [`gem install jekyll`](http://jekyllrb.com/docs/installation/) (requires 1.0+)
 1. `gem install sass`
 1. `gem install rdiscount`
