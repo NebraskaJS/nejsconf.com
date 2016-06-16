@@ -9,7 +9,7 @@ We know [submitting a conference talk proposal][cfp] can be intimidating, whethe
 
 And for NEJS CONF to be a success, it's important that we get great *talks*, not just folks who already know how to fill out a CFP.
 
-To that end, we're hosting **CFP Office Hours** - scheduled sessions where you can chat with conference organizers [@mattdsteele][@mattdsteele] and [@your\_name\_here][@talk2] about anything related to NEJS CONF's CFP.
+To that end, we're hosting **CFP Office Hours** - scheduled sessions where you can chat with conference organizers about anything related to NEJS CONF's CFP.
 
 Perhaps you have questions about the conference, want feedback on a proposal you've written, or just need someone to help convince you to actually submit your idea for a tlak, we're here for you.
 
@@ -20,8 +20,6 @@ Of course, you can always send us questions [through Twitter][twitter] (our DMs 
 We'd love to see your proposal be a success. Remember, the CFP for NEJS CONF closes on June 25!
 
 [cfp]: /2016/call-for-proposals/
-[hangout]: /TODO_TALK
-[@mattdsteele]: https://twitter.com/mattdsteele
-[@talk2]: https://twitter.com/mattdsteele
+[hangout]: https://hangouts.google.com/call/n5r2deqlnfb6lem6x6dtxxvzdye<Paste>
 [twitter]: https://twitter.com/nejsconf
 [email]: mailto:organizers@nejsconf.com
