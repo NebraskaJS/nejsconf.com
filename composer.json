@@ -1,7 +1,6 @@
 {
   "require": {
-    "mailchimp/mailchimp": "2.0.6",
     "stripe/stripe-php": "2.*",
-    "mandrill/mandrill": "1.0.*"
+    "sparkpost/php-sparkpost": "~1.2"
   }
 }
