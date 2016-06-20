@@ -128,7 +128,7 @@ layout: page
 							$results = $sparkpost->transmission->send([
 								'from'=>[
 									'name' => 'NEJS Conf',
-									'email' => 'tickets@sparkpostbox.com'
+									'email' => 'tickets@nejsconf.com'
 								],
 								'html' => file_get_contents('register.template'),
 								'substitutionData' => $attendee,
