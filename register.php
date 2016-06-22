@@ -254,7 +254,7 @@ layout: page
           <label for="shirt_size_<?php echo $i; ?>">T-Shirt Size</label>
           <div class="select-css-button select-css">
             <select id="shirt_size_<?php echo $i; ?>" name="shirt_size_<?php echo $i; ?>">
-              <?php foreach(array('Extra Small', 'Small', 'Medium', 'Large', 'Extra Large', 'XXL') as $size): ?>
+              <?php foreach(array('Extra Small (Unisex/Mens)', 'Small (Unisex/Mens)', 'Medium (Unisex/Mens)', 'Large (Unisex/Mens)', 'Extra Large (Unisex/Mens)', 'XXL (Unisex/Mens)', 'Extra Small (Womens)', 'Small (Womens)', 'Medium (Womens)', 'Large (Womens)', 'Extra Large (Womens)', 'XXL (Womens)') as $size): ?>
               <option<?php if(arr_get($_POST, 'shirt_size_' . $i, 'Medium') == $size):?> selected="selected"<?php endif; ?>><?php echo $size; ?></option>
               <?php endforeach; ?>
             </select>
@@ -375,7 +375,7 @@ layout: page
 <label for="shirt_size_{{block_number}}">T-Shirt Size</label>
 <div class="select-css-button select-css">
   <select id="shirt_size_{{block_number}}" name="shirt_size_{{block_number}}">
-    <?php foreach(array('Extra Small', 'Small', 'Medium', 'Large', 'Extra Large', 'XXL') as $size): ?>
+    <?php foreach(array('Extra Small (Unisex/Mens)', 'Small (Unisex/Mens)', 'Medium (Unisex/Mens)', 'Large (Unisex/Mens)', 'Extra Large (Unisex/Mens)', 'XXL (Unisex/Mens)', 'Extra Small (Womens)', 'Small (Womens)', 'Medium (Womens)', 'Large (Womens)', 'Extra Large (Womens)', 'XXL (Womens)') as $size): ?>
     <option><?php echo $size; ?></option>
     <?php endforeach; ?>
   </select>
