@@ -20,5 +20,6 @@ CREATE TABLE `tickets` (
   `job_title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `shirt_size` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `dietary` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

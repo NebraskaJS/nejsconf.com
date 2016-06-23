@@ -75,6 +75,7 @@ layout: page
           'company'    => trim(arr_get($_POST, 'company_' . $i, '')),
           'job_title'  => trim(arr_get($_POST, 'job_title_' . $i, '')),
           'shirt_size' => trim(arr_get($_POST, 'shirt_size_' . $i, '')),
+          'dietary'    => trim(arr_get($_POST, 'dietary_' . $i, '')),
         );
         $attendee_data[$i] = $attendee;
 
@@ -158,9 +159,9 @@ layout: page
           $sale_id = $statement->insert_id;
           $statement->close();
 
-          $statement = $mysql->prepare("INSERT INTO `tickets` (`sale_id`, `first_name`, `last_name`, `email`, `twitter`, `company`, `job_title`, `shirt_size`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+          $statement = $mysql->prepare("INSERT INTO `tickets` (`sale_id`, `first_name`, `last_name`, `email`, `twitter`, `company`, `job_title`, `shirt_size`, `dietary`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
           foreach($attendee_data as $attendee) {
-            $statement->bind_param('isssssss', $sale_id, $attendee['first_name'], $attendee['last_name'], $attendee['email'], $attendee['twitter'], $attendee['company'], $attendee['job_title'], $attendee['shirt_size']);
+            $statement->bind_param('isssssss', $sale_id, $attendee['first_name'], $attendee['last_name'], $attendee['email'], $attendee['twitter'], $attendee['company'], $attendee['job_title'], $attendee['shirt_size'], $attendee['dietary']);
             $statement->execute();
           }
           $statement->close();
@@ -253,10 +254,15 @@ layout: page
           <label for="shirt_size_<?php echo $i; ?>">T-Shirt Size</label>
           <div class="select-css-button select-css">
             <select id="shirt_size_<?php echo $i; ?>" name="shirt_size_<?php echo $i; ?>">
-              <?php foreach(array('Extra Small', 'Small', 'Medium', 'Large', 'Extra Large', 'XXL') as $size): ?>
+              <?php foreach(array('Extra Small (Unisex/Mens)', 'Small (Unisex/Mens)', 'Medium (Unisex/Mens)', 'Large (Unisex/Mens)', 'Extra Large (Unisex/Mens)', 'XXL (Unisex/Mens)', 'Extra Small (Womens)', 'Small (Womens)', 'Medium (Womens)', 'Large (Womens)', 'Extra Large (Womens)', 'XXL (Womens)') as $size): ?>
               <option<?php if(arr_get($_POST, 'shirt_size_' . $i, 'Medium') == $size):?> selected="selected"<?php endif; ?>><?php echo $size; ?></option>
               <?php endforeach; ?>
             </select>
+          </div>
+
+          <div class="form_field">
+            <label for="dietary_<?php echo $i; ?>">Food Restrictions</label>
+            <input id="dietary_<?php echo $i; ?>" name="dietary_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "dietary_" . $i)); ?>" />
           </div>
         </fieldset>
       <?php endfor; ?>
@@ -361,10 +367,15 @@ layout: page
   <input id="job_title_{{block_number}}" name="job_title_{{block_number}}" type="text" />
 </div>
 
+<div class="form_field">
+  <label for="dietary_{{block_number}}">Food Restrictions</label>
+  <input id="dietary_{{block_number}}" name="dietary_{{block_number}}" type="text" />
+</div>
+
 <label for="shirt_size_{{block_number}}">T-Shirt Size</label>
 <div class="select-css-button select-css">
   <select id="shirt_size_{{block_number}}" name="shirt_size_{{block_number}}">
-    <?php foreach(array('Extra Small', 'Small', 'Medium', 'Large', 'Extra Large', 'XXL') as $size): ?>
+    <?php foreach(array('Extra Small (Unisex/Mens)', 'Small (Unisex/Mens)', 'Medium (Unisex/Mens)', 'Large (Unisex/Mens)', 'Extra Large (Unisex/Mens)', 'XXL (Unisex/Mens)', 'Extra Small (Womens)', 'Small (Womens)', 'Medium (Womens)', 'Large (Womens)', 'Extra Large (Womens)', 'XXL (Womens)') as $size): ?>
     <option><?php echo $size; ?></option>
     <?php endforeach; ?>
   </select>
