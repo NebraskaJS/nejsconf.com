@@ -1,0 +1,748 @@
+/*GLOBAL SCENE STYLES *
+-----------------------------------------------*/
+.scene.city,
+.scene.farm,
+.scene.nebraska {
+	position: absolute;
+	bottom: 0;
+}
+
+.scene [class*='svg-'] svg {
+	max-width: 100%;
+
+	@media @medium {
+		max-width: none;
+	}
+}
+.svg-arbor,
+.svg-building1,
+.svg-building2,
+.svg-building3,
+.svg-car1,
+.svg-car2,
+.svg-car3,
+.svg-house1,
+.svg-house2,
+.svg-house3,
+.svg-house4,
+.svg-house5,
+.svg-house6,
+.svg-house7,
+.svg-kearney,
+.svg-lincoln,
+.svg-corn1,
+.svg-corn2,
+.svg-trees {
+	position: absolute;
+	bottom: 0;
+}
+
+.arbor-path2,
+.building1-path1,
+.building2-path1,
+.building3-path1,
+.car1-path1,
+.car2-path1,
+.car3-path1,
+.house5-path2,
+.plane-path2,
+.truck-path1,
+.tractor-path3 {
+
+	.bg-yellow & {
+		stroke: @yellow-darker;
+		fill: @yellow;
+	}
+
+	.bg-yellow-light & {
+		stroke: @yellow-dark;
+		fill: @yellow-light;
+	}
+}
+
+.arbor-path1,
+.barn-path1,
+.building1-path2,
+.building2-path2,
+.building3-path2,
+.car1-path2,
+.car2-path3,
+.car3-path2,
+.corn-path,
+.hay-path1,
+.house1-path1,
+.house2-path1,
+.house3-path1,
+.house4-path1,
+.house6-path1,
+.house5-path1,
+.plane-path1,
+.silo-path1,
+.trees-path1,
+.tractor-path2,
+.windmill-path1,
+.lincoln-path1 {
+
+	.bg-yellow & {
+		stroke: @yellow-darker;
+	}
+
+	.bg-yellow-light & {
+		stroke: @yellow-dark;
+	}
+}
+
+/*DURHAM *
+-----------------------------------------------*/
+.cloud {
+	width: 49px;
+	height: 26px;
+	position: absolute;
+	top: 0;
+	left: 50%;
+}
+
+.svg-cloud {
+	fill: @yellow-lighter;
+	display: inline-block;
+	vertical-align: middle;	
+	width: 49px;
+	height: 26px;
+}
+
+.cloud-1 {
+	top: 100px;
+	margin-left: -450px;
+}
+
+.cloud-2 {
+	top: 60%;
+	margin-left: -700px;
+}
+
+.cloud-3 {
+	top: 70%;
+	margin-left: -550px;
+}
+
+.cloud-4 {
+	top: 150px;
+	margin-left: 380px;
+}
+
+.cloud-5 {
+	top: 60%;
+	margin-left: 700px;
+}
+
+.cloud-6 {
+	top: 70%;
+	margin-left: 380px;
+}
+
+.scene {
+	display: block;
+	width: 100%;
+	margin-top: 4em;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	
+	svg {
+		display: inline-block;
+		vertical-align: bottom;
+	}
+}
+
+.svg-durham {
+	position: relative;
+	z-index: 2;
+	bottom: -6px;
+
+	svg {
+		height: 72px;
+
+		@media @medium {
+			height: auto;
+		}
+	}
+}
+
+.svg-train {
+	display: none;
+	position: absolute;
+	left: -15em;
+	bottom: 0;
+	z-index: 1;
+
+	@media @large {
+		display: block;
+	}
+}
+.svg-train {
+	position: absolute;
+	bottom: 0;
+	animation: train 30s ease infinite;
+	transform: translateX(-100%) translateZ(0);
+}
+
+@keyframes train {
+  0% {
+   left: -10%;
+  }
+  45% {
+  	left: 65%;
+  }
+  55% {
+  	left: 65%;
+  }
+  100% {
+   left: 200%;
+  }
+}
+
+/*PLANE *
+-----------------------------------------------*/
+.svg-plane {
+	display: block;
+	width: 90px;
+	height: 33px;
+	margin: 100px auto;
+	transform: scaleX(-1);
+	position: absolute;
+	top: -3%;
+	animation: flight 10s linear infinite;
+
+	@media @medium {
+		animation: flight 30s linear infinite;
+		width: 126px;
+		height: 43px;
+		top: 3%;
+	}
+}
+
+.svg-plane svg {
+  animation: plane-stutter 5s infinite;
+}
+
+.smoke1 {
+  animation: smoke 1s infinite;
+}
+
+.smoke2 {
+  animation: smoke 1s infinite;
+  animation-delay: 0.4s;
+}
+
+.smoke3 {
+  animation: smoke 1s infinite;
+  animation-delay: 0.2s;
+}
+
+.smoke4 {
+  animation: smoke 1s infinite;
+  animation-delay: 0.7s;
+}
+
+.path {
+  animation: draw 0.2s linear infinite;
+}
+
+@keyframes draw {
+  50% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes plane-stutter {
+  0% {
+    transform: translateY(100%);
+  }
+  
+  25% {
+    transform: translateY(20%);
+  }
+  
+   50% {
+    transform: translateY(80%);
+  }
+  
+  75% {
+    transform: translateY(0%);
+  }
+  
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.cloud {
+	animation: cloud1 40s infinite;
+}
+
+.cloud-1 {
+	animation-delay: 3s;
+	animation-duration: 35s;
+}
+
+.cloud-2 {
+	//animation-delay: 3s;
+	animation-duration: 40s;
+	animation-direction: alternate;
+}
+
+.cloud-3 {
+	//animation-delay: 3s;
+	animation-duration: 45s;
+}
+
+.cloud-4 {
+	//animation-delay: 3s;
+	animation-duration: 40s;
+	animation-delay: 2s;
+}
+
+.cloud-5 {
+	//animation-delay: 3s;
+	animation-duration: 30s;
+	animation-direction: alternate;
+	animation-delay: 4s;
+}
+
+.cloud-6 {
+	//animation-delay: 3s;
+	animation-duration: 35s;
+}
+
+@keyframes cloud1 {
+	50% {
+		transform: translateX(100px);
+	}
+}
+
+@keyframes smoke {
+  0% {
+    transform: translateX(100%);
+  }
+  
+  70% {
+    opacity: 0.8;
+  }
+
+  90% {
+    opacity: 0;  	
+  }
+  
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;  	
+  }
+}
+
+@keyframes plane-stutter {
+  0% {
+    transform: translateY(100%);
+  }
+  
+  25% {
+    transform: translateY(20%);
+  }
+  
+   50% {
+    transform: translateY(80%);
+  }
+  
+  75% {
+    transform: translateY(0%);
+  }
+  
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes flight {
+  0% {
+    right: -10%;
+  }
+  
+  100% {
+    right: 120%;
+  }
+}
+
+
+/*CITY *
+-----------------------------------------------*/
+.scene.city {
+	.svg-house1 {
+		left: 1032px;
+		bottom: -2px;
+		display: none;
+
+		@media @medium {
+			display: block;
+		}
+
+		@media (min-width: 1200px) {
+			left: auto;
+			right: 20px;
+		}
+	}
+
+	.svg-house2 {
+		left: 925px;
+		bottom: -2px;
+		display: none;
+
+		@media @medium {
+			display: block;
+		}
+
+		@media (min-width: 1200px) {
+			left: auto;
+			right: 150px;
+		}
+	}
+
+	.svg-house4 {
+		left: 800px;
+		bottom: -2px;
+		display: none;
+
+		@media @medium {
+			display: block;
+		}
+
+		@media (min-width: 1200px) {
+			left: auto;
+			right: 260px;
+		}
+	}
+
+	.svg-building1 {
+		left: 20px;
+		bottom: -2px;
+		width: 112px;
+		height: 128px;
+
+		@media @medium {
+			
+			width: auto;
+			height: auto;
+		}
+
+		@media @large {
+			left: 240px;
+		}
+	}
+
+	.svg-building2 {
+		width: 149px;
+		height: 96px;
+		left: 150px;
+		bottom: -4px;
+
+		@media @medium {
+			width: auto;
+			height: auto;
+			left: 250px;
+			bottom: -8px;
+		}
+
+		@media @large {
+			left: 500px;
+		}
+	}
+
+	.svg-building3 {
+		left: -2%;
+		bottom: -2px;
+		display: none;
+
+		@media @large {
+			display: block;
+		}
+	}
+
+	.svg-car1 {
+		left: 25%;
+		width: 55px;
+    	height: 21px;
+    	
+    	@media @medium {
+			width: auto;
+			height: auto;
+		}
+	}
+
+	.svg-car2 {
+		left: 50%;
+		width: 46px;
+		height: 22px;
+
+
+		@media @medium {
+			width: auto;
+			height: auto;
+		}
+	}
+
+	.svg-car3 {
+		left: 60%;
+		width: 46px;
+		height: 22px;
+
+		@media @medium {
+			width: auto;
+			height: auto;
+		}
+	}
+
+	.details-2 {
+		border-bottom-color: @yellow-dark;
+	}
+}
+
+
+
+/*FARM *
+-----------------------------------------------*/
+.scene.farm {
+	.svg-corn {
+		position: absolute;
+		z-index: 2;
+		bottom: 0px;
+		width: 50px;
+		height: 41px;
+
+		@media @medium {
+			width: auto;
+			height: auto;
+		}
+
+		&.corn1 {
+			left: 1%;
+		}
+
+		&.corn2 {
+			right: 110px;
+			display: none;
+
+			@media @large {
+				display: block;
+			}
+		}
+	}
+
+	.svg-truck {
+		position: absolute;
+		left: 35%;
+		bottom: 0;
+		z-index: 1;
+		width: 70px;
+		height: 28px;
+
+		@media @medium {
+			width: auto;
+			height: auto;
+		}
+	}
+
+	.svg-barn {
+		position: absolute;
+		bottom: 0;
+		left: 110px;
+		width: 65px;
+		height: 81px;
+
+		@media @medium {
+			width: auto;
+			height: auto;
+			left: 250px;
+		}
+	}
+
+	.svg-hay {
+		position: absolute;
+		bottom: 0;
+		left: 190px;
+		height: 37px;
+		width: 110px;
+
+		@media @medium {
+			width: auto;
+			height: auto;
+			left: 390px;
+		}
+	}
+
+	.svg-tractor {
+		position: absolute;
+		bottom: 0;
+		left: 70%;
+		width: 45px;
+		height: 35px;
+
+		@media @medium {
+			width: auto;
+			height: auto;
+		}
+	}
+
+	.svg-silo {
+		position: absolute;
+		bottom: 0;
+		width: 40px;
+		height: 122px;
+		left: 62px;
+
+		@media @medium {
+			width: auto;
+			height: auto;
+			left: 175px;
+		}
+	}
+
+	.svg-windmill {
+		position: absolute;
+		bottom: 0;
+		right: 40px;
+
+		width: 33px;
+		height: 81px;
+
+		@media @medium {
+			width: auto;
+			height: auto;
+		}
+	}
+}
+
+#animate-spin {
+	animation: spin 5s linear infinite;
+	transform-origin: 50% 50%;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+/*NEBRASKA 1 *
+-----------------------------------------------*/
+.scene.nebraska-1 {
+
+	.svg-lincoln {
+		right: 1%;
+		bottom: -2px;
+		display: none;
+
+		@media @large {
+			display: block;
+		}
+	}
+
+	.svg-house3 {
+		left: 50%;
+		bottom: -2px;
+		display: none;
+
+		@media @large {
+			display: block;
+		}
+	}
+
+	.svg-house5 {
+		right: 18%;
+		bottom: -2px;
+	}
+
+	.svg-house6 {
+		left: 500px;
+		
+
+		display: none;
+
+		@media @large {
+			display: block;
+		}
+
+		@media @extra-large {
+			//left: 40%;
+		}
+	}
+
+	.svg-trees {
+		
+		left: 580px;
+		display: none;
+
+		@media @large {
+			display: block;
+		}
+
+		@media @extra-large {
+			//left: 33%;
+		}
+	}
+
+	.svg-arbor {
+		left: 50%;
+		margin-left: -150px;
+		bottom: -2px;
+		width: 300px;
+    	height: 56px;
+
+    	@media @medium {
+    		tranform: none;
+    		width: auto;
+    		height: auto;
+			left: 20px;
+			margin-left: 0;
+    	}
+	}
+
+}
+/*NEBRASKA 2 *
+-----------------------------------------------*/
+
+.scene.nebraska-2 {
+	.svg-trees {
+		left: -5px;
+	}
+
+	.svg-house7 {
+		left: 100px;
+		bottom: -2px;
+	}
+
+	.svg-corn1 {
+		left: 310px
+	}
+
+	.svg-corn2 {
+		left: 500px
+	}
+
+	.svg-house2 {
+		left: 400px;
+		bottom: -2px;
+	}
+
+	.svg-kearney {
+		display: none;
+		bottom: -2px;
+		right: 3%;
+
+		@media @large {
+			display: block;
+		}
+	}
+}
+

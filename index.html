@@ -1,76 +1,238 @@
 ---
-layout: home
+layout: default
 ---
 
-<a href="https://www.papercall.io/nejsconf" id="newsletter-signup" class="btn-primary">Speak at <span>NEJS CONF 2016</span></a>
-
-<h2 style="text-align: center;"><a href="/register" style="text-decoration: none;">Register Now! $165 Early Bird</a></h2>
-
-<ul class="menu">
-	<li><a href="#news">News</a></li>
-	<li><a href="#sponsors">Sponsor Us</a></li>
-	<li><a href="#coc">Code of Conduct</a></li>
-	<li><a href="#venue">Venue</a></li>
-</ul>
-<div class="content home-content" data-role="main">
-	<div class="spacetime">
-		<div class="icon-nebraska" data-grunticon-embed></div>
-		<time datetime="2016-08-26">August 26, 2016</time>
-		<div class="location">The Durham Museum &ndash; Omaha,&nbsp;NE&nbsp;USA</div>
+<header class="header bg-yellow">
+	<div class="header-bg">
+		<div class="cloud cloud-1"><svg class="svg-cloud"><use xlink:href="#svg-cloud"></use></svg></div>
+		<div class="cloud cloud-2"><svg class="svg-cloud"><use xlink:href="#svg-cloud"></use></svg></div>
+		<div class="cloud cloud-3"><svg class="svg-cloud"><use xlink:href="#svg-cloud"></use></svg></div>
+		<div class="cloud cloud-4"><svg class="svg-cloud"><use xlink:href="#svg-cloud"></use></svg></div>
+		<div class="cloud cloud-5"><svg class="svg-cloud"><use xlink:href="#svg-cloud"></use></svg></div>
+		<div class="cloud cloud-6"><svg class="svg-cloud"><use xlink:href="#svg-cloud"></use></svg></div>
+		<div class="svg-plane">{% include svg-plane.html %}</div>
 	</div>
-	<div class="icon-streamliner divider" data-grunticon-embed></div>
-	<div>
-		<h2 id="details">
-			<span>Details</span>
-		</h2>
-		<ul>
-			<li>Single day, single track conference dedicated to Web Development and&nbsp;JavaScript.</li>
-			<li>Held at the historic <a href="#venue">Omaha Durham Museum</a></li>
-			<li>Conference passes include:
+
+	<div class="scene durham">
+		<div class="svg-durham z-2">{% include svg-durham.html %}</div>
+		<div class="svg-train">{% include svg-train.html %}</div>
+	</div>
+	<p class="sponsor z-2">Interested in sponsoring <span>NEJS CONF</span>? <a href="mailto:sponsor@nejsconf.com">Get in touch!</a></p>
+
+	<div class="header-content">
+		<a href="/" class="logo z-2">
+			<h1 class="centered-stuff"><abbr title="Nebraska JavaScript">NEJS</abbr> <abbr title="Conference">CONF</abbr> <span>2016</span></h1>
+		</a>
+		<a href="/register" class="btn-primary z-2"><div>$165</div><span id="tickets-left">Early Bird Registration</span></a>
+	</div>
+	<a href="https://twitter.com/nejsconf" class="icon-twitter z-2" title="@nejsconf on Twitter"><svg class="icon-twitter"><use xlink:href="#icon-twitter"></use></a>
+</header>
+
+<main role="main" class="main cf">
+	<nav role="navigation" class="nav bg-yellow-light">
+		<ul class="menu cf">
+			<li><a href="#details">Details</a></li>
+			<li><a href="#speakers">Speakers</a></li>
+			<li><a href="#venue">Venue</a></li>
+			<li><a href="#news">News</a></li>
+			<li><a href="#hotel">Hotel</a></li>
+			<li><a href="#sponsors">Sponsors</a></li>
+		</ul>
+	</nav>
+	<section class="section cf bg-yellow-light sm-padding conf-description" id="details">
+		<div class="wrapper">
+			<h2>NEJS CONF is a Single day, <br />
+			single track conference <br />
+			dedicated to Web Development <br />
+			and JavaScript.</h2>
+		</div>
+	</section>
+	<section class="details-2 section cf bg-yellow-light sm-padding">
+		<div class="scene city">
+			<div class="svg-building1">{% include svg-building1.html %}</div>
+			<div class="svg-building2 z-2">{% include svg-building2.html %}</div>
+			<div class="svg-car1">{% include svg-car1.html %}</div>
+			<div class="svg-car2">{% include svg-car2.html %}</div>
+			<div class="svg-car3">{% include svg-car3.html %}</div>
+			<div class="svg-building3">{% include svg-building3.html %}</div>
+			<div class="svg-house1">{% include svg-house1.html %}</div>
+			<div class="svg-house2">{% include svg-house2.html %}</div>
+			<div class="svg-house4">{% include svg-house4.html %}</div>
+		</div>
+		<div class="wrapper">
+			<h1 class="section-title">Details</h1>
+			<div class="container home-content bg-white">
+				<h2>Date</h2>
+				<h3>Friday, August 26, 2016</h3>
+
+				<h2>Location</h2>
+				<h3>The Durham Museum – Omaha, NE USA</h3>
+
+				<h2>Cost</h2>
+				<h3>$165<br/><small>Early Bird</small></h3>
+
+				<h2>Conference passes include:</h2>
 				<ul>
 					<li>Free Museum Admission for the day</li>
 					<li>Midday meal (a.k.a. Lunch)</li>
 					<li>Snacks</li>
 					<li>Evening meal (a.k.a. Dinner and Drinks at the after party)</li>
-					<li><a href="http://www.durhammuseum.org/experience/soda-fountain.aspx">Old fashioned soda fountain</a> at the after party!</li>
+					<li>Old fashioned soda fountain at the after party!</li>
 				</ul>
-			</li>
-		</ul>
+			</div>
+		</div>
+	</section>
+
+<section class="section cf bg-yellow lg-padding" id="speakers">
+	<div class="scene farm">
+		<div class="svg-corn corn1">{% include svg-corn.html %}</div>
+		<div class="svg-truck">{% include svg-truck.html %}</div>
+		<div class="svg-barn">{% include svg-barn.html %}</div>
+		<div class="svg-hay">{% include svg-hay.html %}</div>
+		<div class="svg-corn corn2">{% include svg-corn.html %}</div>
+		<div class="svg-tractor">{% include svg-tractor.html %}</div>
+		<div class="svg-silo">{% include svg-silo.html %}</div>
+		<div class="svg-windmill">{% include svg-windmill.html %}</div>
 	</div>
-	<h2 id="news">
-		<span>News</span>
-	</h2>
-	<ul class="posts">
-		{% for post in site.posts %}
-			{% if post.tags contains 'speaker' or post.tags contains 'exclude' %}
-			{% else %}
-			<li><a href="{{ post.url }}">{{ post.title }}</a> <small>{{ post.date | date: "%d %h %Y" }}</small></li>
-			{% endif %}
-		{% endfor %}
-	</ul>
-	<h2 id="sponsors">
-		<span>Sponsors</span>
-	</h2>
-	<p>Interested in sponsoring NEJS CONF?<br/><a href="mailto:sponsor@nejsconf.com">Get in touch!</a></p>
-	<h2 id="coc">
-		<span>Code of Conduct</span>
-	</h2>
-	<p>All attendees, speakers, sponsors and volunteers at our conference are required to agree with our code of conduct.</p>
-	<p><a href="/code-of-conduct">Learn more &raquo;</a></p>
-	<div>
-		<h2 id="venue">
-			<span>Venue</span>
-		</h2>
-		<h3><img src="assets/img/Durham-Logo.jpg" alt="The Durham Museum" title="Omaha’s Durham Museum" class="durham-logo" /></h3>
-		<a class="map" id="venue-map" href="https://www.google.com/maps/place/The+Durham+Museum/@41.2514407,-95.9304515,17z/data=!4m6!1m3!3m2!1s0x87938fa653d6c967:0x5ddea1f2cc6f522f!2sThe+Durham+Museum!3m1!1s0x87938fa653d6c967:0x5ddea1f2cc6f522f"><img src="https://maps.googleapis.com/maps/api/staticmap?center=801+S+10th+St,+Omaha,+NE+68108&amp;zoom=13&amp;scale=2&amp;size=300x200&amp;maptype=roadmap&amp;format=png&amp;visual_refresh=true&amp;markers=size:mid%7Ccolor:red%7Clabel:1%7C801+S+10th+St,+Omaha++NE 68108" alt="Google Map of Venue"></a>
-		<p>“The <a href="http://www.durhammuseum.org/experience/lecture-hall/default.aspx">Stanley and Dorothy Truhlsen Lecture Hall</a> is a state-of-the-art theater seating 266 people. Most impressively, it is situated in the old boiler room, part of the original station built in 1899. When the station was torn down in 1929 and the current station completed in 1931, use of the boiler discontinued. In 1997, a $25 million addition and renovation project was completed - this included refurbishment of the original detail and finishes to create an environment to provide proper space for museum experience.” —via <a href="http://www.durhammuseum.org/">durhammuseum.org</a></p>
-		<img src="/assets/img/inside.jpg" alt="Inside Union Station" />
+	<div class="wrapper">
+		<h1 class="section-title">Speakers</h1>
+			<div class="container home-content bg-white">
+				<h2><a href="https://www.papercall.io/nejsconf">Speak At NEJS Conf 2016</a></h2>
+				<h3><a href="https://www.papercall.io/nejsconf">Submit Your Talk</a></h3>
+			</div>
 	</div>
-	<div class="share">
-		<h2>
-			<span>Share NEJS CONF</span>
-		</h2>
-		<a href="https://twitter.com/intent/tweet?text=A%20one%20day%20JavaScript%20conference%20at%20the%20historic%20Durham%20Museum%20on%20August%2026,%202016%20@nejsconf%20https://nejsconf.com/" class="btn-secondary icon-twitter">Twitter</a>
-		<a href="https://www.facebook.com/sharer/sharer.php?u=https://www.nejsconf.com/" class="btn-secondary icon-facebook">Facebook</a>
+</section>
+
+<section class="section cf bg-yellow-light" id="venue">
+	<div class="scene nebraska-1">
+		<div class="svg-arbor z-2">{% include svg-arbor.html %}</div>
+		<div class="svg-trees">{% include svg-trees.html %}</div>
+		<div class="svg-house6">{% include svg-house6.html %}</div>
+		<div class="svg-car3">{% include svg-car3.html %}</div>
+		<div class="svg-lincoln">{% include svg-lincoln.html %}</div>
 	</div>
-</div><!-- /.home-content -->
+	<div class="venue-hero">
+		<figure class="progressive-image ratio-box fade-box">
+			<img src="{{ base }}assets/images/venue/durham01-blur.jpg" class="lqi"/>
+			<img
+				data-src="{{ base }}assets/images/venue/durham01-600x329.jpg"
+				data-srcset="{{ base }}assets/images/venue/durham01-600x329.jpg 600w,
+					{{ base }}assets/images/venue/durham01-800x439.jpg 800w,
+					{{ base }}assets/images/venue/durham01-1200x659.jpg 1200w,
+					{{ base }}assets/images/venue/durham01-1980x1087.jpg 1980w" 
+				class="lazyload" 
+				alt="The Durham Museum" />
+			<noscript>
+				<img src="{{ base }}assets/images/venue/durham01-600x329.jpg" />
+			</noscript>
+		</figure>
+	</div>
+	<div class="wrapper relative">
+		<h1 class="section-title">Venue</h1>
+		<div class="container home-content">
+			<h2><img src="{{ base }}assets/images/durham-logo.jpg" alt="The Durham Museum" title="Omaha’s Durham Museum" class="durham-logo" /></h2>
+			<div class="align-left">
+				<p>“The <a href="http://www.durhammuseum.org/experience/lecture-hall/default.aspx">Stanley and Dorothy Truhlsen Lecture Hall</a> is a state-of-the-art theater seating 266 people. Most impressively, it is situated in the old boiler room, part of the original station built in 1899. When the station was torn down in 1929 and the current station completed in 1931, use of the boiler discontinued. In 1997, a $25 million addition and renovation project was completed - this included refurbishment of the original detail and finishes to create an environment to provide proper space for museum experience.” —via <a href="http://www.durhammuseum.org/">durhammuseum.org</a></p>
+			</div>
+			<a class="map" id="venue-map" href="https://www.google.com/maps/place/The+Durham+Museum/@41.2514407,-95.9304515,17z/data=!4m6!1m3!3m2!1s0x87938fa653d6c967:0x5ddea1f2cc6f522f!2sThe+Durham+Museum!3m1!1s0x87938fa653d6c967:0x5ddea1f2cc6f522f"><img src="{{ base }}assets/images/map.png" alt="Map" class="map-illustration"><img src="{{ base }}assets/images/map-1.jpg" alt="Google Map of Venue"></a>
+			<div class="directions">
+				<p><strong>The Durham Museum</strong><br>
+				801 S 10th St,<br>
+				Omaha, NE 68108</p>
+				<a href="https://www.google.com/maps/place/The+Durham+Museum/@41.2514407,-95.9304515,17z/data=!4m6!1m3!3m2!1s0x87938fa653d6c967:0x5ddea1f2cc6f522f!2sThe+Durham+Museum!3m1!1s0x87938fa653d6c967:0x5ddea1f2cc6f522f" class="btn-primary">Get Directions</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="gallery wrapper z-2">
+		<img src="{{ base }}assets/images/venue/durham02-600x450.jpg" alt="Inside Union Station" class="gallery-image-1 two-column" />		
+		<img src="{{ base }}assets/images/venue/durham03-600x450.jpg" alt="Inside Union Station" class="gallery-image-2 two-column" />
+		<img src="{{ base }}assets/images/venue/durham04-600x450.jpg" alt="Inside Union Station" class="gallery-image-3 three-column" />
+		<img src="{{ base }}assets/images/venue/durham05-600x450.jpg" alt="Inside Union Station" class="gallery-image-4 three-column" />
+		<img src="{{ base }}assets/images/venue/durham06-600x450.jpg" alt="Inside Union Station" class="gallery-image-5 three-column" />
+	</div>
+</section>
+<section class="section cf bg-yellow lg-padding" id="news">
+	<div class="scene nebraska-2">
+		<div class="svg-trees">{% include svg-trees.html %}</div>
+		<div class="svg-house7">{% include svg-house7.html %}</div>
+		<div class="svg-corn1">{% include svg-corn.html %}</div>
+		<div class="svg-house2">{% include svg-house2.html %}</div>
+		<div class="svg-corn2">{% include svg-corn.html %}</div>
+		<div class="svg-kearney">{% include svg-kearney.html %}</div>
+	</div>
+	<div class="wrapper">
+		<h1 class="section-title">News</h1>
+		<div class="container home-content">
+			<ul class="posts">
+				{% for post in site.posts %}
+					{% if post.tags contains 'speaker' or post.tags contains 'exclude' %}
+					{% else %}
+					<li><h2><small>{{ post.date | date: '<span class="month">%h</span> <span class="day">%d</span> <span class="year">%Y</span>' }}</small><a href="{{ post.url }}">{{ post.title }}</h2></a></li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</section>
+<section class="section cf bg-yellow-light lg-padding" id="hotel">
+	<div class="wrapper">
+		<h1 class="section-title">Hotel</h1>
+		<div class="container home-content">
+			<a class="map" id="hotel-map" href="https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#safe=strict&q=embassy%20suites%20omaha&rflfq=1&rlha=0&rlla=0&rllag=41218399,-96018408,8547&tbm=lcl&tbs=lf_hd:-1,lf:1,lf_ui:7&hotel_dates=2016-06-19,2016-06-20&fll=41.2527135365282,-95.9285548980011&fspn=0.0055010483064705795,0.01094344294509142&fz=17&oll=41.2183997,-96.0184089&ospn=0.082126413939406,0.20153876017920425&oz=12&qop=1&rlfi=hd:;si:4511499220221284628" alt="Google Map of Hotel"><img src="{{ base }}assets/images/map.png" alt="Map" class="map-illustration"><img src="{{ base }}assets/images/map-2.jpg" alt="Google Map of Venue"></a>
+			<div class="content">
+				<h2><a href="">Embassy Suites Omaha - Downtown/Old Market</a></h2>
+				<ul>
+					<li>Conference discount rate of $134/night</li>
+					<li>Walking distance from conference venue</li>
+					<li>Free breakfast</li>
+					<li>Free in-room Wi-Fi</li>
+					<li>Indoor Pool</li>
+					<li>Free Airport Shuttle</li>
+					<li>Health club, sauna, pool and exercise facility</li>
+					<li>Self Parking</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="section cf bg-yellow md-padding" id="sponsors">
+	<div class="wrapper">
+		<h1 class="section-title">Sponsors</h1>
+		<div class="container home-content">
+			<ul class="sponsors big">
+				<li class="sponsor big icon-sponsor icon-sponsor-default">
+					<a href="#">AIGA</a>
+					<a href="/sponsor/#/" class="more">Read more</a>
+				</li>
+				<li class="sponsor big icon-sponsor icon-sponsor-default">
+					<a href="#">Sitepen</a>
+					<a href="/sponsor/#/" class="more">Read more</a>
+				</li>
+			</ul>
+			<ul class="sponsors">
+				<li class="sponsor zebra icon-sponsor icon-sponsor-aiga-ne">
+					<a href="#">Sitepen</a>
+					<a href="/sponsor/#/" class="more">Read more</a>
+				</li>
+				<li class="sponsor zebra icon-sponsor icon-sponsor-sitepen">
+					<a href="#">Sitepen</a>
+					<a href="/sponsor/#/" class="more">Read more</a>
+				</li>
+				<li class="sponsor"><a href="mailto:sponsor@nejsconf.com">Sponsor NEJS CONF</a></li>
+			</ul>
+		</div>
+	</div>
+</section>
+<section class="share align-center sm-padding">
+		<h2><span>Share NEJS CONF</span></h2>
+		<a href="https://twitter.com/intent/tweet?text=A%20one%20day%20JavaScript%20conference%20at%20the%20historic%20Durham%20Museum%20on%20August%2026,%202016%20@nejsconf%20https://nejsconf.com/" class="btn-secondary icon-twitter"><svg class="icon-twitter"><use xlink:href="#icon-twitter"></use></svg>Twitter</a>
+		<a href="https://www.facebook.com/sharer/sharer.php?u=https://www.nejsconf.com/" class="btn-secondary icon-facebook"><svg class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg>Facebook</a>
+</section>
+</main>
+<footer>
+	<div class="footer">
+		<p>© 2016 <a href="http://www.nebraskajs.com/">NebraskaJS</a> (Omaha) and organized by the <a href="/team/#post">NEJS CONF Team</a></p>
+		<p>Designed by <a href="http://less.is">Less Is</a></p>
+	</div>
+</footer>

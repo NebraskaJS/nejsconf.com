@@ -1,0 +1,182 @@
+/*BUTTONS *
+-----------------------------------------------*/
+.btn-primary {
+	background: @white;
+	color: @yellow;
+	padding: .8em .8em .7em;
+	text-transform: uppercase;
+	text-decoration: none;
+	text-align: center;
+	border: none;
+	border-radius: 1.5em;
+	font-size: 1em;
+	font-size: 1.5rem;
+	display: block;
+	width: 98%;
+	max-width: 13em;
+	margin: 0 auto;
+
+	@media @medium {
+		font-size: 1.75rem;
+	}
+
+	&:focus,
+	&:hover {
+		color: #a78401;
+	}
+
+	.container & {
+		background: @yellow;
+		color: @white;
+
+		&:focus,
+		&:hover {
+			color: @white;
+			background: @yellow-dark;
+		}
+	}
+}
+
+.btn-primary span {
+	text-transform: none;
+	font-size: .714285714em;
+	display: block
+}
+
+.wf-effra-n9-active .btn-primary {
+	font-family: effra, sans-serif;
+	font-weight: 900
+}
+
+.wf-effra-n4-active .btn-primary span {
+	font-weight: 400
+}
+
+.secondary-buttons {
+	text-align: center;
+	letter-spacing: -4px
+}
+
+.btn-secondary {
+	display: inline-block;
+	font-size: 1.125em;
+	text-transform: uppercase;
+	text-decoration: none;
+	text-align: center;
+	padding: .8em;
+	border: 4px solid #fff;
+	border-radius: 2.5em;
+	margin: 1.5em .75em 0;
+	letter-spacing: 0;
+	min-width: 11em;
+	cursor: pointer;
+	color: @white;
+
+	svg {
+		display: inline-block;
+		vertical-align: middle;
+		width: 40px;
+		height: 40px;
+		fill: @white;
+	}
+
+	&:hover svg {
+		fill: @yellow-dark;
+	}
+}
+
+#teaser-email,
+.btn-tertiary,
+.form-result.feedback {
+	text-decoration: none;
+	text-align: center;
+	display: block
+}
+
+.btn-secondary:hover {
+	background-color: #fff;
+	color: #e4c20a
+}
+
+.wf-effra-n9-active .btn-secondary {
+	font-family: effra, sans-serif;
+	font-weight: 900
+}
+
+.btn-tertiary {
+	background: #c09801;
+	color: #fff;
+	padding: .4em 1.4em;
+	border: none;
+	border-radius: 1.5em;
+	font-size: 1em;
+	width: 96%;
+	max-width: 9em;
+	margin: .4em auto 0
+}
+
+.btn-tertiary:focus,
+.btn-tertiary:hover {
+	background: #a78401
+}
+
+
+.btn(@bg:@grey, @text:@white) {
+	display: inline-block;
+	min-width: 100px;
+	margin-bottom: 0.25em;
+	padding: 0.75em 1em;
+	background-color: @bg;
+	color: @text;
+	line-height: 1;
+	text-align: center;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	position: relative;
+	.transition(0.5s);
+	.border-radius(3px);
+
+	@media @medium {
+		min-width: 110px;
+	}
+	
+	&:hover, 
+	&:focus {
+		background-color: @bg/1.08;
+		color: @text;
+		border: none;
+	}
+
+	&:active {
+		background-image: linear-gradient(to right bottom, fade(@bg, 0%),@bg);
+		background-image: none;
+		box-shadow: inset 0 -1px rgba(0, 0, 0, 0);
+	}
+
+	svg {
+		fill: @white;
+	}
+}
+
+.btn,
+button {
+	.btn();
+}
+
+.btn-white {
+	.btn(@white);
+	color: @black;
+
+	&:hover {
+		background: @white*1.2;
+	}
+}
+
+.btn-big {
+	font-size: 1.5em;
+}
+
+.btn-small {
+	font-size: 0.7em;
+}
