@@ -262,7 +262,7 @@ layout: page
 
           <div class="form_field">
             <label for="dietary_<?php echo $i; ?>">Food Restrictions</label>
-            <input id="dietary_<?php echo $i; ?>" name="dietary_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "dietary_" . $i)); ?>" />
+            <input id="dietary_<?php echo $i; ?>" name="dietary_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "dietary_" . $i)); ?>" maxlength="255" />
           </div>
         </fieldset>
       <?php endfor; ?>
@@ -369,7 +369,7 @@ layout: page
 
 <div class="form_field">
   <label for="dietary_{{block_number}}">Food Restrictions</label>
-  <input id="dietary_{{block_number}}" name="dietary_{{block_number}}" type="text" />
+  <input id="dietary_{{block_number}}" name="dietary_{{block_number}}" type="text" maxlength="255" />
 </div>
 
 <label for="shirt_size_{{block_number}}">T-Shirt Size</label>
