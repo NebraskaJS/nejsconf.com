@@ -4,6 +4,7 @@ var    gulp = require('gulp'),
       uglify = require('gulp-uglify'),
       concat = require('gulp-concat'),
 autoprefixer = require('gulp-autoprefixer'),
+     connect = require('gulp-connect'),
        shell = require('gulp-shell');
 
 gulp.task('less', function () {
@@ -34,11 +35,19 @@ gulp.task('script', function() {
 
 gulp.task('jekyll', shell.task(['jekyll build --config _config.yml']));
 
+gulp.task('connect', function() {
+  connect.server({
+    root: '_site',
+    livereload: true
+  });
+});
+
 // Until gulp 4...
 gulp.task('jekyll-sync', ['script', 'less'], shell.task(['jekyll build --config _config.yml']));
 gulp.task('jekyll-sync-script', ['script'], shell.task(['jekyll build --config _config.yml']));
 gulp.task('jekyll-sync-less', ['less'], shell.task(['jekyll build --config _config.yml']));
 
+gulp.task('serve', ['default', 'watch', 'connect']);
 gulp.task('watch', function () {
   gulp.watch('./src/less/**/*.less', ['less', 'jekyll-sync-less']);
   gulp.watch('./src/js/**/*.js', ['script', 'jekyll-sync-script']);
