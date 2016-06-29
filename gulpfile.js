@@ -8,9 +8,10 @@ autoprefixer = require('gulp-autoprefixer'),
        shell = require('gulp-shell');
 
 gulp.task('less', function () {
-  return gulp.src('./less/**/style.less')
+  return gulp.src('./src/less/style.less')
+		.pipe(debug({title: 'less:'}))
     .pipe(less({
-      paths: [ path.join(__dirname, 'less', 'includes') ]
+      paths: [ path.join(__dirname, 'src', 'less', 'mixins') ]
     }))
     .pipe(autoprefixer({
       browsers: ['last 3 versions'],

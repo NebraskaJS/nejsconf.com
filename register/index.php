@@ -1,5 +1,6 @@
 ---
-layout: page
+layout: post
+title: Register
 ---
 
 {% raw %}
@@ -27,15 +28,13 @@ layout: page
   if(! $_POST && $tickets_already_sold >= $config['checkout']['tickets_available']) {
     // Sold out!
 ?>
-<div class="content skinny-content" id="post" data-role="main">
-  <h1>Sold Out!</h1>
+  <h2 style="text-align: left;">Sold Out!</h2>
   <p>
-    We seem to have sold out of tickets for this round. Please watch our Twitter for announcements!
+    We seem to have sold out of tickets for this round. Please watch our <a href="https://twitter.com/nejsconf">Twitter</a> for announcements!
   </p>
   <p>
-    If you have questions, please don't hesitate to contact us at <a href="mailto:tickets@nejsconf.com" style="color: #FFF; text-shadow: none;">tickets@nejsconf.com</a>
+    If you have questions, please don't hesitate to contact us at <a href="mailto:tickets@nejsconf.com">tickets@nejsconf.com</a>
   </p>
-</div>
 <?php
   }
   else {
@@ -183,23 +182,47 @@ layout: page
 
     if($show_purchase_success) {
   ?>
-    <div class="content skinny-content" id="post" data-role="main">
-      <h1>Success!</h1>
+      <h2 style="text-align: left;">Success!</h2>
       <p>
         You should receive confirmation emails shortly.
       </p>
       <p>
         If you have questions, please don't hesitate to contact us at <a href="mailto:tickets@nejsconf.com" style="color: #FFF; text-shadow: none;">tickets@nejsconf.com</a>
       </p>
-    </div>
+</section>
+<section class="share align-center">
+			<h2><span>Tell your friends!</span></h2>
+			<a href="https://twitter.com/intent/tweet?text=I%27m%20going%20to%20%40nejsconf%20this%20year!" class="btn-secondary icon-twitter"><svg class="icon-twitter"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-twitter"></use></svg>Twitter</a>
+			<a href="https://www.facebook.com/sharer/sharer.php?u=https://www.nejsconf.com/" class="btn-secondary icon-facebook"><svg class="icon-facebook"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-facebook"></use></svg>Facebook</a>
   <?php
     }
     else {
   ?>
 
   <form method="POST" id="register_form">
-    <div class="content skinny-content" id="post" data-role="main">
-      <h1>Buy Tickets</h1>
+
+		<h2 style="text-align: left;">Conference passes&nbsp;include:</h2>
+		<p>
+			<ul>
+				<li>Awesome talks by amazing speakers!</li>
+				<li>Museum admission for the day</li>
+				<li>Tasty lunch!</li>
+				<li>NEJS Conf 2016 T-Shirt</li>
+				<li>Snacks &amp; drinks throughout the day</li>
+				<li>Dinner at the after party</li>
+				<li>Old fashioned soda fountain at the after party!</li>
+			</ul>
+		</p>
+
+		<h2 style="text-align: left;">Questions?</h2>
+		<p>
+			Contact us at <a href="mailto:tickets@nejsconf.com">tickets@nejsconf.com</a> or on Twitter <a href="https://twitter.com/nejsconf">@nejsconf</a>.
+		</p>
+
+		<h2 style="text-align: left;">Early Bird Pricing!</h2>
+		<p>A limited number of Early Bird Tickets are available and will be sold on a first come first serve basis! Once they’re gone, the full ticket price ($240) will be applied.</p>
+
+		<hr/>
 
       <fieldset>
         <label for="number_of_tickets">Quantity</label>
@@ -262,6 +285,8 @@ layout: page
       <?php endfor; ?>
       </div>
 
+			<hr/>
+
       <fieldset>
         <legend>Coupon</legend>
         <div class="form_field">
@@ -271,13 +296,15 @@ layout: page
         </div>
       </fieldset>
       <div class="total">
-        <p class="note">Are you a student? We do offer a heavily discounted coupon code for students (valid Student ID required upon admission). <a href="https://twitter.com/intent/tweet?text=%40nejsconf%20Hook%20me%20up%20with%20the%20Student%20coupon%20code%20!">Send us a tweet</a> for the code!</p>
+				<p class="note">
+					Are you a student? We do offer a heavily discounted coupon code for students (valid Student ID required upon&nbsp;admission).<br/><br/>
+					<a href="https://twitter.com/intent/tweet?text=%40nejsconf%20Hook%20me%20up%20with%20the%20Student%20coupon%20code%20!">Send us a tweet</a> for the code!
+				</p>
       </div>
 
-      <div class="total">
+      <div class="total align-center">
         <h3>Total</h3>
         $<span id="current_price"><?php echo $ticket_price; ?></span> &times; <span id="ticket_count"><?php echo $number_of_tickets; ?></span> = <span id="ticket_total">$<?php echo $ticket_price * $number_of_tickets; ?></span>
-        <p class="note">Early Bird Pricing is now in effect. A limited number of Early Bird Tickets are available and will be sold on a first come first serve basis! Once they’re gone, the full ticket price ($240) will be applied.</p>
       </div>
 
       <fieldset>
@@ -320,11 +347,12 @@ layout: page
         </div>
 
       </fieldset>
-    </div><!-- /.content -->
 
-    <button type="submit" class="btn-primary">Purchase Tickets</button>
+		<fieldset>
+			<button type="submit" class="btn-primary">Purchase Tickets</button>
+		</fieldset>
 
-  </form>
+	</form>
 
 <script type="text/html" id="ticket_block_template">
 <legend>Attendee #{{block_number}}</legend>
