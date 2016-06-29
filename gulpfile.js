@@ -9,7 +9,6 @@ autoprefixer = require('gulp-autoprefixer'),
 
 gulp.task('less', function () {
   return gulp.src('./src/less/style.less')
-		.pipe(debug({title: 'less:'}))
     .pipe(less({
       paths: [ path.join(__dirname, 'src', 'less', 'mixins') ]
     }))

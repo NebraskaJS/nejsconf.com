@@ -166,9 +166,16 @@
 .header.page {
 	border-bottom: none;
 	padding-bottom: 0;
-
-	.header-content {
-		padding: 0 1em;
+	
+	@media (min-height: 700px) {
+		height: auto;
+	
+		.header-content {
+			position: relative;
+			top: auto;
+			left: auto;
+			transform: none;
+		}
 	}
 	@media screen and (min-width: 38em) {
 		.logo {
