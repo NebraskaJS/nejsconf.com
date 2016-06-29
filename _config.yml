@@ -16,3 +16,6 @@ exclude:
  - Gemfile
  - Gemfile.lock
  - README.md
+ - package.json
+ - src
+ - deploy.sh
