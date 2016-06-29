@@ -1,0 +1,87 @@
+//MEDIA
+.gallery {
+	.sm-padding;
+	.cf;
+
+	.two-column {
+		margin-bottom: 2%;
+		@media @medium {
+			float: left;
+			width: 49%;
+			margin-right: 2%;
+
+			&:nth-of-type(2n+1) {
+				clear: both;
+			}
+
+			&:nth-of-type(2n) {
+				margin-right: 0;
+			}
+		}
+	}
+
+	.three-column {
+		margin-bottom: 2%;
+
+		@media @medium {
+			float: left;
+			width: 32%;
+			margin-right: 2%;
+
+			&.gallery-image-5 {
+				margin-right: 0;
+			}
+		}
+	}
+}
+
+
+//Progressive Images
+
+.progressive-image {
+	position: relative;
+
+	.lqi {
+		position: absolute!important;
+		top: 0;
+		left: 0;
+		display: block;
+		width: 100%;
+		transform: scale(1);
+	}
+}
+.fade-box {
+	display: block;
+}
+.fade-box .lazyload,
+.fade-box .lazyloading,
+.fade-box .lazyloaded {
+    opacity: 0;
+    transition: opacity 5s ease;
+    transition: all 800ms ease-out;
+}
+
+.fade-box img.lazyloaded {
+    opacity: 1;
+}
+
+.ratio-box {
+  	display: block;;
+  	height: 0;
+  	padding-bottom: 55%;
+	background: @black;
+}
+.ratio-box img {
+	position: absolute!important;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 100%;
+	transform: scale(1);
+}
+
+
+.no-js img.lazyload,
+.no-js img.blur-up {
+    display: none;
+}

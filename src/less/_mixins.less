@@ -1,0 +1,29 @@
+@import "mixins/clearfix.less";
+
+/* MIXINS *
+------------------------------------------------*/
+
+.border-radius(@radius: 3px) {
+	border-radius: @radius;
+}
+
+.transition(@time: 0.2s){
+	transition: all @time ease-in-out;
+}
+
+.centered-wrapper {
+}
+
+.centered-wrapper:before {
+  content: '';
+  display: inline-block;
+  height: 100%; 
+  vertical-align: middle;
+  margin-right: -0.25em; /* Adjusts for spacing */
+    
+}
+ 
+.centered-stuff {
+  display: inline-block;
+  vertical-align: middle;
+ }

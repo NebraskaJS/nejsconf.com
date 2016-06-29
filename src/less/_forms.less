@@ -1,0 +1,297 @@
+/*FORMS *
+-----------------------------------------------*/
+
+form {
+	margin-bottom: 1em;
+	margin: 0 auto;
+	text-align: left;
+	.cf;
+}
+
+.field-wrapper {
+	display: block;
+	width: 100%;
+	position: relative;
+
+	input {
+		position: relative;
+	}
+}
+
+.field-left,
+.field-right {
+
+	@media @medium {
+		float: left;
+		width: 50%;
+	}
+}
+
+::-webkit-input-placeholder {
+	 color: @grey-light;
+}
+
+label {
+	color: @grey-dark;
+	font-style: italic;
+	zoom: 1;
+
+	.gfield_radio &,
+	.gfield_checkbox & {
+		letter-spacing: normal;
+		font-size: 0.8em;
+	}
+}
+
+label.absolute {
+	position:absolute;
+	z-index: 1;
+	top: 1.1em;
+	left: 1em;
+	.transition;
+	pointer-events: none;
+}
+
+label.absolute.on {
+	font-size: 10px;
+	left: 7px;
+	top: -1.25em;
+	top: 0.5em;
+}
+
+label.absolute.show {
+	font-size: 10px;
+	top: -1.25em;
+	top: 0.5em;
+}
+
+.label-top .absolute {
+	position: relative;
+	top: 0!important;
+	left: 0!important;
+	font-size: 0.875em!important;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="password"],
+input[type="file"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+select {
+	background: @grey-lighter;
+	border: 1px solid @grey-light!important;
+	display: inline-block;
+	padding: 1em;
+	vertical-align: middle;
+	min-width: 50px;
+	.transition;
+	zoom: 1;
+}
+
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"] {
+	-webkit-appearance: none;
+	border-radius: 0;
+	curser: pointer;
+}
+
+textarea{
+	height: 250px;
+	padding: 1em;
+}
+
+.radio-inline .gfield_radio li {
+	display: inline;
+	margin-right: 1.5em;
+}
+
+.form-meta {
+	font-size: .9em;
+
+	@media @large {
+		max-width: 72%;
+	}
+}
+
+input[type=text],
+input[type=email],
+input[type="search"],
+input[type="tel"],
+input[type=password],
+textarea,
+select {
+	width: 100%;
+	line-height: 1;
+	.transition;
+	border-bottom: none;
+
+	&:hover {
+		background-color: @white/1.02;
+	}
+
+	&:focus {
+		outline: none;
+		background-color: @white/1.02;
+	}
+}
+
+.last-child input,
+.last-child textarea {
+	border-bottom: 2px solid @grey;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+input[type=submit] {
+	cursor: pointer;
+	float: right;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+
+	.contact-form & {
+		min-width: 200px;
+		font-size: 1.2em;
+	}
+}
+
+
+
+
+/*RADIO *
+-----------------------------------------------*/
+input[type="radio"],
+input[type="checkbox"].fancy-checkbox {
+	margin: 3px 0.5ex;
+	padding: initial;
+	background-color: initial;
+	border: initial;
+}
+
+input[type="radio"] + label,
+input[type="checkbox"].fancy-checkbox + label {
+	position: relative;
+	display: inline-block;
+	margin-bottom: 5px;
+	cursor: pointer;
+	font-style: normal;
+
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+	}
+}
+
+input[type="radio"] + label {
+	padding-left: 25px;
+	color: @grey;
+
+	&:before {
+		top: -2px;
+		left: 0;
+		width: 15px;
+		height: 15px;
+		border-radius: 50%;
+		border: 2px solid @grey-light;
+		background: @white;
+	}
+
+	&:hover:before {
+		border-color: @grey-light/1.1;
+	}
+}
+
+
+input[type="radio"] {
+	display: none;
+
+	&:checked +label:after {
+		content: '';
+		display: block;
+		position: absolute;
+		width: 11px;
+		height: 11px;
+		top: 2px;
+		left: 4px;
+		background: @grey-light;
+		border-radius: 50%;
+	}
+}
+
+input[type="checkbox"].fancy-checkbox + label {
+	padding-left: 25px;
+	.transition;
+	color: @grey-dark;
+
+	&:before {
+		top: 5px;
+		left: 0;
+		width: 12px;
+		height: 12px;
+		border: 2px solid @white;
+		background: none;
+	}
+
+	&:hover:before {
+		border-color: @grey;
+	}
+}
+
+input[type="checkbox"].fancy-checkbox {
+	display: none;
+
+	&:checked + label:before {
+		background: @grey;
+	}
+}
+
+
+/*SELECT *
+-----------------------------------------------*/
+select {
+	border: 2px solid @grey;
+	-webkit-appearance: none;
+	cursor: pointer;
+	margin: 0 auto;
+	line-height: 1;
+	width: 100%;
+	max-width: 500px;
+	border-radius: 0;
+	display: block;
+	display: block;
+	font-size: 1.5em;
+	font-style: italic;
+	text-transform: none;
+	background-image: image-url('select-arrow-blue.png');
+	background-position: 95% center;
+	background-repeat: no-repeat;
+	background-size: 25px;
+	.transition;
+}
+
+select.standalone {
+	.btn;
+	background-image: image-url('select-arrow.png');
+	.border-radius(100px);
+	line-height: 1.25;
+}
+

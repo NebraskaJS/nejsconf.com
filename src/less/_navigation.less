@@ -1,0 +1,114 @@
+/*NAVIGATION *
+-----------------------------------------------*/
+.nav {
+	width: 100%;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	z-index: 10;
+}
+
+.stuck {
+	position: fixed;
+	top: 0;
+	left: 0;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+	background: @yellow;
+
+	.menu a {
+		color: @white;
+	}
+}
+
+.menu {
+    font-weight: 900;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0;
+    font-size: 1.5em;
+    text-transform: uppercase;
+	text-align: center;
+
+	@media @medium {
+		margin: 0.8em auto;
+	}
+}
+
+.menu a {
+    text-decoration: none;
+    color: @yellow-darker;
+}
+
+.menu a:active,
+.menu a:hover {
+    text-decoration: underline
+}
+
+.menu li {
+    float: left;
+    width: 50%;
+    padding: 0;
+    margin: 0;
+
+    @media (min-width:20em) {
+    	 width: 33.333333333%
+	}
+
+	@media (min-width:48em) {
+		 width: 16.666666667%;
+	}
+
+	&:before {
+		display: none;
+	}
+}
+
+
+
+/* PAGINATION *
+------------------------------------------------*/
+.pagination,
+.page_navigation {
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 40px;
+	color: @grey;
+	font-size: 0.9em;
+	
+	.page-numbers li {
+		display: inline-block;
+		width: 2em;
+		height: 2em;
+	}
+
+	a,
+	span {
+		color: @grey;
+		background: @grey-light;
+		display: inline-block;
+		text-align: center;
+		padding: 0.4em;
+		width: 2em;
+		height: 2em;
+	}
+
+	span.current,
+	.active_page {
+		background: @grey;
+		color: @grey-light;
+	}
+
+	a:hover {
+		background: @grey;
+		color: @grey-light;
+	}
+
+	.first_link,
+	.last_link {
+		display: none;
+	}
+}
+
+.page_navigation a {
+	margin-right: 4px;//Doing this because the page_navigation is actually different markup than the standard pagination
+}
+

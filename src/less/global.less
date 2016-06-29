@@ -1,0 +1,134 @@
+/*LAYOUT *
+-----------------------------------------------*/
+
+@small: ~"screen and (min-width: 20em)";
+@smallish: ~"screen and (min-width: 30em)";
+@medium: ~"screen and (min-width: 38em)";
+@large: ~"screen and (min-width: 55em)";
+@extra-large: ~"screen and (min-width: 60em)";
+@max: ~"screen and (min-width: 66em)";
+@1600: ~"screen and (min-width: 1600px)";
+@retina: ~"screen and (-webkit-min-device-pixel-ratio: 2)";
+@retina: ~"only screen and (-webkit-min-device-pixel-ratio: 2),only screen and (   min--moz-device-pixel-ratio: 2),only screen and (     -o-min-device-pixel-ratio: 2/1),only screen and (        min-device-pixel-ratio: 2),only screen and (                min-resolution: 192dpi),only screen and (min-resolution: 2dppx) ";
+
+*{
+	box-sizing: border-box;
+}
+
+@-o-viewport{
+	width: device-width
+}
+@-ms-viewport{
+	width: device-width
+}
+@viewport{
+	width: device-width
+}
+
+html{
+	overflow-y: auto;
+	text-size-adjust: 100%;
+	background-color: @yellow;
+}
+
+html, 
+body {
+	width: 100%;
+	height: 100%;
+	color: @black;
+}
+
+img,
+audio,
+video,
+canvas{
+	max-width: 100%;
+	width: auto;
+	height: auto;
+}
+
+svg {
+	//max-width: 100%;
+	//height: auto;
+}
+
+.main {
+	overflow: hidden;
+}
+
+.wrapper {
+	width: 90%;
+	max-width: 960px;
+	margin: 0 auto;
+}
+
+.wrapper-small {
+	&:extend(.wrapper);
+	//max-width: 1080px;
+}
+
+.sm-padding {
+	padding-top: 2em;
+	padding-bottom: 2em;
+}
+
+.md-padding {
+	padding-top: 4em;
+	padding-bottom: 4em;
+}
+
+.lg-padding{
+	padding-top: 6em;
+	padding-bottom: 6em;
+}
+
+.hidden {
+	display: none;
+}
+
+.section {
+	position: relative;
+}
+
+.container {
+	.cf;
+    background-color: #fff;
+    box-shadow: 0 0 5px #c09801;
+    padding: 1.25em;
+    text-align: center;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    max-width: 960px;
+    position: relative;
+
+    @media @medium {
+    	padding: 2em;
+    }
+}
+
+
+.relative,
+.z-1,
+.z-2,
+.z-3,
+.z-4 {
+	position: relative;
+}
+
+.z-1 {
+	z-index: 1;
+}
+
+.z-2 {
+	z-index: 2;
+}
+
+.z-3 {
+	z-index: 3;
+}
+
+.z-4 {
+	z-index: 4;
+}
+
+

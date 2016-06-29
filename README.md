@@ -20,12 +20,12 @@ Prerequisites: Node.js and Ruby
 1. `gem install rdiscount`
 1. `npm install`
 1. `composer.phar install`
-1. `grunt`
+1. `gulp`
 
 ## Local Development Workflow
 
-1. `grunt watch`
-1. Open `http://nejsconf.com.local/`
+1. `gulp serve`
+1. Open `http://localhost:8080/`
 
 To install new local npm packages, use `npm install PACKAGE_NAME --save-dev`
 

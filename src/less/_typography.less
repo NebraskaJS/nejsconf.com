@@ -1,0 +1,205 @@
+body {
+	.font-body;
+	font-size: 87.5%;
+
+	@media @medium {
+		font-size: 100%;
+	}
+}
+
+/* FONTS *
+-----------------------------------------------*/
+
+.sans,
+.font-headline {
+	font-family: -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;	font-weight: 300;
+	font-weight: 900;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+
+	.wf-active &,
+	.wf-active-cookie & {
+		font-family: 'effra';
+	}
+}
+
+.font-body {
+	font-family: -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;	font-weight: 300;
+	font-style: normal;
+
+	.wf-active &,
+	.wf-active-cookie & {
+		font-family: 'effra';
+	}
+}
+
+/* HEADINGS *
+-----------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+	.font-headline;
+	text-transform: uppercase;
+	margin: 0;
+}
+
+h1 {
+	font-size: 3.313em;
+	text-align: center;
+}
+
+h2 {
+	font-size: 1.5em;
+	margin: 0.5em 0;
+	color: @yellow-dark;
+
+	a {
+		text-decoration: none;
+	}
+}
+
+h3 {
+	font-size: 1.3em;
+	text-align: center;
+	margin: 0 auto 0.5em;
+}
+
+h4 {
+	font-size: 1.25em;
+	text-align: center;
+	margin: 0.5em auto;
+}
+
+h5 {
+	font-size: 0.83em;
+	margin: 1.67em 0;
+}
+
+h6 {
+	font-size: 0.75em;
+	margin: 2.33em 0;
+}
+
+.page-title,
+.section-title {
+	display: block;
+	line-height: 0.7;
+	font-size: 3em;
+	margin-bottom: -0.05em;
+	text-align: left;
+
+	@media @medium {
+		font-size: 5em;
+	}
+
+	@media @large {
+		font-size: 6em;
+	}
+
+	.bg-yellow & {
+		color: @yellow-dark;
+	}
+
+	.bg-yellow-light & {
+		color: @yellow;
+	}
+}
+
+/* Links *
+-----------------------------------------------*/
+
+:link,
+:visited {
+    color: @yellow-dark;
+}
+
+:link:active,
+:link:focus,
+:link:hover,
+:visited:hover {
+    color: @yellow-darker;
+}
+
+
+a {
+	outline: none;
+	.transition();
+	line-height: 1;
+
+	&:hover {
+		
+	}
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	//padding-left: 1em;
+
+	li {
+		position: relative;
+    	//text-indent: -20px;
+	}
+
+	li:before {
+		content: "• ";
+    	color: @yellow-light;
+    	margin-right: 0.125em;
+    }
+}
+
+li {
+	list-style: none;
+}
+
+/* PARAGRAPHS *
+-----------------------------------------------*/
+
+p {
+	line-height: 1.5;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.large {
+	font-size: 1.4em;
+}
+
+small,
+.small {
+	font-size: .8em;
+}
+
+.meta {
+	.small;
+	color: @grey;	
+}
+
+b,
+strong {
+	font-weight: 900;
+
+	em {
+		font-style: italic;
+	}
+}
+
+em {
+	font-style: italic;
+}
+
+blockquote {
+	margin: 1em 0;
+    padding-left: 1.5rem;
+    border-left: 5px solid @grey;
+}
+
+.align-center {
+	text-align: center;
+}
+
+.align-left {
+	text-align: left;
+}
+
+.align-right {
+	text-align: right;
+}
