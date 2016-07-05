@@ -201,6 +201,36 @@
   }
 }
 
+@keyframes train2 {
+  0% {
+   left: -10%;
+  }
+
+  100% {
+   left: 200%;
+  }
+}
+
+@keyframes driveleft {
+	0% {
+		right: -10%;
+	}
+
+	100% {
+		right: 150%;
+	}
+}
+
+@keyframes driveright {
+	0% {
+		left: -10%;
+	}
+
+	100% {
+		left: 150%;
+	}
+}
+
 /*PLANE *
 -----------------------------------------------*/
 .svg-plane {
@@ -241,6 +271,25 @@
 
 .smoke4 {
   animation: smoke 1s infinite;
+  animation-delay: 0.7s;
+}
+
+.smoke1-r {
+  animation: smoke 1s infinite reverse ease-out;
+}
+
+.smoke2-r {
+  animation: smoke 1s infinite reverse ease-out;
+  animation-delay: 0.4s;
+}
+
+.smoke3-r {
+  animation: smoke 1s infinite reverse ease-out;
+  animation-delay: 0.2s;
+}
+
+.smoke4-r {
+  animation: smoke 1s infinite reverse ease-out;
   animation-delay: 0.7s;
 }
 
@@ -466,9 +515,10 @@
 	}
 
 	.svg-car1 {
-		left: 25%;
+		left: auto;
 		width: 55px;
     	height: 21px;
+    	animation: driveleft 35s linear infinite;
     	
     	@media @medium {
 			width: auto;
@@ -480,6 +530,7 @@
 		left: 50%;
 		width: 46px;
 		height: 22px;
+    	animation: driveright 35s linear infinite;
 
 
 		@media @medium {
@@ -489,9 +540,11 @@
 	}
 
 	.svg-car3 {
-		left: 60%;
+		left: auto;
 		width: 46px;
 		height: 22px;
+    	animation: driveleft 50s linear infinite;
+    	animation-delay: 1s;
 
 		@media @medium {
 			width: auto;
@@ -537,11 +590,12 @@
 
 	.svg-truck {
 		position: absolute;
-		left: 35%;
+		left: auto;
 		bottom: 0;
 		z-index: 1;
 		width: 70px;
 		height: 28px;
+    	animation: driveleft 80s linear infinite;
 
 		@media @medium {
 			width: auto;
@@ -692,6 +746,19 @@
 		}
 	}
 
+	.svg-car3 {
+		left: auto;
+		width: 46px;
+		height: 22px;
+    	animation: driveleft 35s linear infinite;
+
+
+		@media @medium {
+			width: auto;
+			height: auto;
+		}
+	}
+
 	.svg-arbor {
 		left: 50%;
 		margin-left: -150px;
@@ -746,3 +813,47 @@
 	}
 }
 
+/*FOOTER *
+-----------------------------------------------*/
+
+.scene.scene-footer {
+
+	.svg-house1 {
+		left: 10px;
+		bottom: -2px;
+		z-index: 3;
+	}
+
+	.svg-trees {
+		bottom: -2px;
+		left: 120px;
+		z-index: 3;
+	}
+
+	.svg-house7 {
+		left: 230px;
+		bottom: -2px;
+		z-index: 3;
+	}
+
+	.svg-house4 {
+		left: 360px;
+		bottom: -2px;
+		z-index: 3;
+
+		@media @large {
+			left: auto;
+			right: 50px;
+		}
+	}
+
+	.svg-house3 {
+		left: 400px;
+		bottom: -2px;
+		z-index: 3;
+	}
+
+	.svg-train {
+		animation: train2 30s ease infinite;
+	}
+}

@@ -1433,6 +1433,9 @@ select.standalone svg {
 }
 /*FOOTER *
 -----------------------------------------------*/
+.site-footer {
+  position: relative;
+}
 .site-footer .footer-meta {
   font-size: 0.75em;
 }
@@ -2366,6 +2369,54 @@ p.sponsor span {
     left: 200%;
   }
 }
+@-webkit-keyframes train2 {
+  0% {
+    left: -10%;
+  }
+  100% {
+    left: 200%;
+  }
+}
+@keyframes train2 {
+  0% {
+    left: -10%;
+  }
+  100% {
+    left: 200%;
+  }
+}
+@-webkit-keyframes driveleft {
+  0% {
+    right: -10%;
+  }
+  100% {
+    right: 150%;
+  }
+}
+@keyframes driveleft {
+  0% {
+    right: -10%;
+  }
+  100% {
+    right: 150%;
+  }
+}
+@-webkit-keyframes driveright {
+  0% {
+    left: -10%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+@keyframes driveright {
+  0% {
+    left: -10%;
+  }
+  100% {
+    left: 150%;
+  }
+}
 /*PLANE *
 -----------------------------------------------*/
 .svg-plane {
@@ -2413,6 +2464,28 @@ p.sponsor span {
 .smoke4 {
   -webkit-animation: smoke 1s infinite;
   animation: smoke 1s infinite;
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+.smoke1-r {
+  -webkit-animation: smoke 1s infinite reverse ease-out;
+  animation: smoke 1s infinite reverse ease-out;
+}
+.smoke2-r {
+  -webkit-animation: smoke 1s infinite reverse ease-out;
+  animation: smoke 1s infinite reverse ease-out;
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+.smoke3-r {
+  -webkit-animation: smoke 1s infinite reverse ease-out;
+  animation: smoke 1s infinite reverse ease-out;
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+.smoke4-r {
+  -webkit-animation: smoke 1s infinite reverse ease-out;
+  animation: smoke 1s infinite reverse ease-out;
   -webkit-animation-delay: 0.7s;
   animation-delay: 0.7s;
 }
@@ -2693,9 +2766,11 @@ p.sponsor span {
   }
 }
 .scene.city .svg-car1 {
-  left: 25%;
+  left: auto;
   width: 55px;
   height: 21px;
+  -webkit-animation: driveleft 35s linear infinite;
+  animation: driveleft 35s linear infinite;
 }
 @media screen and (min-width: 38em) {
   .scene.city .svg-car1 {
@@ -2707,6 +2782,8 @@ p.sponsor span {
   left: 50%;
   width: 46px;
   height: 22px;
+  -webkit-animation: driveright 35s linear infinite;
+  animation: driveright 35s linear infinite;
 }
 @media screen and (min-width: 38em) {
   .scene.city .svg-car2 {
@@ -2715,9 +2792,13 @@ p.sponsor span {
   }
 }
 .scene.city .svg-car3 {
-  left: 60%;
+  left: auto;
   width: 46px;
   height: 22px;
+  -webkit-animation: driveleft 50s linear infinite;
+  animation: driveleft 50s linear infinite;
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
 }
 @media screen and (min-width: 38em) {
   .scene.city .svg-car3 {
@@ -2757,11 +2838,13 @@ p.sponsor span {
 }
 .scene.farm .svg-truck {
   position: absolute;
-  left: 35%;
+  left: auto;
   bottom: 0;
   z-index: 1;
   width: 70px;
   height: 28px;
+  -webkit-animation: driveleft 80s linear infinite;
+  animation: driveleft 80s linear infinite;
 }
 @media screen and (min-width: 38em) {
   .scene.farm .svg-truck {
@@ -2912,6 +2995,19 @@ p.sponsor span {
 }
 @media screen and (min-width: 60em) {
 }
+.scene.nebraska-1 .svg-car3 {
+  left: auto;
+  width: 46px;
+  height: 22px;
+  -webkit-animation: driveleft 35s linear infinite;
+  animation: driveleft 35s linear infinite;
+}
+@media screen and (min-width: 38em) {
+  .scene.nebraska-1 .svg-car3 {
+    width: auto;
+    height: auto;
+  }
+}
 .scene.nebraska-1 .svg-arbor {
   left: 50%;
   margin-left: -150px;
@@ -2956,6 +3052,43 @@ p.sponsor span {
   .scene.nebraska-2 .svg-kearney {
     display: block;
   }
+}
+/*FOOTER *
+-----------------------------------------------*/
+.scene.scene-footer .svg-house1 {
+  left: 10px;
+  bottom: -2px;
+  z-index: 3;
+}
+.scene.scene-footer .svg-trees {
+  bottom: -2px;
+  left: 120px;
+  z-index: 3;
+}
+.scene.scene-footer .svg-house7 {
+  left: 230px;
+  bottom: -2px;
+  z-index: 3;
+}
+.scene.scene-footer .svg-house4 {
+  left: 360px;
+  bottom: -2px;
+  z-index: 3;
+}
+@media screen and (min-width: 55em) {
+  .scene.scene-footer .svg-house4 {
+    left: auto;
+    right: 50px;
+  }
+}
+.scene.scene-footer .svg-house3 {
+  left: 400px;
+  bottom: -2px;
+  z-index: 3;
+}
+.scene.scene-footer .svg-train {
+  -webkit-animation: train2 30s ease infinite;
+  animation: train2 30s ease infinite;
 }
 .icon-breakfast {
   background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%3Csvg%20width%3D%2281px%22%20height%3D%2280px%22%20viewBox%3D%220%200%2081%2080%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20xmlns%3Asketch%3D%22http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%2Fns%22%3E%20%20%20%20%20%20%20%20%3Ctitle%3EBitmap%20%2B%20Oval%205%3C%2Ftitle%3E%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%20%20%20%20%3Cdefs%3E%20%20%20%20%20%20%20%20%3Ccircle%20id%3D%22path-1%22%20cx%3D%2240%22%20cy%3D%2240%22%20r%3D%2240%22%3E%3C%2Fcircle%3E%20%20%20%20%3C%2Fdefs%3E%20%20%20%20%3Cg%20id%3D%22Page-1%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20sketch%3Atype%3D%22MSPage%22%3E%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Desktop%22%20sketch%3Atype%3D%22MSArtboardGroup%22%20transform%3D%22translate%28-325.000000%2C%20-1571.000000%29%22%3E%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Info%22%20sketch%3Atype%3D%22MSLayerGroup%22%20transform%3D%22translate%2830.000000%2C%20784.000000%29%22%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Schedule%22%20transform%3D%22translate%2827.000000%2C%20668.000000%29%22%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Keynote-1%22%20transform%3D%22translate%280.000000%2C%20119.000000%29%22%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Bitmap-%2B-Oval-5-%2B-Scruff-McGruff-%2B-KEYNOTE%22%20transform%3D%22translate%28152.000000%2C%200.000000%29%22%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20transform%3D%22translate%28116.500000%2C%200.000000%29%22%20id%3D%22Bitmap-%2B-Oval-5%22%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cmask%20id%3D%22mask-2%22%20sketch%3Aname%3D%22Mask%22%20fill%3D%22white%22%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fmask%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cuse%20id%3D%22Mask%22%20fill%3D%22%23F6D236%22%20sketch%3Atype%3D%22MSShapeGroup%22%20xlink%3Ahref%3D%22%23path-1%22%3E%3C%2Fuse%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M49.3586957%2C42%20L31.0071739%2C42%20C29.995%2C42%2029.173913%2C42.8282895%2029.173913%2C43.8493421%20L29.173913%2C47.0901316%20C27.9732609%2C47.1361842%2025.6078261%2C47.4453947%2023.9493478%2C48.9690789%20C22.5334783%2C50.2730263%2022%2C52.1256579%2022%2C54.4769737%20C22%2C56.8289474%2022.5334783%2C58.6809211%2023.9493478%2C59.9848684%20C25.6104348%2C61.5125%2027.9745652%2C61.8190789%2029.173913%2C61.8638158%20L29.173913%2C64.3684211%20C29.173913%2C65.8157895%2030.3478261%2C67%2031.7826087%2C67%20L49.8908696%2C67%20C51.0113043%2C67%2051.9197826%2C66.0835526%2051.9197826%2C64.9532895%20L51.9197826%2C57.7894737%20L39.7378261%2C57.7894737%20C39.6667391%2C57.7894737%2039.6086957%2C57.7309211%2039.6086957%2C57.6592105%20L39.6086957%2C55.1578947%20L36.3165217%2C55.1578947%20L36.3165217%2C50.5526316%20L44.826087%2C50.5526316%20L44.826087%2C51.2105263%20L47.4347826%2C51.2105263%20L47.4347826%2C51.8684211%20L50.6956522%2C51.8684211%20L50.6956522%2C53.8421053%20L51.3478261%2C53.8421053%20L51.3478261%2C55.1578947%20L52%2C55.1578947%20L52%2C44.5828947%20C52%2C43.1625%2050.7673913%2C42%2049.3586957%2C42%20L49.3586957%2C42%20Z%20M29.173913%2C59.2361842%20C28.3463043%2C59.1960526%2026.7152174%2C58.9855263%2025.69%2C58.0355263%20C24.8447826%2C57.2506579%2024.6002174%2C56.0539474%2024.6002174%2C54.4769737%20C24.6002174%2C52.9006579%2024.8447826%2C51.7039474%2025.69%2C50.9190789%20C26.7171739%2C49.9657895%2028.348913%2C49.7532895%2029.173913%2C49.7138158%20L29.173913%2C59.2361842%20L29.173913%2C59.2361842%20Z%22%20id%3D%22Imported-Layers%22%20fill%3D%22%23C09801%22%20sketch%3Atype%3D%22MSShapeGroup%22%20mask%3D%22url%28%23mask-2%29%22%3E%3C%2Fpath%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M42.125%2C9%20C41.4018125%2C9%2040.8125%2C9.4623913%2040.8125%2C10.181087%20L40.8125%2C16.4869565%20C40.8125%2C17.5623913%2039.668%2C18.7826087%2038.5858438%2C18.7826087%20L33.35225%2C18.7826087%20C30.8276563%2C18.7826087%2029%2C20.4573913%2029%2C22.9663043%20C29%2C25.4752174%2030.8276563%2C27.2608696%2033.35225%2C27.2608696%20L44.69225%2C27.2608696%20C45.7744062%2C27.2608696%2046.6544375%2C28.3923913%2046.6544375%2C29.4678261%20C46.6544375%2C30.5432609%2045.7744062%2C31.4178261%2044.69225%2C31.4178261%20L43.3836875%2C31.4178261%20C40.8590937%2C31.4178261%2038.84375%2C33.4597826%2038.84375%2C35.9686957%20L38.84375%2C37.4863043%20C38.84375%2C38.205%2039.38975%2C39%2040.1129375%2C39%20C40.836125%2C39%2041.4208438%2C38.205%2041.4208438%2C37.4863043%20L41.4208438%2C35.9686957%20C41.4208438%2C34.8932609%2042.3015313%2C34.0186957%2043.3836875%2C34.0186957%20L44.69225%2C34.0186957%20C47.2168438%2C34.0186957%2049.2715625%2C31.9767391%2049.2715625%2C29.4678261%20C49.2715625%2C26.958913%2047.2168438%2C24.6521739%2044.69225%2C24.6521739%20L33.35225%2C24.6521739%20C32.2700938%2C24.6521739%2031.625%2C24.0417391%2031.625%2C22.9663043%20C31.625%2C21.8908696%2032.2700938%2C21.3913043%2033.35225%2C21.3913043%20L38.5858438%2C21.3913043%20C41.1104375%2C21.3913043%2043.4375%2C18.9743478%2043.4375%2C16.4654348%20L43.4375%2C10.181087%20C43.4375%2C9.4623913%2042.8481875%2C9%2042.125%2C9%22%20id%3D%22Imported-Layers%22%20fill%3D%22%23FFFFFF%22%20sketch%3Atype%3D%22MSShapeGroup%22%20mask%3D%22url%28%23mask-2%29%22%3E%3C%2Fpath%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%20%20%20%20%20%20%20%20%3C%2Fg%3E%20%20%20%20%3C%2Fg%3E%3C%2Fsvg%3E');
