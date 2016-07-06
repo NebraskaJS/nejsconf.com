@@ -1,8 +1,10 @@
-grunt stage;
-echo "Note: Requires an \'nejsconf\' host in .ssh/config";
 # Run this as ./deploy.sh clobber to overwrite remote config with local
 # By default this script will sync the remote config to local before deploy
 if [ "$1" != "clobber" ]; then
-scp nejsconf:/home/public/config.php ./_site/config.php
+	echo "# Saving config"
+	scp nejsconf.com:/home/public/register/config.php ./_site/register/config.php
 fi
-rsync -avz ssh ./_site/ nejsconf:/home/public/
+echo "# Syncing Files"
+rsync -avz ssh ./_site/ nejsconf.com:/home/public/
+echo "# Updating Composer"
+ssh nejsconf.com 'cd /home/public/register && /usr/local/bin/php composer.phar install'
