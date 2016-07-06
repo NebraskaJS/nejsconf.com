@@ -220,9 +220,6 @@ title: Register
 			Contact us at <a href="mailto:tickets@nejsconf.com">tickets@nejsconf.com</a> or on Twitter <a href="https://twitter.com/nejsconf">@nejsconf</a>.
 		</p>
 
-		<h2 style="text-align: left;">Early Bird Pricing!</h2>
-		<p>A limited number of Early Bird Tickets are available and will be sold on a first come first serve basis! Once they’re gone, the full ticket price ($240) will be applied.</p>
-
 		<hr/>
 
       <fieldset>
