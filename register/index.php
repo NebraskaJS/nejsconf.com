@@ -11,7 +11,7 @@ title: Register
   $config = require 'config.php';
 
   use SparkPost\SparkPost;
-	use Ivory\HttpAdapter\CurlHttpAdapter;
+    use Ivory\HttpAdapter\CurlHttpAdapter;
 
   $mysql = new mysqli($config['mysql']['hostname'], $config['mysql']['username'], $config['mysql']['password'], $config['mysql']['database']);
  
@@ -120,36 +120,36 @@ title: Register
             ),
           ));
 
-					$httpAdapter = new CurlHttpAdapter();
-					$sparkpost = new SparkPost($httpAdapter, ['key' => $config['sparkpost']['api_key']]);
+          $httpAdapter = new CurlHttpAdapter();
+          $sparkpost = new SparkPost($httpAdapter, ['key' => $config['sparkpost']['api_key']]);
 
-					foreach($attendee_data as $attendee) {
-						try {
-							$results = $sparkpost->transmission->send([
-								'from'=>[
-									'name' => 'NEJS Conf',
-									'email' => 'tickets@nejsconf.com'
-								],
-								'html' => file_get_contents('register.template'),
-								'substitutionData' => $attendee,
-								'subject' => 'NEJS Conf 2016 Registration',
-								'recipients' => [
-									[
-										'address' => [
-											'name' => arr_get($attendee, 'first_name'),
-											'email'=> arr_get($attendee, 'email')
-										]
-									]
-								]
-							]);
-						}
-						catch (\Exception $err) {
-							error_log("Mandrill error sending results to " . arr_get($attendee, 'email', '?') . ": " . $err);
-						}
-					}
+          foreach($attendee_data as $attendee) {
+              try {
+                  $results = $sparkpost->transmission->send([
+                      'from'=>[
+                          'name' => 'NEJS Conf',
+                          'email' => 'tickets@nejsconf.com'
+                      ],
+                      'html' => file_get_contents('register.template'),
+                      'substitutionData' => $attendee,
+                      'subject' => 'NEJS Conf 2016 Registration',
+                      'recipients' => [
+                          [
+                              'address' => [
+                                  'name' => arr_get($attendee, 'first_name'),
+                                  'email'=> arr_get($attendee, 'email')
+                              ]
+                          ]
+                      ]
+                  ]);
+              }
+              catch (\Exception $err) {
+                  error_log("SparkPost error sending results to " . arr_get($attendee, 'email', '?') . ": " . $err);
+              }
+          }
 
           $statement = $mysql->prepare("INSERT INTO `sales` (`charge_id`, `email`, `tickets`, `coupon_code`, `price`, `total`) VALUES (?, ?, ?, ?, ?, ?)");
-          if(!$statement) {
+          if(! $statement) {
             die($mysql->error);
           }
           $charge_id = $charge['id'];
@@ -158,9 +158,12 @@ title: Register
           $sale_id = $statement->insert_id;
           $statement->close();
 
-          $statement = $mysql->prepare("INSERT INTO `tickets` (`sale_id`, `first_name`, `last_name`, `email`, `twitter`, `company`, `job_title`, `shirt_size`, `dietary`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+          $statement = $mysql->prepare("INSERT INTO `tickets` (`sale_id`, `first_name`, `last_name`, `email`, `twitter`, `company`, `job_title`, `shirt_size`, `dietary`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+          if(! $statement) {
+            die($mysql->error);
+          }
           foreach($attendee_data as $attendee) {
-            $statement->bind_param('isssssss', $sale_id, $attendee['first_name'], $attendee['last_name'], $attendee['email'], $attendee['twitter'], $attendee['company'], $attendee['job_title'], $attendee['shirt_size'], $attendee['dietary']);
+            $statement->bind_param('issssssss', $sale_id, $attendee['first_name'], $attendee['last_name'], $attendee['email'], $attendee['twitter'], $attendee['company'], $attendee['job_title'], $attendee['shirt_size'], $attendee['dietary']);
             $statement->execute();
           }
           $statement->close();
@@ -192,9 +195,9 @@ title: Register
       </p>
 </section>
 <section class="share align-center">
-			<h2><span>Tell your friends!</span></h2>
-			<a href="https://twitter.com/intent/tweet?text=I%27m%20going%20to%20%40nejsconf%20this%20year!" class="btn-secondary icon-twitter"><svg class="icon-twitter"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-twitter"></use></svg>Twitter</a>
-			<a href="https://www.facebook.com/sharer/sharer.php?u=https://www.nejsconf.com/" class="btn-secondary icon-facebook"><svg class="icon-facebook"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-facebook"></use></svg>Facebook</a>
+            <h2><span>Tell your friends!</span></h2>
+            <a href="https://twitter.com/intent/tweet?text=I%27m%20going%20to%20%40nejsconf%20this%20year!" class="btn-secondary icon-twitter"><svg class="icon-twitter"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-twitter"></use></svg>Twitter</a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.nejsconf.com/" class="btn-secondary icon-facebook"><svg class="icon-facebook"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-facebook"></use></svg>Facebook</a>
   <?php
     }
     else {
@@ -202,25 +205,25 @@ title: Register
 
   <form method="POST" id="register_form">
 
-		<h2 style="text-align: left;">Conference passes&nbsp;include:</h2>
-		<p>
-			<ul>
-				<li>Awesome talks by amazing speakers!</li>
-				<li>Museum admission for the day</li>
-				<li>Tasty lunch!</li>
-				<li>NEJS Conf 2016 T-Shirt</li>
-				<li>Snacks &amp; drinks throughout the day</li>
-				<li>Dinner at the after party</li>
-				<li>Old fashioned soda fountain at the after party!</li>
-			</ul>
-		</p>
+        <h2 style="text-align: left;">Conference passes&nbsp;include:</h2>
+        <p>
+          <ul>
+            <li>Awesome talks by amazing speakers!</li>
+            <li>Museum admission for the day</li>
+            <li>Tasty lunch!</li>
+            <li>NEJS Conf 2016 T-Shirt</li>
+            <li>Snacks &amp; drinks throughout the day</li>
+            <li>Dinner at the after party</li>
+            <li>Old fashioned soda fountain at the after party!</li>
+          </ul>
+        </p>
 
-		<h2 style="text-align: left;">Questions?</h2>
-		<p>
-			Contact us at <a href="mailto:tickets@nejsconf.com">tickets@nejsconf.com</a> or on Twitter <a href="https://twitter.com/nejsconf">@nejsconf</a>.
-		</p>
+        <h2 style="text-align: left;">Questions?</h2>
+        <p>
+            Contact us at <a href="mailto:tickets@nejsconf.com">tickets@nejsconf.com</a> or on Twitter <a href="https://twitter.com/nejsconf">@nejsconf</a>.
+        </p>
 
-		<hr/>
+        <hr/>
 
       <fieldset>
         <label for="number_of_tickets">Quantity</label>
@@ -288,7 +291,7 @@ title: Register
       <?php endfor; ?>
       </div>
 
-			<hr/>
+            <hr/>
 
       <fieldset>
         <legend>Coupon</legend>
@@ -299,10 +302,10 @@ title: Register
         </div>
       </fieldset>
       <div class="total">
-				<p class="note">
-					Are you a student? We do offer a heavily discounted coupon code for students (valid Student ID required upon&nbsp;admission).<br/><br/>
-					<a href="https://twitter.com/intent/tweet?text=%40nejsconf%20Hook%20me%20up%20with%20the%20Student%20coupon%20code%20!">Send us a tweet</a> for the code!
-				</p>
+                <p class="note">
+                    Are you a student? We do offer a heavily discounted coupon code for students (valid Student ID required upon&nbsp;admission).<br/><br/>
+                    <a href="https://twitter.com/intent/tweet?text=%40nejsconf%20Hook%20me%20up%20with%20the%20Student%20coupon%20code%20!">Send us a tweet</a> for the code!
+                </p>
       </div>
 
       <div class="total align-center">
@@ -351,11 +354,11 @@ title: Register
 
       </fieldset>
 
-		<fieldset>
-			<button type="submit" class="btn-primary">Purchase Tickets</button>
-		</fieldset>
+        <fieldset>
+            <button type="submit" class="btn-primary">Purchase Tickets</button>
+        </fieldset>
 
-	</form>
+    </form>
 
 <script type="text/html" id="ticket_block_template">
 <legend>Attendee #{{block_number}}</legend>
