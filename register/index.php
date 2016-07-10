@@ -57,7 +57,7 @@ title: Register
       // Validate Coupon Code
       if(($coupon_code = arr_get($_POST, 'coupon_code')) != null) {
         $coupon_price = arr_get($config['checkout']['coupons'], $coupon_code);
-        if(null == $coupon_price) {
+        if(null === $coupon_price) {
           $coupon_code = null;
         }
         else {
