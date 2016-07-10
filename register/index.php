@@ -17,7 +17,8 @@ title: Register
  
   if($mysql->connect_errno > 0) {
     // TODO: More graceful death.
-    die('Unable to connect to database [' . $mysql->connect_error . ']');
+    error_log('MySQL Conenct Error: ' . $mysql->connect_error . "\n");
+    die('Unable to connect to database.');
   }
 
   $query = $mysql->query('SELECT COUNT(*) FROM `tickets`');
@@ -164,7 +165,9 @@ title: Register
           }
           foreach($attendee_data as $attendee) {
             $statement->bind_param('issssssss', $sale_id, $attendee['first_name'], $attendee['last_name'], $attendee['email'], $attendee['twitter'], $attendee['company'], $attendee['job_title'], $attendee['shirt_size'], $attendee['dietary']);
-            $statement->execute();
+            if(FALSE === $statement->execute()) {
+              error_log('Could not store attendee: ' . print_r($attendee, TRUE) . "\n");
+            }
           }
           $statement->close();
 
