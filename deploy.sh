@@ -1,15 +1,18 @@
 #!/bin/bash
 set -o errexit
+COMPRESSOR="gzip -9"
+if [ "$(which zopfli)" ]; then 
+	COMPRESSOR="zopfli"
+fi
 set -o xtrace
-# Run this as ./deploy.sh clobber to overwrite remote config with local
-# By default this script will sync the remote config to local before deploy
 
 jekyll clean
 gulp
 
-if [ "$1" != "clobber" ]; then
-	rsync -avz --exclude config.php --exclude vendor ./_site/ nejsconf.com:/home/public/
-else
-	rsync -avz --exclude vendor ./_site/ nejsconf.com:/home/public/
-fi
+find _site/ -name '*.html' -o -name '*.css' \
+         -o -name '.js'    -o -name '.jpg' \
+         -o -name '.png'   -o -name '.svg' \
+     | xargs -I {} sh -c "$COMPRESSOR {} -c > {}.zgz"
+
+rsync -avz --exclude config.php --exclude vendor ./_site/ nejsconf.com:/home/public/
 ssh nejsconf.com 'cd /home/public/register && /usr/local/bin/php composer.phar install'
