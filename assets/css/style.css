@@ -732,6 +732,17 @@ blockquote {
 .align-right {
   text-align: right;
 }
+span.bullet {
+  color: #aaa;
+  font-size: 0.5em;
+  vertical-align: middle;
+  padding: 0 0.5em;
+}
+.speaker-container h2,
+.speaker-container h3,
+.speaker-container h4 {
+  text-align: left;
+}
 /*BUTTONS *
 -----------------------------------------------*/
 .btn-primary {
