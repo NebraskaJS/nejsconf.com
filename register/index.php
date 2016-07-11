@@ -97,8 +97,10 @@ title: Register
       }
 
       $receipt_email = trim(arr_get($_POST, 'receipt_email', ''));
-      if(! (filter_var($receipt_email, FILTER_VALIDATE_EMAIL) && preg_match('/@.+\./', $receipt_email)) ) {
-        $form_errors['receipt_email'] = 'An email is required.';
+      if( $ticket_price !== 0 ) {
+        if(! (filter_var($receipt_email, FILTER_VALIDATE_EMAIL) && preg_match('/@.+\./', $receipt_email)) ) {
+          $form_errors['receipt_email'] = 'An email is required.';
+        }
       }
 
       if(0 == count($form_errors)) {
@@ -108,18 +110,25 @@ title: Register
         $total_as_pennies = $ticket_price_as_pennies * $number_of_tickets;
 
         try {
-          $charge = \Stripe\Charge::create(array(
-            "amount"        => $total_as_pennies,
-            "currency"      => "usd",
-            "source"        => $stripe_token,
-            "description"   => "$number_of_tickets NEJSCONF 2016 Tickets",
-            "receipt_email" => $receipt_email,
-            "metadata"      => array(
-              "coupon_code"       => $coupon_code,
-              "ticket_price"      => $ticket_price,
-              "number_of_tickets" => $number_of_tickets,
-            ),
-          ));
+
+          if( $ticket_price > 0 ) {
+            $charge = \Stripe\Charge::create(array(
+              "amount"        => $total_as_pennies,
+              "currency"      => "usd",
+              "source"        => $stripe_token,
+              "description"   => "$number_of_tickets NEJSCONF 2016 Tickets",
+              "receipt_email" => $receipt_email,
+              "metadata"      => array(
+                "coupon_code"       => $coupon_code,
+                "ticket_price"      => $ticket_price,
+                "number_of_tickets" => $number_of_tickets,
+              ),
+            ));
+            $charge_id = $charge['id'];
+          }
+          else {
+            $charge_id = 'NO_CHARGE';
+          }
 
           $httpAdapter = new CurlHttpAdapter();
           $sparkpost = new SparkPost($httpAdapter, ['key' => $config['sparkpost']['api_key']]);
@@ -151,16 +160,20 @@ title: Register
 
           $statement = $mysql->prepare("INSERT INTO `sales` (`charge_id`, `email`, `tickets`, `coupon_code`, `price`, `total`) VALUES (?, ?, ?, ?, ?, ?)");
           if(! $statement) {
+            error_log('MySQL Error: ' . $mysql->error . "\n");
             die($mysql->error);
           }
-          $charge_id = $charge['id'];
+
           $statement->bind_param('ssisii', $charge_id, $receipt_email, $number_of_tickets, $coupon_code, $ticket_price_as_pennies, $total_as_pennies);
-          $statement->execute();
+          if( FALSE === $statement->execute() ) {
+            error_log('Error saving sale: ' . $mysql->error . ' ' . $charge_id . ' ' . $receipt_email . "\n");
+          }
           $sale_id = $statement->insert_id;
           $statement->close();
 
           $statement = $mysql->prepare("INSERT INTO `tickets` (`sale_id`, `first_name`, `last_name`, `email`, `twitter`, `company`, `job_title`, `shirt_size`, `dietary`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
           if(! $statement) {
+            error_log('MySQL Error: ' . $mysql->error . "\n");
             die($mysql->error);
           }
           foreach($attendee_data as $attendee) {
@@ -316,7 +329,7 @@ title: Register
         $<span id="current_price"><?php echo $ticket_price; ?></span> &times; <span id="ticket_count"><?php echo $number_of_tickets; ?></span> = <span id="ticket_total">$<?php echo $ticket_price * $number_of_tickets; ?></span>
       </div>
 
-      <fieldset>
+      <fieldset id="payment">
         <legend>Payment</legend>
 
         <div class="payment-errors"><?php if($stripe_error) { echo htmlspecialchars($stripe_error); } ?></div>
@@ -443,7 +456,15 @@ title: Register
         }
         if( data['price'] < 0 ) {
           current_ticket_price = original_ticket_price + data['price'];
+          $('#creditcard, #cvc, #exp-month, #exp-year').attr('disabled', false);
+          $('#payment').show();
+        } else if ( data['price'] == 0 ) {
+          current_ticket_price = 0;
+          $('#creditcard, #cvc, #exp-month, #exp-year').val('').attr('disabled', true);
+          $('#payment').hide();
         } else {
+          $('#creditcard, #cvc, #exp-month, #exp-year').attr('disabled', false);
+          $('#payment').show();
           current_ticket_price = data['price'];
         }
 
@@ -481,14 +502,14 @@ title: Register
             errors = true;
           }
         }
-        else if ( validates == 'creditcard' ) {
+        else if ( validates == 'creditcard' && current_ticket_price > 0 ) {
           if( ! Stripe.card.validateCardNumber(value) ) {
             $wrapper.addClass('error');
             $errorMessage.text('A valid credit card number is required.');
             errors = true;
           }
         }
-        else if ( validates == 'cvc' ) {
+        else if ( validates == 'cvc' && current_ticket_price > 0 ) {
           if( ! Stripe.card.validateCVC(value) ) {
             $wrapper.addClass('error');
             $errorMessage.text('A valid CVC is required.');
@@ -498,11 +519,13 @@ title: Register
       });
 
       if( ! errors ) {
-        Stripe.card.createToken(this, stripeResponseHandler);
+        if( current_ticket_price > 0 ) {
+          Stripe.card.createToken(this, stripeResponseHandler);
+        }
         $form.find('button').prop('disabled', true);
       }
 
-      return false;
+      return ( current_ticket_price == 0 );
     });
 
     function stripeResponseHandler(status, response) {

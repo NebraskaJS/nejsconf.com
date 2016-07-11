@@ -1258,6 +1258,10 @@ select.standalone:active {
 select.standalone svg {
   fill: #ffffff;
 }
+html input[disabled] {
+  background-color: #d7d7d7;
+  box-shadow: inset 0 2px 2px 0 #c4c4c4;
+}
 /*HEADER *
 -----------------------------------------------*/
 .header-title {
