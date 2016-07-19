@@ -7,6 +7,6 @@ permalink: /speakers/keynote-justin-searls/
 
 <p><div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/searls.jpg" alt="Justin Searls"></div></p>
 
-<p>Justin Searls is the co-founder of Test Double, which seeks to improve how the world writes software.  He is a strong advocate for TDD, and is behind the minimal test double library, <a href="https://github.com/testdouble/testdouble.js">testdouble.js</a>, zero-config test runner <a href="https://github.com/testdouble/teenytest">teenytest</a>, and other great projects like <a href="https://github.com/testdouble/scripty">scripty</a>.</p>
+<p>Nobody knows bad code like Justin Searls. Relative to his peers, he is able to produce bad code effortlessly. He spends so much time with bad code, that he's got a lot of experience thinking and talking about some of the reasons the industry has gotten so good at producing bad software. In 2011, Justin and Todd Kaufman founded <a href="http://testdouble.com">Test Double</a>, an agency dedicated to identifying what's broken about software and what we can collectively do to fix it.</p>
 
 <p class="align-center"><a href="https://twitter.com/searls">@searls</a> <span class="bullet">&bull;</span> <a href="http://searls.testdouble.com/">searls.testdouble.com</a></p>
