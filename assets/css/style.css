@@ -1516,7 +1516,7 @@ html input[disabled] {
 }
 @media (min-width: 48em) {
   .menu li {
-    width: 16.666666667%;
+    width: 20%;
   }
 }
 .menu li:before {
