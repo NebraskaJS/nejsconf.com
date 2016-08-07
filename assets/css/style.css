@@ -1805,6 +1805,7 @@ hr.border-small {
 .person .name {
   color: #c09801;
   border: none;
+  text-align: left;
   margin-bottom: 0.25em;
 }
 .person .title {
@@ -1927,9 +1928,6 @@ hr.border-small {
     width: 67%;
   }
   .schedule .schedule-text {
-    text-align: left;
-  }
-  .schedule .name {
     text-align: left;
   }
 }
