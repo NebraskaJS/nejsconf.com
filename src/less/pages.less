@@ -57,7 +57,8 @@
 -----------------------------------------------*/
 
 .person {
-    margin-bottom: 2em;
+    margin-bottom: 1em;
+    padding-top: 1em;
 
     a {
     	text-decoration: none;
@@ -105,19 +106,17 @@
 }
 
 .person .name {
-    color: @white;
+    color: @yellow-darker;
     border: none;
     margin-bottom: 0.25em;
 }
 
 .person .title {
-	text-align: center;
     font-size: 18px;
     letter-spacing: 1px;
     line-height: 105%;
-    color: @yellow-darker;
+    color: @black;
 }
-
 
 .speaker {
     mix-blend-mode: luminosity;
@@ -128,7 +127,7 @@
 }
 
 .person:hover .speaker {
-    background-color: white;
+    background-color: @yellow;
     mix-blend-mode: initial;
 }
 
@@ -138,6 +137,84 @@
 
 .speaker-list {
 	.cf;
+}
+
+.schedule {
+
+  .person {
+    border-top: 1px dotted @grey-light;
+    .cf;
+  }
+
+  .time {
+    display: block;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.3em;
+  }
+
+  .person:before {
+    content: none;
+  }
+
+  .speaker-link {
+    .vertical-align;
+  }
+
+  .schedule-text {
+    font-size: 1.3em;
+    display: block;
+    text-align: center;
+  }
+
+  .avatar {
+    float: left;
+    width: 30%;
+  }
+
+  .speaker-info {
+    padding-left: 1em;
+    float: left;
+    width: 70%;
+  }
+
+  @media @medium {
+    .person {
+      .vertical-align;
+      border-top: 0;
+    }
+
+    .time {
+      display: inline;
+      float: left;
+      width: 25%;
+      text-align: right;
+      padding-right: 1em;
+    }
+
+    .speaker-link {
+      float: left;
+      width: 75%;
+    }
+
+    .avatar {
+      float: left;
+      width: 33%;
+    }
+
+    .speaker-info {
+      text-align: left;
+      width: 67%;
+    }
+
+    .schedule-text {
+      text-align: left;
+    }
+
+    .name {
+      text-align: left;
+    }
+  }
 }
 
 .speaker-list > li {

@@ -32,7 +32,7 @@ layout: default
 	<nav role="navigation" class="nav bg-yellow-light">
 		<ul class="menu cf">
 			<li><a href="#details">Details</a></li>
-			<li><a href="#speakers">Speakers</a></li>
+			<li><a href="#schedule">Schedule</a></li>
 			<li><a href="#venue">Venue</a></li>
 			<li><a href="#news">News</a></li>
 			<li><a href="#sponsors">Sponsors</a></li>
@@ -85,7 +85,7 @@ layout: default
 		</div>
 	</section>
 
-	<section class="section cf bg-yellow lg-padding" id="speakers">
+	<section class="section cf bg-yellow lg-padding" id="schedule">
 		<div class="scene farm">
 			<div class="svg-corn corn1">{% include svg-corn.html %}</div>
 			<div class="svg-truck">{% include svg-truck.html %}</div>
@@ -97,63 +97,124 @@ layout: default
 			<div class="svg-windmill">{% include svg-windmill.html %}</div>
 		</div>
 		<div class="wrapper">
-			<h1 class="section-title">Speakers</h1>
-			<ul class="speaker-list home-content">
-				<li class="person">
-					<a href="/speakers/keynote-justin-searls/">
-						<div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/searls.jpg" alt="Justin Searls"></div>
-						<div><h3 class="name">Justin Searls</h3></div>
-					</a>
-				</li>
-				<li class="person">
-					<a href="/speakers/keynote-andrea-goulet/">
-						<div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/andreagoulet.jpg" alt="Andrea Goulet"></div>
-						<div><h3 class="name">Andrea Goulet</h3></div>
-					</a>
-				</li>
-				<li class="person">
-					<a href="/speakers/sean-larkin/">
-						<div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/sean-larkin.jpg" alt="Sean Larkin"></div>
-						<div><h3 class="name">Sean Larkin</h3></div>
-					</a>
-				</li>
-				<li class="person">
-					<a href="/speakers/andrew-cassell/">
-						<div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/andrew-cassell.jpg" alt="Andrew Cassell"></div>
-						<div><h3 class="name">Andrew Cassell</h3></div>
-					</a>
-				</li>
-				<li class="person">
-					<a href="/speakers/zeno-rocha/">
-						<div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/zeno-rocha.jpg" alt="Zeno Rocha"></div>
-						<div><h3 class="name">Zeno Rocha</h3></div>
-					</a>
-				</li>
-				<li class="person">
-					<a href="/speakers/jennifer-wong/">
-						<div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/jennifer-wong.jpg" alt="Jennifer Wong"></div>
-						<div><h3 class="name">Jennifer Wong</h3></div>
-					</a>
-				</li>
-				<li class="person">
-					<a href="/speakers/john-k-paul/">
-						<div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/john-k-paul.jpg" alt="John K. Paul"></div>
-						<div><h3 class="name">John K. Paul</h3></div>
-					</a>
-				</li>
-				<li class="person">
-					<a href="/speakers/nicholas-mackey/">
-						<div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/nicholas-mackey.jpg" alt="Nicholas Mackey"></div>
-						<div><h3 class="name">Nicholas Mackey</h3></div>
-					</a>
-				</li>
-				<li class="person">
-					<a href="/speakers/patrick-kettner/">
-						<div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/patrick-kettner.jpg" alt="Patrick Kettner"></div>
-						<div><h3 class="name">Patrick Kettner</h3></div>
-					</a>
-				</li>
-			</ul>
+			<h1 class="section-title">Schedule</h1>
+      <div class="container home-content">
+        <h2>August 25</h2>
+        <ul class="schedule">
+          <li class="person">
+            <span class="time">9PM</span>
+            <p class="speaker-link schedule-text">Informal pre-party at <a href="http://www.localbeer.co/">LOCAL Beer, Patio, and Kitchen</a></p>
+          </li>
+        </ul>
+        <h2>August 26</h2>
+        <ul class="schedule">
+          <li class="person">
+            <span class="time">8AM</span>
+            <p class="speaker-link schedule-text">Registration</p>
+          </li>
+          <li class="person">
+            <span class="time">9AM</span>
+            <p class="speaker-link schedule-text">Welcome/Introductions</p>
+          </li>
+          <li class="person">
+            <span class="time">9:15AM</span>
+            <a href="/speakers/keynote-justin-searls/" class="speaker-link">
+              <div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/searls.jpg" alt="Justin Searls"></div>
+              <div class="speaker-info">
+                <h3 class="name">Justin Searls</h3>
+                <p class="title">Keynote</p>
+              </div>
+            </a>
+          </li>
+          <li class="person">
+            <span class="time">10AM</span>
+            <a href="/speakers/john-k-paul/" class="speaker-link">
+              <div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/john-k-paul.jpg" alt="John K. Paul"></div>
+              <div class="speaker-info">
+                <h3 class="name">John K. Paul</h3>
+                <p class="title">JS Debuggers: Our flashlights in the dark woods</p>
+              </div>
+            </a>
+          </li>
+          <li class="person">
+            <span class="time">11AM</span>
+            <a href="/speakers/sean-larkin/" class="speaker-link">
+              <div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/sean-larkin.jpg" alt="Sean Larkin"></div>
+              <div class="speaker-info">
+                <h3 class="name">Sean Larkin</h3>
+                <p class="title">Webpack: The Core&nbsp;Concepts</p>
+              </div>
+            </a>
+          </li>
+          <li class="person">
+            <span class="time">11:30AM</span>
+            <a href="/speakers/andrew-cassell/" class="speaker-link">
+              <div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/andrew-cassell.jpg" alt="Andrew Cassell"></div>
+              <div class="speaker-info">
+                <h3 class="name">Andrew Cassell</h3>
+                <p class="title">Virtual Reality and Augmented Reality Web&nbsp;Apps</p>
+              </div>
+            </a>
+          </li>
+          <li class="person">
+            <span class="time">12:30PM</span>
+            <p class="speaker-link schedule-text">Lunch (Provided)</p>
+          </li>
+          <li class="person">
+            <span class="time">1:30PM</span>
+            <a href="/speakers/zeno-rocha/" class="speaker-link">
+              <div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/zeno-rocha.jpg" alt="Zeno Rocha"></div>
+              <div class="speaker-info">
+                <h3 class="name">Zeno Rocha</h3>
+                <p class="title">Web APIs You Didn’t Know&nbsp;Existed</p>
+              </div>
+            </a>
+          </li>
+          <li class="person">
+            <span class="time">2PM</span>
+            <a href="/speakers/jennifer-wong/" class="speaker-link">
+              <div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/jennifer-wong.jpg" alt="Jennifer Wong"></div>
+              <div class="speaker-info">
+                <h3 class="name">Jennifer Wong</h3>
+                <p class="title">I Think I Know What You’re Talking About, But I’m Not&nbsp;Sure</p>
+              </div>
+            </a>
+          </li>
+          <li class="person">
+            <span class="time">2:30PM</span>
+            <a href="/speakers/nicholas-mackey/" class="speaker-link">
+              <div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/nicholas-mackey.jpg" alt="Nicholas Mackey"></div>
+              <div class="speaker-info">
+                <h3 class="name">Nicholas Mackey</h3>
+                <p class="title">Decorate The World</p>
+              </div>
+            </a>
+          </li>
+          <li class="person">
+            <span class="time">3:30PM</span>
+            <a href="/speakers/patrick-kettner/" class="speaker-link">
+              <div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/patrick-kettner.jpg" alt="Patrick Kettner"></div>
+              <div class="speaker-info">
+                <h3 class="name">Patrick Kettner</h3>
+                <p class="title">Modern Websites for the Modern&nbsp;Web</p>
+              </div>
+            </a>
+          </li>
+          <li class="person">
+            <span class="time">4PM</span>
+            <a href="/speakers/keynote-andrea-goulet/" class="speaker-link">
+              <div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/andreagoulet.jpg" alt="Andrea Goulet"></div>
+              <div class="speaker-info">
+                <h3 class="name">Andrea Goulet</h3>
+                <p class="title">Keynote</p> </div>
+            </a>
+          </li>
+          <li class="person">
+            <span class="time">5PM</span>
+            <p class="speaker-link schedule-text">Dinner (Provided) and After Party</p>
+          </li>
+        </ul>
+      </div>
 		</div>
 	</section>
 
