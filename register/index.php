@@ -74,7 +74,7 @@ title: Register
           'twitter'    => trim(arr_get($_POST, 'twitter_' . $i, '')),
           'company'    => trim(arr_get($_POST, 'company_' . $i, '')),
           'job_title'  => trim(arr_get($_POST, 'job_title_' . $i, '')),
-          'shirt_size' => trim(arr_get($_POST, 'shirt_size_' . $i, '')),
+          'shirt_size' => 'NONE',
           'dietary'    => trim(arr_get($_POST, 'dietary_' . $i, '')),
         );
         $attendee_data[$i] = $attendee;
@@ -227,7 +227,6 @@ title: Register
             <li>Awesome talks by amazing speakers!</li>
             <li>Museum admission for the day</li>
             <li>Tasty lunch!</li>
-            <li>NEJS Conf 2016 T-Shirt</li>
             <li>Snacks &amp; drinks throughout the day</li>
             <li>Dinner at the after party</li>
             <li>Old fashioned soda fountain at the after party!</li>
@@ -288,15 +287,6 @@ title: Register
           <div class="form_field">
             <label for="job_title_<?php echo $i; ?>">Job Title</label>
             <input id="job_title_<?php echo $i; ?>" name="job_title_<?php echo $i; ?>" type="text" value="<?php echo htmlspecialchars(arr_get($_POST, "job_title_" . $i)); ?>" />
-          </div>
-
-          <label for="shirt_size_<?php echo $i; ?>">T-Shirt Size</label>
-          <div class="select-css-button select-css">
-            <select id="shirt_size_<?php echo $i; ?>" name="shirt_size_<?php echo $i; ?>">
-              <?php foreach(array('Extra Small (Unisex/Mens)', 'Small (Unisex/Mens)', 'Medium (Unisex/Mens)', 'Large (Unisex/Mens)', 'Extra Large (Unisex/Mens)', 'XXL (Unisex/Mens)', 'Extra Small (Womens)', 'Small (Womens)', 'Medium (Womens)', 'Large (Womens)', 'Extra Large (Womens)', 'XXL (Womens)') as $size): ?>
-              <option<?php if(arr_get($_POST, 'shirt_size_' . $i, 'Medium') == $size):?> selected="selected"<?php endif; ?>><?php echo $size; ?></option>
-              <?php endforeach; ?>
-            </select>
           </div>
 
           <div class="form_field">
@@ -416,14 +406,6 @@ title: Register
   <input id="dietary_{{block_number}}" name="dietary_{{block_number}}" type="text" maxlength="255" />
 </div>
 
-<label for="shirt_size_{{block_number}}">T-Shirt Size</label>
-<div class="select-css-button select-css">
-  <select id="shirt_size_{{block_number}}" name="shirt_size_{{block_number}}">
-    <?php foreach(array('Extra Small (Unisex/Mens)', 'Small (Unisex/Mens)', 'Medium (Unisex/Mens)', 'Large (Unisex/Mens)', 'Extra Large (Unisex/Mens)', 'XXL (Unisex/Mens)', 'Extra Small (Womens)', 'Small (Womens)', 'Medium (Womens)', 'Large (Womens)', 'Extra Large (Womens)', 'XXL (Womens)') as $size): ?>
-    <option><?php echo $size; ?></option>
-    <?php endforeach; ?>
-  </select>
-</div>
 </script>
 
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
