@@ -2,6 +2,7 @@ name: nejsconf.com
 description: The website of the NebraskaJS Conference
 safe: false
 baseurl: /
+dist: "2.1.1"
 markdown: rdiscount
 permalink: /:year/:title/
 highlighter: pygments
