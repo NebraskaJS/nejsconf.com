@@ -5,7 +5,7 @@ layout: speaker
 permalink: /speakers/sean-larkin/
 ---
 
-<p><div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/sean-larkin.jpg" alt="Sean Larkin"></div></p>
+<p><div class="avatar speaker aspect-ratio"><img src="/assets/images/speakers/sean-larkin-2.jpg" alt="Sean Larkin"></div></p>
 
 <p>Sean Larkin is a User Experience Developer at Mutual of Omaha. He is a former technical support representative turned renegade software engineer and web developer, driven by the need to help people through the code he writes.  Sean is a member of the Webpack core team, Angular team and Angular-CLI core team.  Sean has given talks on Ruby, DAMP programming, AngularJS, and Webpack. He lives to teach others about the world of Web Development.</p>
 
