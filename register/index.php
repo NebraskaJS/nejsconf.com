@@ -56,9 +56,10 @@ title: Register
 
       // Validate Coupon Code
       if(($coupon_code = arr_get($_POST, 'coupon_code')) != null) {
+        $coupon_code = trim(strtoupper($coupon_code));
         $coupon_price = arr_get($config['checkout']['coupons'], $coupon_code);
         if(null === $coupon_price) {
-          $coupon_code = null;
+          $form_errors['coupon_code'] = 'Invalid coupon code, please try again.';
         }
         else {
           $ticket_price = $coupon_price;
@@ -301,9 +302,10 @@ title: Register
 
       <fieldset>
         <legend>Coupon</legend>
-        <div class="form_field">
+        <div class="form_field<?php if(arr_get($form_errors, 'coupon_code', false)): ?> error<?php endif; ?>">
           <label for="coupon_code">Coupon Code</label>
-          <input type="text" name="coupon_code" id="coupon_code" value="<?php echo $coupon_code; ?>" />
+          <input type="text" name="coupon_code" id="coupon_code" value="<?php echo htmlspecialchars($coupon_code); ?>" />
+          <div class="form_error"><?php echo arr_get($form_errors, 'coupon_code', ''); ?></div>
           <button type="button" id="update_coupon" class="btn-tertiary">Apply Code</button>
         </div>
       </fieldset>
@@ -436,18 +438,21 @@ title: Register
           $coupon_code.value = '';
           alert("Sorry, that coupon code does not exist.");
         }
-        if( data['price'] < 0 ) {
-          current_ticket_price = original_ticket_price + data['price'];
-          $('#creditcard, #cvc, #exp-month, #exp-year').attr('disabled', false);
-          $('#payment').show();
-        } else if ( data['price'] == 0 ) {
-          current_ticket_price = 0;
-          $('#creditcard, #cvc, #exp-month, #exp-year').val('').attr('disabled', true);
-          $('#payment').hide();
-        } else {
-          $('#creditcard, #cvc, #exp-month, #exp-year').attr('disabled', false);
-          $('#payment').show();
-          current_ticket_price = data['price'];
+        else {
+          $coupon_code.value = data['code'];
+          if( data['price'] < 0 ) {
+            current_ticket_price = original_ticket_price + data['price'];
+            $('#creditcard, #cvc, #exp-month, #exp-year').attr('disabled', false);
+            $('#payment').show();
+          } else if ( data['price'] == 0 ) {
+            current_ticket_price = 0;
+            $('#creditcard, #cvc, #exp-month, #exp-year').val('').attr('disabled', true);
+            $('#payment').hide();
+          } else {
+            $('#creditcard, #cvc, #exp-month, #exp-year').attr('disabled', false);
+            $('#payment').show();
+            current_ticket_price = data['price'];
+          }
         }
 
         updatePrice();

@@ -8,8 +8,8 @@
 
   header("Content-Type: application/json; charset=utf-8");
 
-  $code = $_GET['coupon_code'];
-  $price = arr_iget($config['checkout']['coupons'], $code);
+  $code = trim(strtoupper($_GET['coupon_code']));
+  $price = arr_get($config['checkout']['coupons'], $code);
   if($price !== null) {
     die(json_encode(array("code" => $code, "price" => $price)));
   }
