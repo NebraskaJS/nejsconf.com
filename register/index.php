@@ -230,7 +230,6 @@ title: Register
             <li>Tasty lunch!</li>
             <li>Snacks &amp; drinks throughout the day</li>
             <li>Dinner at the after party</li>
-            <li>Old fashioned soda fountain at the after party!</li>
           </ul>
         </p>
 
