@@ -2053,6 +2053,9 @@ img.durham-logo {
 #news {
   border-bottom: 2px solid #c09801;
 }
+.recommendations p {
+  padding-left: 1em;
+}
 .posts {
   text-align: left;
   padding: 0;
