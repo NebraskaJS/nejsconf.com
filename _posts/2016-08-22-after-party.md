@@ -12,12 +12,6 @@ NEJS CONF continues after [Andrea's keynote][andrea], with a party just upstairs
 We'll provide dinner, with vegan and gluten-free options.
 We'll also have a stocked bar, and you'll get a drink coupon if you wish to partake. 
 
-## Old Fashioned Soda Fountain!
-
-Ever had a phosphate? Neither had we, until we checked out the [Durham's soda fountain][soda]. We'll have it up & running for your enjoyment (you'll get a drink coupon for the soda fountain as well).
-
-Make yourself an old-timey drink and maybe talk about an old-timey JavaScript framework (say, React 0.x)
-
 ## Board Games!
 
 After dinner, we'll have a library of board games available to play during the after-party.
@@ -36,5 +30,4 @@ Make sure you keep your conference badge with you, as you'll need it to check in
 See you at the after-party!
 
 [andrea]: https://nejsconf.com/speakers/keynote-andrea-goulet
-[soda]: http://durhammuseum.org/experience/soda-fountain.aspx
 [spielbound]: http://spielbound.org/
