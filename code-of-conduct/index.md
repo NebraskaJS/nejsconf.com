@@ -10,6 +10,16 @@ All attendees, speakers, sponsors and volunteers at our conference are required 
 
 Please send all questions, comments, and concerns to [Matt Steele (matt@nejsconf.com)](mailto:matt@nejsconf.com).
 
+
+## Reporting A Violation
+
+To report a violation of the Code of Conduct, please speak to any [organizer](/team/), email [organizers@nejsconf.com](mailto:organizers@nejsconf.com), or send a text to whichever of our anonymized reporting lines you are most comfortable with.
+
+  * (402) 370-5096 to contact a male volunteer.
+  * (402) 370-5092 to contact a female volunteer.
+
+All communication will be kept strictly confidential, and in the case of the SMS lines, completely anonymous.
+
 ## The Quick Version
 
 Our conference is dedicated to providing a harassment-free conference experience for everyone, regardless of gender, gender identity and expression, age, sexual orientation, disability, physical appearance, body size, race, ethnicity, religion (or lack thereof), or technology choices. We do not tolerate harassment of conference participants in any form. Sexual language and imagery is not appropriate for any conference venue, including talks, workshops, parties, Twitter and other online media. Conference participants violating these rules may be sanctioned or expelled from the conference _without a refund_ at the discretion of the conference organisers.
